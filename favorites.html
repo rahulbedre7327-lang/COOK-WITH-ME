@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+
+    
+    <style>
+        /* ==========================
+   Global Styles
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+    color:#333;
+}
+
+/* ==========================
+   Header
+========================== */
+
+header{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    color:orange;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#ddd;
+    font-size:18px;
+}
+
+/* ==========================
+   Favorites Section
+========================== */
+
+.favorites-container{
+    width:90%;
+    max-width:1000px;
+    margin:40px auto;
+}
+
+.favorite-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.favorite-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+.favorite-info h2{
+    margin-bottom:10px;
+}
+
+.favorite-info p{
+    color:#666;
+}
+
+.remove-btn{
+    background:#ff4d4d;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.remove-btn:hover{
+    background:#d63031;
+}
+
+/* ==========================
+   Empty Message
+========================== */
+
+.empty-message{
+    text-align:center;
+    margin:60px 0;
+    font-size:22px;
+    color:#666;
+}
+
+/* ==========================
+   Back Button
+========================== */
+
+.back-btn{
+    display:block;
+    width:220px;
+    margin:40px auto;
+    text-align:center;
+    text-decoration:none;
+    background:#222;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:orange;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+.favorite-card{
+    flex-direction:column;
+    text-align:center;
+    gap:20px;
+}
+
+header h1{
+    font-size:30px;
+}
+
+}
+/* =====================
+   Dark Mode
+===================== */
+
+body.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+body.dark-mode .navbar{
+    background:#000;
+}
+
+body.dark-mode .hero,
+body.dark-mode .card,
+body.dark-mode .recipe-card,
+body.dark-mode .favorite-card,
+body.dark-mode .history-card,
+body.dark-mode .settings-card{
+    background:#1f1f1f;
+    color:white;
+}
+
+body.dark-mode p{
+    color:#ddd;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3{
+    color:#ff9800;
+}
+
+body.dark-mode .footer{
+    background:#000;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-decoration:none;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.logo img:hover{
+    transform:rotate(10deg) scale(1.08);
+}
+
+.logo span{
+    font-size:30px;
+    font-weight:bold;
+    color:#ff9800;
+    letter-spacing:1px;
+}
+    </style>
+</head>
+
+<body>
+
+<header>
+   <div class="logo">
+    <img src="images/logo.png" alt="Cook With Me Logo">
+    <span>Cook With Me</span>
+</div>
+    <p>Your saved recipes will appear here.</p>
+</header>
+
+<div class="favorites-container">
+
+    <div class="favorite-card">
+        <div class="favorite-info">
+            <h2>Chicken Biryani</h2>
+            <p>⭐⭐⭐⭐⭐ | ⏱ 45 Minutes</p>
+        </div>
+
+        <button class="remove-btn">Remove</button>
+    </div>
+
+    <div class="favorite-card">
+        <div class="favorite-info">
+            <h2>Paneer Butter Masala</h2>
+            <p>⭐⭐⭐⭐ | ⏱ 35 Minutes</p>
+        </div>
+
+        <button class="remove-btn">Remove</button>
+    </div>
+
+</div>
+
+<a href="dashboard.html" class="back-btn">
+    ⬅ Back to Dashboard
+</a>
+<script src="../script/theme.js"></script>
+</body>
+</html>

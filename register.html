@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .register-form{
+            width: 420px;
+            background: white;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .register-form h1{
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .input-group{
+            margin-bottom: 18px;
+        }
+        .input-group label{
+            display: block;
+            margin-bottom: 8px;
+        }
+        .input-group input{
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .input-group input:focus{
+            outline: none;
+            border-color:orange ;
+            box-shadow: 0 0 8px rgba(255, 165, 0, .3);
+        }
+        .terms{
+            margin: 20px 0;
+        }
+        button{
+            width: 100%;
+            padding: 14px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: .3s;
+        }
+        button:hover{
+            background: darkorange;
+            transform: scale(1.02);
+        }
+        .register-form p{
+            margin-top: 20px;
+            text-align: center;
+        }
+        .register-form a{
+            color: orange;
+            text-decoration: none;
+        }
+        #message{
+            font-weight: bold;
+        }
+        /* =====================
+   Dark Mode
+===================== */
+
+body.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+body.dark-mode .navbar{
+    background:#000;
+}
+
+body.dark-mode .hero,
+body.dark-mode .card,
+body.dark-mode .recipe-card,
+body.dark-mode .favorite-card,
+body.dark-mode .history-card,
+body.dark-mode .settings-card{
+    background:#1f1f1f;
+    color:white;
+}
+
+body.dark-mode p{
+    color:#ddd;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3{
+    color:#ff9800;
+}
+
+body.dark-mode .footer{
+    background:#000;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-decoration:none;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.logo img:hover{
+    transform:rotate(10deg) scale(1.08);
+}
+
+.logo span{
+    font-size:30px;
+    font-weight:bold;
+    color:#ff9800;
+    letter-spacing:1px;
+}
+    </style>
+</head>
+<body>
+    <div class="register-form">
+        <h1>Creat Account</h1>
+        <div class="input-group">
+            <label >Full Name</label>
+            <input type="text" id="fullname" placeholder="Enter your full name">
+        </div>
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="input-group">
+            <label>Username</label>
+            <input type="username" id="username" placeholder="Choose a username">
+        </div>
+        <div class="input-group">
+            <label for="">Password</label>
+            <input type="password" id="password" placeholder="Enter your Password">
+        </div>
+        <div class="input-group">
+            <label for="">Confirm Password</label>
+            <input type="password" id="confirmpassword" placeholder="Confirm Password">
+        </div>
+        <div class="terms">
+            <label for="">
+                <input type="checkbox" id="terms">
+                I agree to the Terms & Conditions
+            </label>
+        </div>
+        <button onclick="register()">Create Account</button>
+        <p>Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+    </div>
+
+    <script>
+        function register(){
+
+    let fullname = document.getElementById("fullname").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let terms = document.getElementById("terms").checked;
+    let message = document.getElementById("message");
+
+    if(fullname==="" || email==="" || username==="" || password==="" || confirmPassword===""){
+        message.innerHTML="Please fill all fields.";
+        message.style.color="red";
+        return;
+    }
+
+    if(password!==confirmPassword){
+        message.innerHTML="Passwords do not match.";
+        message.style.color="red";
+        return;
+    }
+
+    if(!terms){
+        message.innerHTML="Please accept the Terms & Conditions.";
+        message.style.color="red";
+        return;
+    }
+
+    message.innerHTML="Registration Successful!";
+    message.style.color="green";
+
+    // Later we'll send this data to Flask
+}
+
+    </script>
+    <script src="../script/theme.js"></script>
+</body>
+</html>

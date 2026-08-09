@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Cook With Me</title>
+
+    <style>
+        *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+color:#333;
+}
+
+/* Hero */
+
+.hero{
+background:linear-gradient(135deg,#ff9800,#ff5722);
+color:white;
+text-align:center;
+padding:80px 20px;
+animation:fadeDown 1s;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+}
+
+/* About */
+
+.about{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:50px;
+padding:70px;
+flex-wrap:wrap;
+}
+
+.about-text{
+flex:1;
+min-width:300px;
+animation:slideLeft 1s;
+}
+
+.about-text h2{
+color:orange;
+margin-bottom:20px;
+font-size:36px;
+}
+
+.about-text p{
+font-size:18px;
+line-height:1.8;
+}
+
+.about-image img{
+width:420px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+animation:slideRight 1s;
+}
+
+/* Mission */
+
+.mission{
+text-align:center;
+padding:60px;
+background:white;
+}
+
+.mission h2{
+color:orange;
+margin-bottom:20px;
+font-size:38px;
+}
+
+/* Features */
+
+.features{
+padding:70px;
+}
+
+.features h2{
+text-align:center;
+font-size:40px;
+margin-bottom:40px;
+color:orange;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.feature-card{
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+transition:.4s;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+}
+
+.feature-card i{
+font-size:50px;
+color:orange;
+margin-bottom:20px;
+}
+
+/* Team */
+
+.team{
+padding:70px;
+background:#fff;
+}
+
+.team h2{
+text-align:center;
+font-size:40px;
+color:orange;
+margin-bottom:40px;
+}
+
+.team-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+}
+
+.member{
+background:#f8f8f8;
+padding:30px;
+text-align:center;
+border-radius:15px;
+transition:.4s;
+}
+
+.member:hover{
+transform:scale(1.05);
+}
+
+.member img{
+width:120px;
+height:120px;
+border-radius:50%;
+margin-bottom:15px;
+}
+
+/* Stats */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+background:#222;
+color:white;
+padding:50px;
+text-align:center;
+}
+
+.stat h2{
+color:orange;
+font-size:45px;
+}
+
+.center{
+text-align:center;
+padding:50px;
+}
+
+.btn{
+background:orange;
+color:white;
+padding:15px 35px;
+text-decoration:none;
+border-radius:10px;
+font-size:18px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#ff5722;
+}
+
+/* Animations */
+
+@keyframes fadeDown{
+from{
+opacity:0;
+transform:translateY(-50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes slideLeft{
+from{
+opacity:0;
+transform:translateX(-80px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+@keyframes slideRight{
+from{
+opacity:0;
+transform:translateX(80px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:35px;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.about{
+padding:30px;
+}
+
+.about-image img{
+width:100%;
+}
+
+}
+
+/* Dark Mode */
+
+body.dark-mode{
+background:#121212;
+color:white;
+}
+
+body.dark-mode .mission,
+body.dark-mode .feature-card,
+body.dark-mode .member{
+background:#1f1f1f;
+color:white;
+}
+    </style>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header class="hero">
+
+    <h1>🍳 About Cook With Me</h1>
+
+    <p>
+        Discover recipes using ingredients you already have and reduce food waste.
+    </p>
+
+</header>
+
+<section class="about">
+
+    <div class="about-text">
+
+        <h2>Who We Are</h2>
+
+        <p>
+            Cook With Me is a smart recipe recommendation platform that helps users
+            cook delicious meals from ingredients available at home.
+            Instead of buying extra groceries, users simply choose their ingredients
+            and instantly receive matching recipes.
+        </p>
+
+    </div>
+
+    <div class="about-image">
+
+        <img src="images/Recipes.png" alt="Cook With Me">
+
+    </div>
+
+</section>
+
+<section class="mission">
+
+    <h2>🎯 Our Mission</h2>
+
+    <p>
+
+        To reduce food waste and make cooking easier by providing
+        quick, healthy and delicious recipes using available ingredients.
+
+    </p>
+
+</section>
+
+<section class="features">
+
+<h2>✨ Features</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<i class="fas fa-search"></i>
+
+<h3>Smart Search</h3>
+
+<p>Find recipes instantly using available ingredients.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fas fa-heart"></i>
+
+<h3>Favorites</h3>
+
+<p>Save your favourite recipes for quick access.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fas fa-history"></i>
+
+<h3>History</h3>
+
+<p>View your recently searched recipes anytime.</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fas fa-cog"></i>
+
+<h3>Settings</h3>
+
+<p>Customize notifications and dark mode.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="team">
+
+<h2>👨‍💻 Our Team</h2>
+
+<div class="team-grid">
+
+<div class="member">
+
+<img src="images/rahul.png" alt="Rahul">
+
+<h3>Rahul</h3>
+
+<p>Frontend Developer</p>
+
+</div>
+
+<div class="member">
+
+<img src="images/rahul.png" alt="Member">
+
+<h3>Team Member</h3>
+
+<p>Backend Developer</p>
+
+</div>
+
+<div class="member">
+
+<img src="images/rahul.png" alt="Member">
+
+<h3>Team Member</h3>
+
+<p>Database Designer</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+
+<h2>500+</h2>
+
+<p>Recipes</p>
+
+</div>
+
+<div class="stat">
+
+<h2>100+</h2>
+
+<p>Ingredients</p>
+
+</div>
+
+<div class="stat">
+
+<h2>1000+</h2>
+
+<p>Users</p>
+
+</div>
+
+<div class="stat">
+
+<h2>24/7</h2>
+
+<p>Support</p>
+
+</div>
+
+</section>
+
+<div class="center">
+
+<a href="dashboard.html" class="btn">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+<script src="../script/theme.js"></script>
+
+</body>
+</html>
