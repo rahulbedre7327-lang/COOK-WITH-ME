@@ -358,9 +358,12 @@ body.dark-mode .footer{
         <h1>Welcome Rahul</h1>
         <p>Find delicious recipes using your ingredients.</p>
         <div class="search">
-          <input type="text" placeholder="Enter Recipes..." />
-          <button>Search</button>
+          <input type="text" placeholder="Enter Recipes..." id="recipeSearch" />
+          <button onclick="searchRecipe()">Search</button>
         </div>
+        <p id="noResults" style="display: none; text-align: center; color: red;">
+    ❌ No recipe found
+</p>
         <div class="categories">
         <button class="category" onclick="location.href='breakfast.html'">
 🍳 Breakfast

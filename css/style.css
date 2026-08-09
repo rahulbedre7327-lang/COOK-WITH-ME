@@ -365,3 +365,72 @@ body.dark-mode .footer{
     color:#ff9800;
     letter-spacing:1px;
 }
+/* =========================================
+   CUSTOMIZED FOOD FLOATING BUTTON
+========================================= */
+
+.cook-floating-btn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: cookFloat 3s ease-in-out infinite;
+}
+
+.cook-floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.cook-icon {
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.cook-floating-btn span {
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+@keyframes cookFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .cook-floating-btn {
+        width: 80px;
+        height: 80px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .cook-icon {
+        font-size: 25px;
+    }
+
+    .cook-floating-btn span {
+        font-size: 9px;
+    }
+}

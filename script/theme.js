@@ -1,29 +1,38 @@
-// Apply saved theme on every page
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
-}
+// ==========================================
+// Cook With Me - Settings
+// ==========================================
 
-// Works only on settings page
-const darkMode = document.getElementById("darkMode");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (darkMode) {
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const saveButton = document.getElementById("saveSettingsBtn");
 
-    darkMode.checked = localStorage.getItem("theme") === "dark";
+    // Load saved dark mode setting
+    if (localStorage.getItem("darkMode") === "enabled") {
+        darkModeToggle.checked = true;
+        document.body.classList.add("dark-mode");
+    }
 
-    darkMode.addEventListener("change", function () {
+    // Save Settings
+    saveButton.addEventListener("click", function () {
 
-        if (this.checked) {
+        if (darkModeToggle.checked) {
 
+            localStorage.setItem("darkMode", "enabled");
             document.body.classList.add("dark-mode");
-            localStorage.setItem("theme", "dark");
 
         } else {
 
+            localStorage.setItem("darkMode", "disabled");
             document.body.classList.remove("dark-mode");
-            localStorage.setItem("theme", "light");
-
         }
 
+        // Show confirmation
+        saveButton.innerHTML = "✅ Settings Saved";
+
+        setTimeout(function () {
+            saveButton.innerHTML = "💾 Save Settings";
+        }, 2000);
     });
 
-}
+});

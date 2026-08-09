@@ -1,118 +1,278 @@
-// ========================================
-// DOWNLOAD RECIPE AS PDF
-// ========================================
+// ==========================================
+// Download Recipe as Text-Based PDF
+// ==========================================
 
 async function downloadRecipePDF() {
 
-    const recipe = document.getElementById("recipe-content");
+    const { jsPDF } = window.jspdf;
 
-    if (!recipe) {
-        alert("Recipe content not found.");
+    const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4"
+    });
+
+    const margin = 20;
+    const pageWidth = 210;
+    const contentWidth = pageWidth - (margin * 2);
+
+    let y = 20;
+
+    // Get recipe title
+    const title = document.querySelector(".hero h1").innerText;
+
+    // Get only recipe content
+    const recipeContent = document.getElementById("read-content");
+
+    if (!recipeContent) {
+        alert("Recipe content not found!");
         return;
     }
 
-    const button = document.querySelector(
-        'button[onclick="downloadRecipePDF()"]'
-    );
 
-    // Change button text while generating
-    if (button) {
-        button.innerHTML = "⏳ Creating PDF...";
-        button.disabled = true;
+    // ==========================================
+    // Helper: Check page space
+    // ==========================================
+
+    function checkPageSpace(requiredHeight) {
+
+        if (y + requiredHeight > 280) {
+            pdf.addPage();
+            y = 20;
+        }
     }
 
-    try {
 
-        // Create canvas from recipe
-        const canvas = await html2canvas(recipe, {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff"
-        });
+    // ==========================================
+    // Helper: Add heading
+    // ==========================================
 
-        const imageData = canvas.toDataURL("image/png");
+  function addHeading(text) {
 
-        const { jsPDF } = window.jspdf;
+    checkPageSpace(15);
 
-        const pdf = new jsPDF("p", "mm", "a4");
+    // Remove emojis and unwanted symbols from heading
+    text = text.replace(
+        /[\u{1F300}-\u{1FAFF}]|[\u{2600}-\u{27BF}]/gu,
+        ""
+    ).trim();
 
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(16);
 
-        const margin = 10;
+    pdf.text(text, margin, y);
 
-        const imageWidth = pageWidth - (margin * 2);
+    y += 9;
+}
 
-        const imageHeight =
-            (canvas.height * imageWidth) / canvas.width;
 
-        let heightLeft = imageHeight;
+    // ==========================================
+    // Helper: Add normal paragraph
+    // ==========================================
 
-        let position = margin;
+    function addParagraph(text) {
 
-        // First page
-        pdf.addImage(
-            imageData,
-            "PNG",
-            margin,
-            position,
-            imageWidth,
-            imageHeight
-        );
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(11);
 
-        heightLeft -= pageHeight - (margin * 2);
+        const lines = pdf.splitTextToSize(text, contentWidth);
 
-        // Additional pages
-        while (heightLeft > 0) {
+        checkPageSpace(lines.length * 5 + 5);
 
-            position = heightLeft - imageHeight + margin;
+        pdf.text(lines, margin, y);
 
-            pdf.addPage();
+        y += (lines.length * 5) + 5;
+    }
 
-            pdf.addImage(
-                imageData,
-                "PNG",
-                margin,
-                position,
-                imageWidth,
-                imageHeight
+
+    // ==========================================
+    // Helper: Add numbered list
+    // ==========================================
+
+    function addNumberedList(items) {
+
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(10);
+
+        items.forEach((item, index) => {
+
+            const number = `${index + 1}.`;
+
+            const textLines = pdf.splitTextToSize(
+                item,
+                contentWidth - 10
             );
 
-            heightLeft -= pageHeight - (margin * 2);
+            checkPageSpace(textLines.length * 5 + 5);
+
+            pdf.text(number, margin, y);
+
+            pdf.text(
+                textLines,
+                margin + 8,
+                y
+            );
+
+            y += (textLines.length * 5) + 3;
+        });
+
+        y += 4;
+    }
+
+
+    // ==========================================
+    // TITLE
+    // ==========================================
+
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(24);
+
+    const titleLines = pdf.splitTextToSize(
+        title,
+        contentWidth
+    );
+
+    pdf.text(
+        titleLines,
+        pageWidth / 2,
+        y,
+        {
+            align: "center"
+        }
+    );
+
+    y += (titleLines.length * 10) + 12;
+
+
+    // ==========================================
+    // Process recipe sections
+    // ==========================================
+
+    const sections = recipeContent.children;
+
+    for (let i = 0; i < sections.length; i++) {
+
+        const element = sections[i];
+
+        // Heading
+        if (element.tagName === "H2") {
+
+            addHeading(element.innerText);
+
         }
 
-        // Get recipe name
-        const titleElement = recipe.querySelector("h1");
+        // Paragraph
+        else if (element.tagName === "P") {
 
-        let fileName = "Cook-With-Me-Recipe";
+            addParagraph(element.innerText);
 
-        if (titleElement) {
-
-            fileName = titleElement.innerText
-                .replace(/[^\w\s-]/g, "")
-                .trim()
-                .replace(/\s+/g, "-");
         }
 
-        // Download PDF
-        pdf.save(fileName + ".pdf");
+        // Ordered list
+        else if (element.tagName === "OL") {
 
-    } catch (error) {
+            const items = Array.from(
+                element.querySelectorAll("li")
+            ).map(li => li.innerText);
 
-        console.error("PDF Error:", error);
+            addNumberedList(items);
 
-        alert(
-            "Unable to create PDF. Please make sure you are connected to the internet and try again."
-        );
+        }
 
-    } finally {
+        // Unordered list
+        else if (element.tagName === "UL") {
 
-        if (button) {
-            button.innerHTML = "📥 Download Recipe PDF";
-            button.disabled = false;
+            const items = Array.from(
+                element.querySelectorAll("li")
+            ).map(li => li.innerText);
+
+            addNumberedList(items);
+
+        }
+
+        // Table
+        else if (element.tagName === "TABLE") {
+
+            const rows = element.querySelectorAll("tr");
+
+            pdf.setFontSize(10);
+
+            rows.forEach(row => {
+
+                const cells = Array.from(
+                    row.querySelectorAll("th, td")
+                ).map(cell => cell.innerText);
+
+                checkPageSpace(8);
+
+                pdf.text(
+                    cells.join("        "),
+                    margin,
+                    y
+                );
+
+                y += 7;
+            });
+
+            y += 5;
         }
     }
+
+
+    // ==========================================
+    // Footer
+    // ==========================================
+
+   // ==========================================
+// Footer / Watermark
+// ==========================================
+
+const pageCount = pdf.internal.getNumberOfPages();
+
+for (let page = 1; page <= pageCount; page++) {
+
+    pdf.setPage(page);
+
+    // Footer line
+    pdf.setLineWidth(0.3);
+
+    pdf.line(
+        margin,
+        284,
+        pageWidth - margin,
+        284
+    );
+
+    // Project name + designer
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(8);
+
+    pdf.text(
+        "Cook With Me | Designed by Rahul",
+        pageWidth / 2,
+        289,
+        {
+            align: "center"
+        }
+    );
+
+    // Page number
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(7);
+
+    pdf.text(
+        `Page ${page} of ${pageCount}`,
+        pageWidth / 2,
+        294,
+        {
+            align: "center"
+        }
+    );
+    }
+
+    pdf.save(`${title}.pdf`);
 }
+
 // ========================================
 // PRINT RECIPE
 // ========================================
@@ -136,6 +296,11 @@ function printRecipe() {
 // ===============================
 // Read Recipe Aloud
 // ===============================
+// ===============================
+// Read Recipe Aloud
+// Introduction → Result
+// ===============================
+
 // ===============================
 // Read Recipe Aloud
 // Introduction → Result

@@ -220,6 +220,58 @@ body.dark-mode h3{
 body.dark-mode .footer{
     background:#000;
 }
+/* ==========================================
+   Global Dark Mode
+========================================== */
+
+body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .main-content {
+    background: #121212;
+}
+
+body.dark-mode .search input {
+    background: #1f1f1f;
+    color: white;
+    border-color: #555;
+}
+
+body.dark-mode .search input::placeholder {
+    color: #aaa;
+}
+
+body.dark-mode .category,
+body.dark-mode .card,
+body.dark-mode .stat {
+    background: #1f1f1f;
+    color: white;
+}
+
+body.dark-mode .card-content p,
+body.dark-mode .stat p,
+body.dark-mode .main-content > p {
+    color: #ccc;
+}
+
+body.dark-mode .sidebar {
+    background: #000000;
+}
+
+body.dark-mode .navbar {
+    background: #000000;
+}
+
+body.dark-mode footer {
+    background: #000000;
+}
+
+body.dark-mode .footer-bottom {
+    background: #000000;
+    border-color: #444;
+}
     </style>
 </head>
 <body>
@@ -237,15 +289,15 @@ body.dark-mode .footer{
 
         <div class="setting-item">
             <label for="darkMode">🌙 Dark Mode</label>
-            <input type="checkbox" id="darkMode">
+            <input type="checkbox" id="darkMode" title="Toggle dark mode">
         </div>
 
         <div class="setting-item">
             <label for="notifications">🔔 Notifications</label>
-            <input type="checkbox" id="notifications">
+            <input type="checkbox" id="notifications" title="Toggle notifications">
         </div>
 
-        <button class="save-btn">Save Settings</button>
+        <button class="save-btn" id="saveSettingsBtn" type="button">Save Settings</button>
 
     </div>
 
