@@ -332,6 +332,157 @@ body.dark-mode .footer{
     color:#ff9800;
     letter-spacing:1px;
 }
+/* =========================================
+   COMMON NAVIGATION BAR
+========================================= */
+
+.navbar {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: #111;
+
+    box-sizing: border-box;
+
+    position: relative;
+    z-index: 1000;
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+
+    font-size: 21px;
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+
+    object-fit: contain;
+}
+
+
+/* Navigation */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    position: relative;
+
+    padding: 10px 14px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    border-radius: 8px;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* Hover */
+
+.nav-links a:hover {
+    color: #ff9800;
+
+    background: rgba(255, 152, 0, 0.08);
+}
+
+
+/* Orange underline */
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 3px;
+
+    width: 0;
+    height: 2px;
+
+    background: #ff9800;
+
+    transform: translateX(-50%);
+
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 60%;
+}
+
+
+/* Active page */
+
+.nav-links a.active {
+    color: #ff9800;
+}
+
+.nav-links a.active::after {
+    width: 60%;
+}
+
+
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 15px 5%;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 4px;
+    }
+
+    .nav-links a {
+        padding: 8px 10px;
+
+        font-size: 13px;
+    }
+}
     </style>
   </head>
   <body>
@@ -342,12 +493,12 @@ body.dark-mode .footer{
     <span>Cook With Me</span>
 </div>
         <ul>
-          <li><a href="dashboard.html">🏠 Dashboard</a></li>
-<li><a href="recipes.html">🍽️ Recipes</a></li>
-<li><a href="favorites.html">❤️ Favorites</a></li>
-<li><a href="history.html">📜 History</a></li>
-<li><a href="settings.html">⚙️ Settings</a></li>
-<li><a href="index.html">🚪 Logout</a></li>
+          <li><a href="dashboard.html" class="active">🏠 Dashboard</a></li>
+<li><a href="recipes.html" class="active">🍽️ Recipes</a></li>
+<li><a href="favorites.html" class="active">❤️ Favorites</a></li>
+<li><a href="history.html" class="active">📜 History</a></li>
+<li><a href="settings.html" class="active">⚙️ Settings</a></li>
+<li><a href="index.html" class="active">🚪 Logout</a></li>
         </ul>
       </div>
       <div class="main-content">
@@ -477,7 +628,7 @@ body.dark-mode .footer{
 <a href="custom-food.html" class="custom-food-button" aria-label="Cook with what you have">
 
     <div class="cooker-image">
-        <img src="images/custom-food.png" alt="Customized Food Cooker">
+        <img src="../images/custom-food.png" alt="Customized Food Cooker">
     </div>
 
     <div class="cook-label">
