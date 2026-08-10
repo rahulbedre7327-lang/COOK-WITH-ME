@@ -1,0 +1,418 @@
+/* =========================================
+   CUSTOM FOOD PAGE
+========================================= */
+
+.custom-hero {
+    min-height: 360px;
+    padding: 55px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    background:
+        radial-gradient(circle at 80% 40%, rgba(255, 152, 0, 0.25), transparent 35%),
+        linear-gradient(135deg, #111111, #1b1b1b);
+
+    color: white;
+    overflow: hidden;
+}
+
+.custom-hero-content {
+    max-width: 600px;
+}
+
+.custom-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+
+    background: rgba(255, 152, 0, 0.15);
+    border: 1px solid rgba(255, 152, 0, 0.5);
+
+    color: #ff9800;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.custom-hero h1 {
+    margin: 18px 0 12px;
+
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.05;
+}
+
+.custom-hero h1 span {
+    display: block;
+    color: #ff9800;
+}
+
+.custom-hero p {
+    max-width: 520px;
+
+    color: #cccccc;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-cooker {
+    width: 380px;
+    height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-cooker img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    filter: drop-shadow(0 20px 30px rgba(255, 152, 0, 0.25));
+
+    animation: heroCookerFloat 4s ease-in-out infinite;
+}
+
+@keyframes heroCookerFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.custom-container {
+    max-width: 1000px;
+
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+
+/* =========================================
+   INGREDIENT CARD
+========================================= */
+
+.ingredient-card {
+    padding: 35px;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #eeeeee;
+}
+
+.card-heading {
+    margin-bottom: 28px;
+}
+
+.card-heading h2 {
+    margin: 0 0 8px;
+
+    color: #222;
+
+    font-size: 28px;
+}
+
+.card-heading p {
+    margin: 0;
+
+    color: #777;
+}
+
+
+/* =========================================
+   INGREDIENT INPUT
+========================================= */
+
+.ingredient-input {
+    display: grid;
+
+    grid-template-columns: 1fr 180px auto;
+
+    gap: 12px;
+}
+
+.ingredient-input input,
+.preference-box select {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 12px;
+
+    background: #fafafa;
+
+    color: #333;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.25s;
+}
+
+.ingredient-input input:focus,
+.preference-box select:focus {
+    border-color: #ff9800;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 152, 0, 0.12);
+}
+
+#addIngredient {
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #ff9800;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+#addIngredient:hover {
+    background: #e68900;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   INGREDIENT LIST
+========================================= */
+
+.ingredient-list {
+    min-height: 100px;
+
+    margin-top: 25px;
+    padding: 18px;
+
+    border: 2px dashed #eeeeee;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-content: flex-start;
+
+    gap: 10px;
+}
+
+.empty-message {
+    width: 100%;
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #999;
+}
+
+
+/* Ingredient Chip */
+
+.ingredient-chip {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 13px;
+
+    border-radius: 30px;
+
+    background: #fff3e0;
+
+    border: 1px solid #ffcc80;
+
+    color: #5d4037;
+
+    font-size: 14px;
+}
+
+.ingredient-chip strong {
+    color: #e65100;
+}
+
+.remove-ingredient {
+    width: 22px;
+    height: 22px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #e65100;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================
+   PREFERENCES
+========================================= */
+
+.preferences {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 30px;
+}
+
+.preference-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.preference-box label {
+    font-weight: bold;
+
+    color: #444;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   CREATE DISH BUTTON
+========================================= */
+
+.create-dish-btn {
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 17px;
+
+    border: none;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9800,
+            #f4511e
+        );
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(255, 87, 34, 0.25);
+
+    transition: 0.3s;
+}
+
+.create-dish-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 28px rgba(255, 87, 34, 0.35);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .custom-hero {
+        padding: 45px 6%;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .custom-hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cooker {
+        width: 280px;
+        height: 220px;
+    }
+
+    .ingredient-input {
+        grid-template-columns: 1fr;
+    }
+
+    #addIngredient {
+        padding: 14px;
+    }
+
+    .preferences {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .custom-container {
+        margin: 30px auto;
+    }
+
+    .ingredient-card {
+        padding: 22px;
+
+        border-radius: 18px;
+    }
+
+    .custom-hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-cooker {
+        width: 240px;
+        height: 190px;
+    }
+}

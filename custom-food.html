@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cook With What You Have | Cook With Me</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom-food.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+
+        <div class="logo">
+            <img src="images/logo.png" alt="Cook With Me">
+            <span>Cook With Me</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="recipes.html">Recipes</a>
+            <a href="favorites.html">Favorites</a>
+            <a href="history.html">History</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Customized Food Hero -->
+
+    <section class="custom-hero">
+
+        <div class="custom-hero-content">
+
+            <span class="custom-badge">
+                ✨ SMART COOKING
+            </span>
+
+            <h1>
+                What Can You
+                <span>Cook Today?</span>
+            </h1>
+
+            <p>
+                Enter the ingredients you already have,
+                and let Cook With Me find the best dish for you.
+            </p>
+
+        </div>
+
+        <div class="hero-cooker">
+            <img src="images/custom-food.png"
+                 alt="Customized Food Cooker">
+        </div>
+
+    </section>
+
+
+    <!-- Ingredient Section -->
+
+    <main class="custom-container">
+
+        <section class="ingredient-card">
+
+            <div class="card-heading">
+
+                <h2>🥕 Your Ingredients</h2>
+
+                <p>
+                    Tell us what ingredients you have at home.
+                </p>
+
+            </div>
+
+
+            <!-- Ingredient Input -->
+
+            <div class="ingredient-input">
+
+                <input
+                    type="text"
+                    id="ingredientName"
+                    placeholder="Enter ingredient e.g. Tomato"
+                >
+
+                <input
+                    type="text"
+                    id="ingredientQuantity"
+                    placeholder="Quantity e.g. 2"
+                >
+
+                <button type="button" id="addIngredient">
+                    + Add
+                </button>
+
+            </div>
+
+
+            <!-- Ingredients List -->
+
+            <div id="ingredientList" class="ingredient-list">
+
+                <div class="empty-message">
+                    No ingredients added yet.
+                </div>
+
+            </div>
+
+
+            <!-- Preferences -->
+
+            <div class="preferences">
+
+                <div class="preference-box">
+
+                    <label for="spiceLevel">
+                        🌶 Spice Level
+                    </label>
+
+                    <select id="spiceLevel">
+
+                        <option value="mild">
+                            Mild
+                        </option>
+
+                        <option value="medium" selected>
+                            Medium
+                        </option>
+
+                        <option value="spicy">
+                            Spicy
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="preference-box">
+
+                    <label for="servings">
+                        👨‍👩‍👧 Servings
+                    </label>
+
+                    <select id="servings">
+
+                        <option value="1">1 Person</option>
+                        <option value="2" selected>2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="preference-box">
+
+                    <label for="cookingTime">
+                        ⏱ Cooking Time
+                    </label>
+
+                    <select id="cookingTime">
+
+                        <option value="quick">
+                            Under 20 min
+                        </option>
+
+                        <option value="medium" selected>
+                            20–40 min
+                        </option>
+
+                        <option value="long">
+                            40+ min
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Create Button -->
+
+            <button
+                type="button"
+                class="create-dish-btn"
+                id="createDish">
+
+                🍳 Create My Dish
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/custom-food.js"></script>
+
+</body>
+
+</html>
