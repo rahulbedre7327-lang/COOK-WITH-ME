@@ -772,7 +772,12 @@ body.dark-mode .footer{
         <h1>Welcome Rahul</h1>
         <p>Find delicious recipes using your ingredients.</p>
         <div class="search">
-          <input type="text" placeholder="Enter Recipes..." id="recipeSearch" />
+          <input
+    type="text"
+    placeholder="Enter Recipes..."
+    id="recipeSearch"
+    onkeydown="if(event.key === 'Enter') searchRecipe()"
+/>
           <button onclick="searchRecipe()">Search</button>
         </div>
         <p id="noResults" style="display: none; text-align: center; color: red;">
@@ -901,5 +906,39 @@ body.dark-mode .footer{
     </div>
 
 </a>
+<script>
+const searchInput = document.getElementById("recipeSearch");
+const cards = document.querySelectorAll(".card");
+const noResults = document.getElementById("noResults");
+
+searchInput.addEventListener("input", function () {
+
+    const searchText = this.value.trim().toLowerCase();
+    let found = false;
+
+    cards.forEach(function (card) {
+
+        const recipeName = card
+            .querySelector("h2")
+            .textContent
+            .toLowerCase();
+
+        if (searchText === "" || recipeName.includes(searchText)) {
+            card.style.display = "block";
+            found = true;
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+    if (searchText !== "" && !found) {
+        noResults.style.display = "block";
+    } else {
+        noResults.style.display = "none";
+    }
+
+});
+</script>
   </body>
 </html>
