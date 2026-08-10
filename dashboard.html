@@ -22,11 +22,8 @@
         justify-content: space-between;
         padding: 15px 40px;
       }
-      .logo {
-        font-size: 28px;
-        font-weight: bold;
-        color: orange;
-        text-decoration: none;
+      .logo{
+        overflow: visible;
       }
       .user {
         font-size: 18px;
@@ -165,111 +162,187 @@
           margin-left: 0;
         }
       }
-      .container {
-        display: flex;
-        min-height: 100vh;
-      }
+      /* =========================================
+   FINAL DASHBOARD LAYOUT FIX
+========================================= */
 
-      /* Sidebar */
-
-      .sidebar {
-        width: 250px;
-
-        background: #222;
-
-        color: white;
-
-        padding: 20px;
-      }
-
-      .sidebar h2 {
-        color: orange;
-
-        margin-bottom: 30px;
-      }
-
-      .sidebar ul {
-        list-style: none;
-      }
-
-      .sidebar li {
-        margin: 20px 0;
-      }
-
-      .sidebar a {
-        color: white;
-
-        text-decoration: none;
-
-        display: block;
-
-        padding: 12px;
-
-        border-radius: 8px;
-
-        transition: 0.3s;
-      }
-
-      .sidebar a:hover {
-        background: orange;
-      }
-
-      /* Main Content */
-
-      .main-content {
-        flex: 1;
-
-        padding: 40px;
-      }
-
-      .main-content h1 {
-        margin-bottom: 20px;
-      }
-
-      .main-content p {
-        color: #666;
-      }
-      .active {
-        background: orange;
-      }
-      .sidebar a:hover {
-        transform: translateX(8px);
-      }
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 80px;
-        }
-
-        .sidebar h2 {
-          display: none;
-        }
-
-        .sidebar a {
-          text-align: center;
-        }
-      }
-      .search input:focus {
-        outline: none;
-
-        border-color: orange;
-
-        box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
-      }
-      .card:hover{
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+.container {
+    display: block;
+    min-height: 100vh;
 }
-.search{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed !important;
+
+    top: 0;
+    left: 0;
+
+    width: 250px !important;
+    height: 100vh;
+
+    padding: 0 !important;
+
+    background: #222;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    z-index: 1000;
 }
-.sidebar a:hover{
-    background: orange;
-    transform: translateX(8px);
+
+
+/* ================= SIDEBAR LOGO ================= */
+
+.sidebar > .logo {
+    width: 250px !important;
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.sidebar > .logo img {
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+}
+
+.sidebar > .logo span {
+    display: block;
+
+    color: #ff9800;
+
+    font-size: 21px !important;
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+}
+
+
+/* ================= SIDEBAR LINKS ================= */
+
+.sidebar ul {
+    list-style: none;
+
+    margin: 0;
+    padding: 0 10px;
+}
+
+.sidebar li {
+    margin: 20px 0;
+}
+
+.sidebar li a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    padding: 12px;
+
     color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+}
+
+.sidebar li a:hover {
+    background: #ff9800;
+
+    transform: translateX(5px);
+}
+
+
+/* Only current page */
+
+.sidebar li a.active {
+    background: #ff9800;
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content {
+    margin-left: 250px !important;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    padding: 30px 40px !important;
+
+    box-sizing: border-box;
+}
+
+
+/* ================= TOP NAVBAR ================= */
+
+.main-content .navbar {
+    width: 100%;
+
+    height: 75px;
+
+    background: #111;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 65px;
+
+    box-sizing: border-box;
+}
+
+.main-content .navbar .logo {
+    color: white;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.main-content .navbar .user {
+    color: white;
+
+    font-size: 16px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.main-content + footer {
+    margin-left: 250px;
+    width: calc(100% - 250px);
 }
 /* =====================
    Dark Mode
@@ -483,6 +556,196 @@ body.dark-mode .footer{
         font-size: 13px;
     }
 }
+/* =========================================
+   CUSTOMIZED FOOD FLOATING COOKER
+========================================= */
+
+.custom-food-button {
+    position: fixed;
+
+    right: 30px;
+    bottom: 30px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #ffb300,
+        #ff6f00
+    );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    z-index: 99999;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(255, 152, 0, 0.45);
+
+    transition: all 0.3s ease;
+}
+
+
+/* Cooker */
+
+.custom-food-button .cooker-image {
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.custom-food-button .cooker-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* Hover */
+
+.custom-food-button:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(255, 152, 0, 0.7);
+}
+
+.custom-food-button:hover .cooker-image img {
+    transform: scale(1.05);
+}
+
+
+/* Text */
+
+.custom-food-button .cook-label {
+    position: absolute;
+
+    bottom: -48px;
+    right: 0;
+
+    width: 145px;
+
+    padding: 8px 10px;
+
+    background: #111111;
+
+    color: white;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(5px);
+
+    transition: all 0.3s ease;
+}
+
+.custom-food-button .cook-label span {
+    display: block;
+
+    color: #ff9800;
+
+    font-size: 11px;
+}
+
+.custom-food-button .cook-label strong {
+    display: block;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.custom-food-button:hover .cook-label {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   FLOATING ANIMATION
+========================================= */
+
+@keyframes cookerFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.custom-food-button {
+    animation: cookerFloat 3s ease-in-out infinite;
+}
+
+.custom-food-button:hover {
+    animation: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .custom-food-button {
+
+        width: 90px;
+        height: 90px;
+
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .custom-food-button .cooker-image {
+
+        width: 75px;
+        height: 75px;
+    }
+
+    .custom-food-button .cook-label {
+
+        width: 120px;
+
+        bottom: -42px;
+    }
+}
+
     </style>
   </head>
   <body>
@@ -623,12 +886,13 @@ body.dark-mode .footer{
     </footer>
     </div>
     <script src="../script/theme.js"></script>
-    <!-- Customized Food Floating Button -->
 <!-- Customized Food Floating Button -->
-<a href="custom-food.html" class="custom-food-button" aria-label="Cook with what you have">
+
+<a href="custom-food.html" class="custom-food-button">
 
     <div class="cooker-image">
-        <img src="../images/custom-food.png" alt="Customized Food Cooker">
+        <img src="images/custom-food.png"
+             alt="Customized Food Cooker">
     </div>
 
     <div class="cook-label">

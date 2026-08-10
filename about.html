@@ -269,6 +269,166 @@ body.dark-mode .member{
 background:#1f1f1f;
 color:white;
 }
+/* =========================================
+   CUSTOMIZED FOOD FLOATING COOKER
+========================================= */
+
+.custom-food-button {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background: #ff9800;
+
+    border: 3px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(255, 152, 0, 0.5);
+
+    transition: all 0.3s ease;
+
+    animation: cookerFloat 3s ease-in-out infinite;
+}
+
+
+/* Cooker image */
+
+.custom-food-button .cooker-image {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.custom-food-button .cooker-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* Hover */
+
+.custom-food-button:hover {
+    transform: scale(1.1);
+
+    animation: none;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 152, 0, 0.7);
+}
+
+
+/* Label */
+
+.custom-food-button .cook-label {
+    position: absolute;
+
+    right: 0;
+    bottom: -48px;
+
+    width: 145px;
+
+    padding: 8px 10px;
+
+    background: #222;
+
+    color: white;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(5px);
+
+    transition: all 0.3s ease;
+}
+
+.custom-food-button .cook-label span {
+    display: block;
+
+    color: #ff9800;
+
+    font-size: 11px;
+}
+
+.custom-food-button .cook-label strong {
+    display: block;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.custom-food-button:hover .cook-label {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* Floating animation */
+
+@keyframes cookerFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .custom-food-button {
+        width: 85px;
+        height: 85px;
+
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .custom-food-button .cooker-image {
+        width: 72px;
+        height: 72px;
+    }
+}
     </style>
     <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -370,7 +530,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </div>
 
 </section>
+<div class="center">
 
+<a href="dashboard.html" class="btn">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
 <section class="team">
 
 <h2>👨‍💻 Our Team</h2>
@@ -447,23 +615,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </section>
 
-<div class="center">
 
-<a href="dashboard.html" class="btn">
-
-⬅ Back to Dashboard
-
-</a>
-
-</div>
 
 <script src="../script/theme.js"></script>
 <!-- Customized Food Floating Button -->
 <!-- Customized Food Floating Button -->
-<a href="custom-food.html" class="custom-food-button" aria-label="Cook with what you have">
+<a href="custom-food.html"
+   class="custom-food-button"
+   aria-label="Cook With What You Have">
 
     <div class="cooker-image">
-        <img src="images/custom-food.png" alt="Customized Food Cooker">
+        <img src="images/custom-food.png"
+             alt="Customized Food Cooker">
     </div>
 
     <div class="cook-label">
