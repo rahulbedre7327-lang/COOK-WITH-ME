@@ -776,6 +776,30 @@
         bottom: -42px;
       }
     }
+    #searchResults {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px;
+}
+
+.search-card {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.search-card h2 {
+    color: #ff9800;
+    margin-bottom: 10px;
+}
+
+.search-card p {
+    margin: 8px 0;
+}
   </style>
 </head>
 
@@ -803,10 +827,11 @@
       <h1>Welcome Rahul</h1>
       <p>Find delicious recipes using your ingredients.</p>
       <div class="search">
-        <input type="text" placeholder="Enter Recipes..." id="recipeSearch"
+        <input type="text" autocomplete="off" placeholder="Enter Recipes..." id="searchInput"
           onkeydown="if(event.key === 'Enter') searchRecipe()" />
-        <button onclick="searchRecipe()">Search</button>
+        <button id="searchBtn" onclick="searchRecipe()">Search</button>
       </div>
+      <div id="searchResults"></div>
       <p id="noResults" style="display: none; text-align: center; color: red;">
         ❌ No recipe found
       </p>
@@ -931,39 +956,67 @@
 
   </a>
   <script>
-    const searchInput = document.getElementById("recipeSearch");
-    const cards = document.querySelectorAll(".card");
+async function searchRecipe() {
+
+    const input = document.getElementById("searchInput");
+    const results = document.getElementById("searchResults");
     const noResults = document.getElementById("noResults");
 
-    searchInput.addEventListener("input", function () {
+    const query = input.value.trim();
 
-      const searchText = this.value.trim().toLowerCase();
-      let found = false;
+    if (query === "") {
+        results.innerHTML = "";
+        noResults.style.display = "none";
+        return;
+    }
 
-      cards.forEach(function (card) {
+    try {
 
-        const recipeName = card
-          .querySelector("h2")
-          .textContent
-          .toLowerCase();
+        const response = await fetch(
+            "http://127.0.0.1:5000/search?q=" + encodeURIComponent(query)
+        );
 
-        if (searchText === "" || recipeName.includes(searchText)) {
-          card.style.display = "block";
-          found = true;
-        } else {
-          card.style.display = "none";
+        if (!response.ok) {
+            throw new Error("Server error");
         }
 
-      });
+        const recipes = await response.json();
 
-      if (searchText !== "" && !found) {
-        noResults.style.display = "block";
-      } else {
+        results.innerHTML = "";
         noResults.style.display = "none";
-      }
 
-    });
-  </script>
+        if (recipes.length === 0) {
+            noResults.style.display = "block";
+            noResults.textContent = "❌ No recipe found";
+            return;
+        }
+
+        recipes.forEach(recipe => {
+
+            const card = document.createElement("div");
+
+            card.className = "search-card";
+
+            card.innerHTML = `
+                <h2>${recipe.recipe_name}</h2>
+                <p>Category: ${recipe.category}</p>
+                <p>Cooking Time: ${recipe.cooking_time} minutes</p>
+                <p>Difficulty: ${recipe.difficulty}</p>
+                <p>Servings: ${recipe.servings}</p>
+            `;
+
+            results.appendChild(card);
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        results.innerHTML =
+            "<p style='color:red;text-align:center;'>❌ Cannot connect to Flask server</p>";
+    }
+}
+</script> <script src="../script/dashboard.js"></script>
 </body>
 
 </html>

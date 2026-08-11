@@ -773,3 +773,27 @@ body.dark-mode .footer{
         font-size: 11px;
     }
 }
+#searchResults {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px;
+}
+
+.search-card {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.search-card h2 {
+    color: #ff9800;
+    margin-bottom: 10px;
+}
+
+.search-card p {
+    margin: 8px 0;
+}
