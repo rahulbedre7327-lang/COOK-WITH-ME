@@ -345,3 +345,184 @@ function readRecipe() {
 
     speechSynthesis.speak(speech);
 }
+// ==========================================
+// COOK WITH ME - RECIPE SYSTEM
+// ==========================================
+
+
+// Get recipe information from the HTML
+function getRecipeData() {
+
+    const body = document.body;
+
+    return {
+        name: body.dataset.recipeName || "Unknown Recipe",
+
+        rating: body.dataset.recipeRating || "⭐⭐⭐⭐⭐",
+
+        time: body.dataset.recipeTime || "30 Minutes",
+
+        image: body.dataset.recipeImage || "",
+
+        url: window.location.href
+    };
+}
+
+
+// ==========================================
+// SAVE RECIPE TO HISTORY
+// ==========================================
+
+function addToHistory(recipe) {
+
+    let history = JSON.parse(
+        localStorage.getItem("recipeHistory")
+    ) || [];
+
+
+    // Remove existing copy of the recipe
+    history = history.filter(
+        item => item.name !== recipe.name
+    );
+
+
+    // Add recipe to beginning
+    history.unshift(recipe);
+
+
+    // Keep only latest 20 recipes
+    history = history.slice(0, 20);
+
+
+    localStorage.setItem(
+        "recipeHistory",
+        JSON.stringify(history)
+    );
+}
+
+
+// ==========================================
+// CHECK FAVORITE
+// ==========================================
+
+function isFavorite(recipeName) {
+
+    const favorites = JSON.parse(
+        localStorage.getItem("favorites")
+    ) || [];
+
+    return favorites.some(
+        item => item.name === recipeName
+    );
+}
+
+
+// ==========================================
+// ADD / REMOVE FAVORITE
+// ==========================================
+
+function toggleFavorite(recipe) {
+
+    let favorites = JSON.parse(
+        localStorage.getItem("favorites")
+    ) || [];
+
+
+    const exists = favorites.some(
+        item => item.name === recipe.name
+    );
+
+
+    if (exists) {
+
+        // Remove
+        favorites = favorites.filter(
+            item => item.name !== recipe.name
+        );
+
+        localStorage.setItem(
+            "favorites",
+            JSON.stringify(favorites)
+        );
+
+        updateFavoriteButton(false);
+
+    } else {
+
+        // Add
+        favorites.push(recipe);
+
+        localStorage.setItem(
+            "favorites",
+            JSON.stringify(favorites)
+        );
+
+        updateFavoriteButton(true);
+    }
+}
+
+
+// ==========================================
+// UPDATE FAVORITE BUTTON
+// ==========================================
+
+function updateFavoriteButton(favorite) {
+
+    const button = document.querySelector(".favorite-btn");
+
+    if (!button) return;
+
+
+    if (favorite) {
+
+        button.innerHTML = "❤️ Remove from Favorites";
+
+        button.classList.add("favorited");
+
+    } else {
+
+        button.innerHTML = "🤍 Add to Favorites";
+
+        button.classList.remove("favorited");
+    }
+}
+
+
+// ==========================================
+// START RECIPE SYSTEM
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const recipe = getRecipeData();
+
+
+    // Automatically save recipe to history
+    addToHistory(recipe);
+
+
+    // Find favorite button
+    const favoriteButton =
+        document.querySelector(".favorite-btn");
+
+
+    if (favoriteButton) {
+
+        // Show correct button status
+        updateFavoriteButton(
+            isFavorite(recipe.name)
+        );
+
+
+        // Button click
+        favoriteButton.addEventListener(
+            "click",
+            function () {
+
+                toggleFavorite(recipe);
+
+            }
+        );
+    }
+
+});
