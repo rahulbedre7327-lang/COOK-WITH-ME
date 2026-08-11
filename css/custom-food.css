@@ -348,6 +348,12 @@
 
     transition: 0.3s;
 }
+.navbar a{
+    color: orange;
+    text-decoration: none;
+    text-align: justify;
+    padding: 20px;
+}
 
 .create-dish-btn:hover {
     transform: translateY(-3px);
