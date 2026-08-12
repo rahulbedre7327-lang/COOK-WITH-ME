@@ -801,6 +801,12 @@
 .search-card p {
     margin: 8px 0;
 }
+
+#noResults {
+    display: none;
+    text-align: center;
+    color: red;
+}
   </style>
 </head>
 
@@ -830,10 +836,10 @@
       <div class="search">
         <input type="text" autocomplete="off" placeholder="Enter Recipes..." id="searchInput"
           onkeydown="if(event.key === 'Enter') searchRecipe()" />
-        <button id="searchBtn" onclick="searchRecipe()">Search</button>
+        <button id="searchBtn" type="button" onclick="searchRecipe()">Search</button>
       </div>
       <div id="searchResults"></div>
-      <p id="noResults" style="display: none; text-align: center; color: red;">
+      <p id="noResults">
         ❌ No recipe found
       </p>
       <div class="categories">
@@ -1019,5 +1025,52 @@ async function searchRecipe() {
 }
 </script> <script src="../script/dashboard.js"></script>
 </body>
+<script>
+async function searchRecipe() {
 
+    const input = document.getElementById("searchInput");
+    const results = document.getElementById("searchResults");
+
+    const query = input.value.trim();
+
+    if (query === "") {
+        results.innerHTML = "";
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:5000/search?q=" +
+            encodeURIComponent(query)
+        );
+
+        const recipes = await response.json();
+
+        if (recipes.length === 0) {
+            results.innerHTML = `
+                <p>No recipe found.</p>
+            `;
+            return;
+        }
+
+        results.innerHTML = recipes.map(recipe => `
+            <div class="search-card">
+                <h2>🍳 ${recipe.recipe_name}</h2>
+                <p>Category: ${recipe.category || "N/A"}</p>
+                <p>Cooking Time: ${recipe.cooking_time || "N/A"}</p>
+                <p>Difficulty: ${recipe.difficulty || "N/A"}</p>
+            </div>
+        `).join("");
+
+    } catch (error) {
+
+        console.error(error);
+
+        results.innerHTML = `
+            <p>Unable to connect to the recipe server.</p>
+        `;
+    }
+}
+</script>
 </html>

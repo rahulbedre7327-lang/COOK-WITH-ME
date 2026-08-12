@@ -18,7 +18,7 @@ searchInput.addEventListener("input", async function () {
         );
 
         if (!response.ok) {
-            throw new Error("Server error");
+            throw new Error("Server error: " + response.status);
         }
 
         const recipes = await response.json();
@@ -35,9 +35,10 @@ searchInput.addEventListener("input", async function () {
         searchResults.innerHTML = recipes.map(recipe => `
             <div class="search-result">
                 <h3>${recipe.recipe_name}</h3>
-                <p>${recipe.category}</p>
-                <p>${recipe.cooking_time} minutes</p>
-                <p>${recipe.difficulty}</p>
+                <p>Category: ${recipe.category}</p>
+                <p>Cooking Time: ${recipe.cooking_time} minutes</p>
+                <p>Difficulty: ${recipe.difficulty}</p>
+                <p>Servings: ${recipe.servings}</p>
             </div>
         `).join("");
 
