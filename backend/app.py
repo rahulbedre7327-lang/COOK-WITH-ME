@@ -5,6 +5,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def home():
+    return "Cook with me flask server is running!"
 
 def get_db_connection():
     return mysql.connector.connect(
@@ -13,25 +16,28 @@ def get_db_connection():
         password="Rahul@1234",
         database="CookWithMe"
     )
-
 @app.route("/custom-food", methods=["POST"])
 def custom_food():
 
     try:
-
         data = request.get_json()
 
         user_ingredients = data.get("ingredients", [])
 
         if not user_ingredients:
-            return jsonify({
-                "message": "Please enter at least one ingredient."
-            }), 400
+            return jsonify([])
+
+        # Get only ingredient names
+        ingredient_names = [
+            item["name"].strip().lower()
+            for item in user_ingredients
+        ]
 
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
 
-        placeholders = ",".join(["%s"] * len(user_ingredients))
+        # Create ?,?,? placeholders
+        placeholders = ",".join(["%s"] * len(ingredient_names))
 
         sql = f"""
             SELECT
@@ -58,9 +64,7 @@ def custom_food():
             ORDER BY matched_ingredients DESC
         """
 
-        values = [ingredient.lower() for ingredient in user_ingredients]
-
-        cursor.execute(sql, values)
+        cursor.execute(sql, ingredient_names)
 
         recipes = cursor.fetchall()
 
@@ -76,3 +80,5 @@ def custom_food():
         return jsonify({
             "error": str(e)
         }), 500
+if __name__ == "__main__":
+    app.run(debug=True)
