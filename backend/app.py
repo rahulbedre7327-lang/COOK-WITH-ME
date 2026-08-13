@@ -6,10 +6,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-# =========================
-# DATABASE CONNECTION
-# =========================
-
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
@@ -55,6 +51,7 @@ def search():
                 servings
             FROM recipes
             WHERE recipe_name LIKE %s
+            ORDER BY recipe_id
         """
 
         cursor.execute(sql, ("%" + query + "%",))
@@ -76,7 +73,7 @@ def search():
 
 
 # =========================
-# GET SINGLE RECIPE
+# GET ONE RECIPE
 # =========================
 
 @app.route("/recipe/<int:recipe_id>")
@@ -98,13 +95,10 @@ def get_recipe(recipe_id):
                 i.name AS ingredient_name,
                 ri.quantity
             FROM recipes r
-
             LEFT JOIN recipe_ingredients ri
                 ON r.recipe_id = ri.recipe_id
-
             LEFT JOIN ingredients i
                 ON ri.ingredient_id = i.id
-
             WHERE r.recipe_id = %s
         """
 
@@ -151,7 +145,7 @@ def get_recipe(recipe_id):
 
 
 # =========================
-# START FLASK SERVER
+# START SERVER
 # =========================
 
 if __name__ == "__main__":

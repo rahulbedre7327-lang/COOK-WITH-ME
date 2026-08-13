@@ -23,67 +23,47 @@ searchInput.addEventListener("input", async function () {
         const recipes = await response.json();
 
         if (recipes.length === 0) {
+
             searchResults.innerHTML = `
                 <p class="no-results">
                     No recipes found.
                 </p>
             `;
+
             return;
         }
 
-        searchResults.innerHTML = recipes.map(recipe => {
+        searchResults.innerHTML = recipes.map(recipe => `
 
-            let recipePage = "";
+            <div class="search-result">
 
-            if (recipe.recipe_id == 1) {
-                recipePage = "recipes/tomato-rice.html";
-            }
-            else if (recipe.recipe_id == 2) {
-                recipePage = "recipes/egg-gravy.html";
-            }
-            else if (recipe.recipe_id == 3) {
-                recipePage = "recipes/fried-rice.html";
-            }
-            else if (recipe.recipe_id == 4) {
-                recipePage = "recipes/paneer-butter-masala.html";
-            }
-            else if (recipe.recipe_id == 5) {
-                recipePage = "recipes/masala-dosa.html";
-            }
+                <h3>${recipe.recipe_name}</h3>
 
-            return `
-                <div class="search-result">
+                <p>
+                    Category: ${recipe.category}
+                </p>
 
-                    <h3>${recipe.recipe_name}</h3>
+                <p>
+                    Cooking Time: ${recipe.cooking_time} minutes
+                </p>
 
-                    <p>
-                        Category: ${recipe.category}
-                    </p>
+                <p>
+                    Difficulty: ${recipe.difficulty}
+                </p>
 
-                    <p>
-                        Cooking Time: ${recipe.cooking_time} minutes
-                    </p>
+                <p>
+                    Servings: ${recipe.servings}
+                </p>
 
-                    <p>
-                        Difficulty: ${recipe.difficulty}
-                    </p>
+                <button
+                    onclick="openRecipe(${recipe.recipe_id})"
+                    class="view-recipe-btn">
+                    View Recipe
+                </button>
 
-                    <p>
-                        Servings: ${recipe.servings}
-                    </p>
+            </div>
 
-                    ${
-                        recipePage
-                        ? `<button onclick="window.location.href='${recipePage}'">
-                             View Recipe
-                           </button>`
-                        : ""
-                    }
-
-                </div>
-            `;
-
-        }).join("");
+        `).join("");
 
     } catch (error) {
 
@@ -96,3 +76,31 @@ searchInput.addEventListener("input", async function () {
         `;
     }
 });
+
+
+function openRecipe(recipeId) {
+
+    const recipePages = {
+
+        1: "recipes/tomato-rice.html",
+
+        2: "recipes/egg-gravy.html",
+
+        3: "recipes/fried-rice.html",
+
+        4: "recipes/paneer-butter-masala.html",
+
+        5: "recipes/masala-dosa.html"
+
+    };
+
+    if (recipePages[recipeId]) {
+
+        window.location.href = recipePages[recipeId];
+
+    } else {
+
+        alert("Recipe page is not available yet.");
+
+    }
+}
