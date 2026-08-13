@@ -1,5 +1,3 @@
-USE CookWithMe;
-
-SHOW TABLES;
-
-SELECT * FROM ingredients;
+SELECT recipe_id, recipe_name
+FROM recipes
+ORDER BY recipe_id;

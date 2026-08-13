@@ -807,6 +807,32 @@
     text-align: center;
     color: red;
 }
+.search-result {
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.search-result:hover {
+    transform: translateY(-3px);
+}
+
+.search-result button {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.search-result button:hover {
+    background: #f57c00;
+}
   </style>
 </head>
 
@@ -967,69 +993,6 @@ async function searchRecipe() {
 
     const input = document.getElementById("searchInput");
     const results = document.getElementById("searchResults");
-    const noResults = document.getElementById("noResults");
-
-    const query = input.value.trim();
-
-    if (query === "") {
-        results.innerHTML = "";
-        noResults.style.display = "none";
-        return;
-    }
-
-    try {
-
-        const response = await fetch(
-            "http://127.0.0.1:5000/search?q=" + encodeURIComponent(query)
-        );
-
-        if (!response.ok) {
-            throw new Error("Server error");
-        }
-
-        const recipes = await response.json();
-
-        results.innerHTML = "";
-        noResults.style.display = "none";
-
-        if (recipes.length === 0) {
-            noResults.style.display = "block";
-            noResults.textContent = "❌ No recipe found";
-            return;
-        }
-
-        recipes.forEach(recipe => {
-
-            const card = document.createElement("div");
-
-            card.className = "search-card";
-
-            card.innerHTML = `
-                <h2>${recipe.recipe_name}</h2>
-                <p>Category: ${recipe.category}</p>
-                <p>Cooking Time: ${recipe.cooking_time} minutes</p>
-                <p>Difficulty: ${recipe.difficulty}</p>
-                <p>Servings: ${recipe.servings}</p>
-            `;
-
-            results.appendChild(card);
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        results.innerHTML =
-            "<p style='color:red;text-align:center;'>❌ Cannot connect to Flask server</p>";
-    }
-}
-</script> <script src="../script/dashboard.js"></script>
-</body>
-<script>
-async function searchRecipe() {
-
-    const input = document.getElementById("searchInput");
-    const results = document.getElementById("searchResults");
 
     const query = input.value.trim();
 
@@ -1045,6 +1008,10 @@ async function searchRecipe() {
             encodeURIComponent(query)
         );
 
+        if (!response.ok) {
+            throw new Error("Server error");
+        }
+
         const recipes = await response.json();
 
         if (recipes.length === 0) {
@@ -1055,22 +1022,53 @@ async function searchRecipe() {
         }
 
         results.innerHTML = recipes.map(recipe => `
-            <div class="search-card">
-                <h2>🍳 ${recipe.recipe_name}</h2>
-                <p>Category: ${recipe.category || "N/A"}</p>
-                <p>Cooking Time: ${recipe.cooking_time || "N/A"}</p>
-                <p>Difficulty: ${recipe.difficulty || "N/A"}</p>
+            <div class="search-result">
+
+                <h3>${recipe.recipe_name}</h3>
+
+                <p>Category: ${recipe.category}</p>
+
+                <p>
+                    Cooking Time:
+                    ${recipe.cooking_time} minutes
+                </p>
+
+                <p>
+                    Difficulty:
+                    ${recipe.difficulty}
+                </p>
+
+                <p>
+                    Servings:
+                    ${recipe.servings}
+                </p>
+
+                <button
+                    type="button"
+                    onclick="openRecipe(${recipe.recipe_id})">
+                    View Recipe
+                </button>
+
             </div>
         `).join("");
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Search error:", error);
 
         results.innerHTML = `
             <p>Unable to connect to the recipe server.</p>
         `;
     }
 }
-</script>
+
+
+function openRecipe(recipeId) {
+
+    window.location.href =
+        "recipe.html?id=" + recipeId;
+}
+</script> 
+<script src="../script/dashboard.js"></script>
+</body>
 </html>
