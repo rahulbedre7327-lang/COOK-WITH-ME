@@ -7,9 +7,9 @@ const createDish = document.getElementById("createDish");
 let ingredients = [];
 
 
-/* =========================================
-   ADD INGREDIENT
-========================================= */
+// ===============================
+// ADD INGREDIENT
+// ===============================
 
 addIngredient.addEventListener("click", function () {
 
@@ -18,40 +18,31 @@ addIngredient.addEventListener("click", function () {
 
     if (name === "") {
         alert("Please enter an ingredient.");
-        ingredientName.focus();
         return;
     }
 
     if (quantity === "") {
         alert("Please enter the quantity.");
-        ingredientQuantity.focus();
         return;
     }
 
-
-    const ingredient = {
+    ingredients.push({
         name: name,
         quantity: quantity
-    };
-
-    ingredients.push(ingredient);
-
-    displayIngredients();
+    });
 
     ingredientName.value = "";
     ingredientQuantity.value = "";
 
-    ingredientName.focus();
+    displayIngredients();
 });
 
 
-/* =========================================
-   DISPLAY INGREDIENTS
-========================================= */
+// ===============================
+// DISPLAY INGREDIENTS
+// ===============================
 
 function displayIngredients() {
-
-    ingredientList.innerHTML = "";
 
     if (ingredients.length === 0) {
 
@@ -64,34 +55,32 @@ function displayIngredients() {
         return;
     }
 
+    ingredientList.innerHTML = ingredients.map((ingredient, index) => {
 
-    ingredients.forEach(function (ingredient, index) {
+        return `
+            <div class="ingredient-item">
 
-        const chip = document.createElement("div");
+                <div>
+                    <strong>${ingredient.name}</strong>
+                    <span>${ingredient.quantity}</span>
+                </div>
 
-        chip.className = "ingredient-chip";
+                <button
+                    type="button"
+                    onclick="removeIngredient(${index})">
+                    ✕
+                </button>
 
-        chip.innerHTML = `
-            <span>${ingredient.name}</span>
-
-            <strong>${ingredient.quantity}</strong>
-
-            <button
-                type="button"
-                class="remove-ingredient"
-                onclick="removeIngredient(${index})">
-                ×
-            </button>
+            </div>
         `;
 
-        ingredientList.appendChild(chip);
-    });
+    }).join("");
 }
 
 
-/* =========================================
-   REMOVE INGREDIENT
-========================================= */
+// ===============================
+// REMOVE INGREDIENT
+// ===============================
 
 function removeIngredient(index) {
 
@@ -101,41 +90,18 @@ function removeIngredient(index) {
 }
 
 
-/* =========================================
-   ENTER KEY SUPPORT
-========================================= */
+// ===============================
+// CREATE DISH
+// ===============================
 
-ingredientName.addEventListener("keydown", function (event) {
-
-    if (event.key === "Enter") {
-        ingredientQuantity.focus();
-    }
-});
-
-
-ingredientQuantity.addEventListener("keydown", function (event) {
-
-    if (event.key === "Enter") {
-        addIngredient.click();
-    }
-});
-
-
-/* =========================================
-   CREATE DISH
-========================================= */
-
-createDish.addEventListener("click", function () {
+createDish.addEventListener("click", async function () {
 
     if (ingredients.length === 0) {
 
-        alert(
-            "Please add at least one ingredient before creating your dish."
-        );
+        alert("Please add at least one ingredient.");
 
         return;
     }
-
 
     const spiceLevel =
         document.getElementById("spiceLevel").value;
@@ -147,23 +113,92 @@ createDish.addEventListener("click", function () {
         document.getElementById("cookingTime").value;
 
 
-    const customizedData = {
+    try {
 
-        ingredients: ingredients,
-
-        spiceLevel: spiceLevel,
-
-        servings: servings,
-
-        cookingTime: cookingTime
-    };
+        createDish.disabled = true;
+        createDish.textContent = "🍳 Finding your dish...";
 
 
-    localStorage.setItem(
-        "customizedFood",
-        JSON.stringify(customizedData)
-    );
+        const response = await fetch(
+            "http://127.0.0.1:5000/custom-food",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    ingredients: ingredients,
+
+                    spiceLevel: spiceLevel,
+
+                    servings: servings,
+
+                    cookingTime: cookingTime
+
+                })
+            }
+        );
 
 
-    window.location.href = "custom-result.html";
+        if (!response.ok) {
+
+            throw new Error(
+                "Server error: " + response.status
+            );
+
+        }
+
+
+        const result = await response.json();
+
+        console.log("Custom food result:", result);
+
+
+        if (result.length === 0) {
+
+            alert(
+                "Sorry! No matching recipe was found with your ingredients."
+            );
+
+            return;
+        }
+
+
+        // Save result for the next page
+
+        localStorage.setItem(
+            "customFoodResult",
+            JSON.stringify(result)
+        );
+
+
+        // Open result page
+
+        window.location.href =
+            "custom-food-result.html";
+
+
+    } catch (error) {
+
+        console.error(
+            "Custom food error:",
+            error
+        );
+
+        alert(
+            "Unable to connect to the recipe server."
+        );
+
+    } finally {
+
+        createDish.disabled = false;
+
+        createDish.textContent =
+            "🍳 Create My Dish";
+
+    }
+
 });

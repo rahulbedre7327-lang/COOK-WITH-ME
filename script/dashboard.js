@@ -82,15 +82,15 @@ function openRecipe(recipeId) {
 
     const recipePages = {
 
-        1: "recipes/tomato-rice.html",
+        6: "recipes/chapati-curry.html",
 
-        2: "recipes/egg-gravy.html",
+        7: "recipes/chicken-biryani.html",
 
-        3: "recipes/fried-rice.html",
+        8: "recipes/brownie.html",
 
-        4: "recipes/paneer-butter-masala.html",
+        9: "recipes/burger.html",
 
-        5: "recipes/masala-dosa.html"
+        10: "recipes/butter-chicken.html"
 
     };
 
