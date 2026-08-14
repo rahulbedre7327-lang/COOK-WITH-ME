@@ -2,1089 +2,1430 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/responsive.css">
-  <title>Cook With Me DashBoard</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
 
-    body {
-      background: #f4f4f4;
-    }
+    <meta charset="UTF-8">
 
-    .navbar {
-      background: #222;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 40px;
-    }
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    .logo {
-      overflow: visible;
-    }
+    <title>Cook With Me | Dashboard</title>
 
-    .user {
-      font-size: 18px;
-    }
+    <!-- Common CSS -->
+    
 
-    .search {
-      padding: 30px;
-      text-align: center;
-    }
+    <!-- Responsive CSS -->
+    <link rel="stylesheet"
+          href="../css/responsive.css">
 
-    .search input {
-      width: 60%;
-      padding: 15px;
-      border-radius: 30px;
-      border: 1px solid gray;
-      font-size: 18px;
-    }
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+      /* =========================================================
+   COOK WITH ME - COMMON STYLE
+========================================================= */
 
-    .search button {
-      padding: 15px 25px;
-      background: orange;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: 0.3s;
-    }
 
-    .search button:hover {
-      background: darkorange;
-    }
+/* =========================================================
+   RESET
+========================================================= */
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    .category {
-      background: white;
-      padding: 15px 25px;
-      border-radius: 25px;
-      border-color: black;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: 0.3s;
-    }
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
 
-    .category:hover {
-      background: orange;
-      color: white;
-    }
+body {
+    width: 100%;
+    min-height: 100vh;
 
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 20px;
-    }
+    font-family: Arial, Helvetica, sans-serif;
 
-    .card {
-      width: 300px;
-      background: white;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
-      transition: 0.3s;
-    }
+    background: #f5f5f5;
+    color: #333;
 
-    .card:hover {
-      transform: translateY(-8px);
-    }
+    overflow-x: hidden;
+}
 
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+img {
+    max-width: 100%;
+    height: auto;
+}
 
-    .card-content {
-      padding: 20px;
-    }
 
-    .card-content h2 {
-      margin-bottom: 10px;
-    }
+/* =========================================================
+   GENERAL LINKS
+========================================================= */
 
-    .card-content p {
-      margin: 8px 0;
-      color: #666;
-    }
+a {
+    text-decoration: none;
+}
 
-    .card button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      background: orange;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
 
-    .card button:hover {
-      background: darkorange;
-    }
+/* =========================================================
+   COMMON LOGO
+========================================================= */
 
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      background: white;
-      padding: 25px;
-      width: 220px;
-      text-align: center;
-      border-radius: 15px;
-      box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .stat h2 {
-      color: orange;
-    }
-
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      clear: both;
-      padding: 50px 0 0;
-      width: 100%;
-      margin: 0;
-    }
-
-    .footer-bottom {
-      width: 100%;
-      border-top: 1px solid #555;
-      text-align: center;
-      padding: 20px 0;
-      margin: 0;
-      background: #222;
-    }
-
-    @media (max-width: 768px) {
-      .search input {
-        width: 90%;
-        margin-bottom: 15px;
-      }
-
-      .search button {
-        margin-left: 0;
-      }
-    }
-
-    /* =========================================
-   FINAL DASHBOARD LAYOUT FIX
-========================================= */
-
-    .container {
-      display: block;
-      min-height: 100vh;
-    }
-
-
-    /* ================= SIDEBAR ================= */
-
-    .sidebar {
-      position: fixed !important;
-
-      top: 0;
-      left: 0;
-
-      width: 250px !important;
-      height: 100vh;
-
-      padding: 0 !important;
-
-      background: #222;
-
-      box-sizing: border-box;
-
-      overflow: hidden;
-
-      z-index: 1000;
-    }
-
-
-    /* ================= SIDEBAR LOGO ================= */
-
-    .sidebar>.logo {
-      width: 250px !important;
-      height: 75px;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      padding: 0 15px;
-
-      box-sizing: border-box;
-
-      overflow: hidden;
-    }
-
-    .sidebar>.logo img {
-      width: 42px !important;
-      height: 42px !important;
-
-      min-width: 42px;
-
-      object-fit: contain;
-
-      border-radius: 50%;
-    }
-
-    .sidebar>.logo span {
-      display: block;
-
-      color: #ff9800;
-
-      font-size: 21px !important;
-      font-weight: bold;
-
-      white-space: nowrap;
-
-      flex-shrink: 0;
-    }
-
-
-    /* ================= SIDEBAR LINKS ================= */
-
-    .sidebar ul {
-      list-style: none;
-
-      margin: 0;
-      padding: 0 10px;
-    }
-
-    .sidebar li {
-      margin: 20px 0;
-    }
-
-    .sidebar li a {
-      display: flex;
-
-      align-items: center;
-
-      width: 100%;
-
-      padding: 12px;
-
-      color: white;
-
-      text-decoration: none;
-
-      border-radius: 8px;
-
-      box-sizing: border-box;
-
-      transition: 0.3s;
-    }
-
-    .sidebar li a:hover {
-      background: #ff9800;
-
-      transform: translateX(5px);
-    }
-
-
-    /* Only current page */
-
-    .sidebar li a.active {
-      background: #ff9800;
-    }
-
-
-    /* ================= MAIN CONTENT ================= */
-
-    .main-content {
-      margin-left: 250px !important;
-
-      width: calc(100% - 250px);
-
-      min-height: 100vh;
-
-      padding: 30px 40px !important;
-
-      box-sizing: border-box;
-    }
-
-
-    /* ================= TOP NAVBAR ================= */
-
-    .main-content .navbar {
-      width: 100%;
-
-      height: 75px;
-
-      background: #111;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      padding: 0 65px;
-
-      box-sizing: border-box;
-    }
-
-    .main-content .navbar .logo {
-      color: white;
-
-      font-size: 21px;
-
-      font-weight: bold;
-
-      white-space: nowrap;
-    }
-
-    .main-content .navbar .user {
-      color: white;
-
-      font-size: 16px;
-    }
-
-
-    /* ================= FOOTER ================= */
-
-    .main-content+footer {
-      margin-left: 250px;
-      width: calc(100% - 250px);
-    }
-
-    /* =====================
-   Dark Mode
-===================== */
-
-    body.dark-mode {
-      background: #121212;
-      color: white;
-    }
-
-    body.dark-mode .navbar {
-      background: #000;
-    }
-
-    body.dark-mode .hero,
-    body.dark-mode .card,
-    body.dark-mode .recipe-card,
-    body.dark-mode .favorite-card,
-    body.dark-mode .history-card,
-    body.dark-mode .settings-card {
-      background: #1f1f1f;
-      color: white;
-    }
-
-    body.dark-mode p {
-      color: #ddd;
-    }
-
-    body.dark-mode h1,
-    body.dark-mode h2,
-    body.dark-mode h3 {
-      color: #ff9800;
-    }
-
-    body.dark-mode .footer {
-      background: #000;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      text-decoration: none;
-    }
-
-    .logo img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      transition: .3s;
-    }
-
-    .logo img:hover {
-      transform: rotate(10deg) scale(1.08);
-    }
-
-    .logo span {
-      font-size: 30px;
-      font-weight: bold;
-      color: #ff9800;
-      letter-spacing: 1px;
-    }
-
-    /* =========================================
-   COMMON NAVIGATION BAR
-========================================= */
-
-    .navbar {
-      width: 100%;
-      height: 75px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 0 6%;
-
-      background: #111;
-
-      box-sizing: border-box;
-
-      position: relative;
-      z-index: 1000;
-    }
-
-
-    /* Logo */
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      color: white;
-
-      font-size: 21px;
-      font-weight: bold;
-
-      white-space: nowrap;
-    }
-
-    .logo img {
-      width: 45px;
-      height: 45px;
-
-      object-fit: contain;
-    }
-
-
-    /* Navigation */
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-links a {
-      position: relative;
-
-      padding: 10px 14px;
-
-      color: #ffffff;
-
-      text-decoration: none;
-
-      font-size: 15px;
-      font-weight: 500;
-
-      border-radius: 8px;
-
-      transition:
-        color 0.3s ease,
-        background 0.3s ease;
-    }
-
-
-    /* Hover */
-
-    .nav-links a:hover {
-      color: #ff9800;
-
-      background: rgba(255, 152, 0, 0.08);
-    }
-
-
-    /* Orange underline */
-
-    .nav-links a::after {
-      content: "";
-
-      position: absolute;
-
-      left: 50%;
-      bottom: 3px;
-
-      width: 0;
-      height: 2px;
-
-      background: #ff9800;
-
-      transform: translateX(-50%);
-
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 60%;
-    }
-
-
-    /* Active page */
-
-    .nav-links a.active {
-      color: #ff9800;
-    }
-
-    .nav-links a.active::after {
-      width: 60%;
-    }
-
-
-    /* =========================================
-   MOBILE NAVIGATION
-========================================= */
-
-    @media (max-width: 850px) {
-
-      .navbar {
-        height: auto;
-
-        padding: 15px 5%;
-
-        flex-direction: column;
-
-        gap: 15px;
-      }
-
-      .nav-links {
-        width: 100%;
-
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-        gap: 4px;
-      }
-
-      .nav-links a {
-        padding: 8px 10px;
-
-        font-size: 13px;
-      }
-    }
-
-    /* =========================================
-   CUSTOMIZED FOOD FLOATING COOKER
-========================================= */
-
-    .custom-food-button {
-      position: fixed;
-
-      right: 30px;
-      bottom: 30px;
-
-      width: 120px;
-      height: 120px;
-
-      border-radius: 50%;
-
-      background: linear-gradient(135deg,
-          #ffb300,
-          #ff6f00);
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      text-decoration: none;
-
-      z-index: 99999;
-
-      border: 3px solid #ffffff;
-
-      box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.35),
-        0 0 25px rgba(255, 152, 0, 0.45);
-
-      transition: all 0.3s ease;
-    }
-
-
-    /* Cooker */
-
-    .custom-food-button .cooker-image {
-      width: 100px;
-      height: 100px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      overflow: hidden;
-    }
-
-    .custom-food-button .cooker-image img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: contain;
-
-      display: block;
-    }
-
-
-    /* Hover */
-
-    .custom-food-button:hover {
-      transform: scale(1.08);
-
-      box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.45),
-        0 0 35px rgba(255, 152, 0, 0.7);
-    }
-
-    .custom-food-button:hover .cooker-image img {
-      transform: scale(1.05);
-    }
-
-
-    /* Text */
-
-    .custom-food-button .cook-label {
-      position: absolute;
-
-      bottom: -48px;
-      right: 0;
-
-      width: 145px;
-
-      padding: 8px 10px;
-
-      background: #111111;
-
-      color: white;
-
-      border-radius: 20px;
-
-      text-align: center;
-
-      opacity: 0;
-
-      visibility: hidden;
-
-      transform: translateY(5px);
-
-      transition: all 0.3s ease;
-    }
-
-    .custom-food-button .cook-label span {
-      display: block;
-
-      color: #ff9800;
-
-      font-size: 11px;
-    }
-
-    .custom-food-button .cook-label strong {
-      display: block;
-
-      color: white;
-
-      font-size: 12px;
-    }
-
-    .custom-food-button:hover .cook-label {
-      opacity: 1;
-
-      visibility: visible;
-
-      transform: translateY(0);
-    }
-
-
-    /* =========================================
-   FLOATING ANIMATION
-========================================= */
-
-    @keyframes cookerFloat {
-
-      0% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-8px);
-      }
-
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    .custom-food-button {
-      animation: cookerFloat 3s ease-in-out infinite;
-    }
-
-    .custom-food-button:hover {
-      animation: none;
-    }
-
-
-    /* =========================================
-   MOBILE
-========================================= */
-
-    @media (max-width: 600px) {
-
-      .custom-food-button {
-
-        width: 90px;
-        height: 90px;
-
-        right: 15px;
-        bottom: 15px;
-      }
-
-      .custom-food-button .cooker-image {
-
-        width: 75px;
-        height: 75px;
-      }
-
-      .custom-food-button .cook-label {
-
-        width: 120px;
-
-        bottom: -42px;
-      }
-    }
-    #searchResults {
+.logo {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 20px;
+    align-items: center;
+    gap: 10px;
 }
 
-.search-card {
-    width: 280px;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+.logo img {
+    width: 45px;
+    height: 45px;
+
+    object-fit: contain;
+    border-radius: 50%;
 }
 
-.search-card h2 {
+.logo span {
     color: #ff9800;
-    margin-bottom: 10px;
+
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.search-card p {
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+button {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   DASHBOARD LAYOUT
+========================================================= */
+
+.dashboard-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 250px;
+    height: 100vh;
+
+    background: #222;
+
+    color: white;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+
+/* Sidebar logo */
+
+.sidebar-logo {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 15px;
+
+    overflow: hidden;
+}
+
+.sidebar-logo img {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+}
+
+.sidebar-logo span {
+    color: #ff9800;
+
+    font-size: 21px;
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* Sidebar menu */
+
+.sidebar-menu {
+    list-style: none;
+
+    margin: 0;
+    padding: 10px;
+}
+
+.sidebar-menu li {
     margin: 8px 0;
 }
 
-#noResults {
-    display: none;
-    text-align: center;
-    color: red;
-}
-.search-result {
-    background: white;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 15px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 12px;
+
+    color: white;
+
+    border-radius: 8px;
+
     transition: 0.3s;
 }
 
-.search-result:hover {
-    transform: translateY(-3px);
+.sidebar-menu li a:hover {
+    background: #ff9800;
+
+    transform: translateX(5px);
+}
+
+.sidebar-menu li a.active {
+    background: #ff9800;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    padding: 30px 40px;
+}
+
+
+/* =========================================================
+   DASHBOARD NAVBAR
+========================================================= */
+
+.dashboard-navbar {
+    width: 100%;
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background: #111;
+
+    color: white;
+
+    border-radius: 10px;
+}
+
+.dashboard-title {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.dashboard-user {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome-section {
+    margin-top: 30px;
+}
+
+.welcome-section h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-section {
+    width: 100%;
+
+    padding: 30px 0;
+
+    text-align: center;
+}
+
+.search-box {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.search-box input {
+    width: 60%;
+    max-width: 700px;
+
+    padding: 15px 20px;
+
+    border-radius: 30px;
+
+    border: 1px solid #bbb;
+
+    outline: none;
+
+    font-size: 17px;
+}
+
+.search-box input:focus {
+    border-color: #ff9800;
+}
+
+.search-box button {
+    padding: 15px 25px;
+
+    background: #ff9800;
+    color: white;
+
+    border: none;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background: #f57c00;
+}
+
+
+/* =========================================================
+   SEARCH RESULTS
+========================================================= */
+
+.search-results {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.search-result {
+    width: 280px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-result h3 {
+    color: #ff9800;
+
+    margin-bottom: 10px;
+}
+
+.search-result p {
+    margin: 8px 0;
+
+    color: #555;
 }
 
 .search-result button {
-    background: #ff9800;
-    color: white;
-    border: none;
+    margin-top: 10px;
+
     padding: 10px 18px;
+
+    background: #ff9800;
+
+    color: white;
+
+    border: none;
+
     border-radius: 20px;
-    cursor: pointer;
 }
 
 .search-result button:hover {
     background: #f57c00;
 }
-.view-recipe-btn {
-    margin-top: 10px;
-    padding: 10px 18px;
+
+.no-results {
+    display: none;
+
+    text-align: center;
+
+    color: red;
+
+    margin: 15px;
+}
+
+.server-error {
+    color: #d32f2f;
+
+    text-align: center;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+.categories-section {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+.category {
+    background: white;
+
+    padding: 12px 22px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.15);
+
+    color: #333;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+.category:hover {
     background: #ff9800;
+
     color: white;
+
+    border-color: #ff9800;
+}
+
+
+/* =========================================================
+   RECIPE CARDS
+========================================================= */
+
+.dashboard-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 30px;
+
+    width: 100%;
+}
+
+.dashboard-card {
+    width: 100%;
+
+    background: white;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard-card img {
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.dashboard-card-content {
+    padding: 20px;
+}
+
+.dashboard-card-content h2 {
+    margin-bottom: 10px;
+
+    font-size: 21px;
+}
+
+.dashboard-card-content p {
+    margin: 8px 0;
+
+    color: #666;
+}
+
+.dashboard-card-content button {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 15px;
+
+    background: #ff9800;
+
+    color: white;
+
     border: none;
+
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
+
+    transition: 0.3s;
 }
 
-.view-recipe-btn:hover {
-    background: #e68900;
+.dashboard-card-content button:hover {
+    background: #f57c00;
 }
-  </style>
-</head>
 
-<body>
-  <div class="container">
-    <div class="sidebar">
-      <div class="logo">
-        <img src="images/logo.png" alt="Cook With Me Logo">
-        <span>Cook With Me</span>
-      </div>
-      <ul>
-        <li><a href="dashboard.html" class="active">🏠 Dashboard</a></li>
-        <li><a href="recipes.html" class="active">🍽️ Recipes</a></li>
-        <li><a href="favorites.html" class="active">❤️ Favorites</a></li>
-        <li><a href="history.html" class="active">📜 History</a></li>
-        <li><a href="settings.html" class="active">⚙️ Settings</a></li>
-        <li><a href="index.html" class="active">🚪 Logout</a></li>
-      </ul>
-    </div>
-    <div class="main-content">
-      <nav class="navbar">
-        <div class="logo">🍳Cook With Me</div>
-        <div class="user">Hello Rahul</div>
-      </nav>
-      <h1>Welcome Rahul</h1>
-      <p>Find delicious recipes using your ingredients.</p>
-      <div class="search">
-        <input type="text" autocomplete="off" placeholder="Enter Recipes..." id="searchInput"
-          onkeydown="if(event.key === 'Enter') searchRecipe()" />
-        <button id="searchBtn" type="button" onclick="searchRecipe()">Search</button>
-      </div>
-      <div id="searchResults"></div>
-      <p id="noResults">
-        ❌ No recipe found
-      </p>
-      <div class="categories">
-        <button class="category" onclick="location.href='breakfast.html'">
-          🍳 Breakfast
-        </button>
-        <button class="category" onclick="location.href='lunch.html'">
-          🍛 Lunch
-        </button>
-        <button class="category" onclick="location.href='dinner.html'">
-          🍽 Dinner
-        </button>
 
-        <button class="category" onclick="location.href='snacks.html'">
-          🍟 Snacks
-        </button>
+/* =========================================================
+   STATISTICS
+========================================================= */
 
-        <button class="category" onclick="location.href='desserts.html'">
-          🍰 Desserts
-        </button>
+.dashboard-stats {
+    display: grid;
 
-      </div>
-      <div class="cards">
-        <div class="card">
-          <img src="../images/chicken-biriyani.png" alt="" />
-          <div class="card-content">
-            <h2>Chicken Biryani</h2>
-            <p>⭐⭐⭐⭐⭐ 4.8</p>
-            <p>⏱ 45 Minutes</p>
-            <button onclick="location.href='recipes/chicken-biryani.html'">
-              View Recipe
-          </div>
-        </div>
-        <div class="card">
-          <img src="../images/masala-dosa.png" alt="" />
-          <div class="card-content">
-            <h2>Masala Dosa</h2>
-            <p>⭐⭐⭐⭐⭐ 5.0</p>
+    grid-template-columns:
+        repeat(3, 220px);
 
-            <p>⏱ 20 Minutes</p>
+    justify-content: center;
 
-            <button onclick="location.href='recipes/masala-dosa.html'">
-              View Recipe
-          </div>
-        </div>
-        <div class="card">
-          <img src="../images/paneer-butter-masala.png" alt="" />
-          <div class="card-content">
-            <h2>Paneer Butter Masala</h2>
-            <p>⭐⭐⭐⭐☆ 4.5</p>
-            <p>⏱ 35 Minutes</p>
-            <button onclick="location.href='recipes/paneer-butter-masala.html'">
-              View Recipe
-          </div>
-        </div>
-        <div class="card">
-          <img src="../images/pani-puri.png" alt="pani poori" />
-          <div class="card-content">
-            <h2>Pani Puri</h2>
-            <p>⭐⭐⭐⭐☆ 4.5</p>
-            <p>⏱ 30 Minutes</p>
-            <button onclick="location.href='recipes/pani-poori.html'">
-              View Recipe
-          </div>
-        </div>
-        <div class="card">
-          <img src="../images/pan-cake.png" alt="" />
-          <div class="card-content">
-            <h2>Pan Cake</h2>
-            <p>⭐⭐⭐⭐☆ 4.5</p>
-            <p>⏱ 40 Minutes</p>
-            <button onclick="location.href='recipes/pan-cake.html'">
-              View Recipe
-          </div>
-        </div>
-        <div class="card">
-          <img src="../images/egg-gravy.png" alt="" />
-          <div class="card-content">
-            <h2>Egg Gravy</h2>
-            <p>⭐⭐⭐⭐☆ 4.5</p>
-            <p>⏱ 50 Minutes</p>
-            <button onclick="location.href='recipes/egg-gravy.html'">
-              View Recipe
-          </div>
-        </div>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <h2>250+</h2>
-          <p>Recipes</p>
-        </div>
-        <div class="stat">
-          <h2>50+</h2>
-          <p>Categories</p>
-        </div>
-        <div class="stat">
-          <h2>1000+</h2>
-          <p>Users</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer>
-    <div class="footer-bottom">
-      <p>&copy 2026 Cook With Me | Designed by Rahul</p>
-    </div>
+    gap: 30px;
 
-  </footer>
-  </div>
-  <script src="../script/theme.js"></script>
-  <a href="custom-food.html" class="custom-food-button">
+    margin: 50px 0;
+}
 
-    <div class="cooker-image">
-      <img src="../images/custom-food.png" alt="Customized Food Cooker">
-    </div>
+.stat-card {
+    background: white;
 
-    <div class="cook-label">
-      <span>Cook With</span>
-      <strong>What You Have</strong>
-    </div>
+    padding: 25px;
 
-  </a>
-  <script>
-async function searchRecipe() {
+    text-align: center;
 
-    const input = document.getElementById("searchInput");
-    const results = document.getElementById("searchResults");
+    border-radius: 15px;
 
-    const query = input.value.trim();
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
-    if (query === "") {
-        results.innerHTML = "";
-        return;
-    }
+.stat-card h2 {
+    color: #ff9800;
 
-    try {
+    margin-bottom: 8px;
+}
 
-        const response = await fetch(
-            "http://127.0.0.1:5000/search?q=" +
-            encodeURIComponent(query)
+.stat-card p {
+    color: #666;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.dashboard-footer {
+    width: 100%;
+
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    background: #222;
+
+    color: white;
+
+    text-align: center;
+}
+
+.footer-bottom {
+    width: 100%;
+
+    border-top: 1px solid #555;
+
+    padding: 20px 0;
+
+    background: #222;
+}
+
+.footer-bottom p {
+    color: #ccc;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   CUSTOM FOOD FLOATING BUTTON
+========================================================= */
+
+.custom-food-button {
+    position: fixed;
+
+    right: 28px;
+    bottom: 28px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #ffcc4d 0%,
+            #ff9800 35%,
+            #f4511e 70%,
+            #b71c1c 100%
         );
 
-        if (!response.ok) {
-            throw new Error("Server error");
-        }
+    border: 3px solid white;
 
-        const recipes = await response.json();
+    display: flex;
 
-        if (recipes.length === 0) {
-            results.innerHTML = `
-                <p>No recipe found.</p>
-            `;
-            return;
-        }
+    align-items: center;
+    justify-content: center;
 
-        results.innerHTML = recipes.map(recipe => `
-            <div class="search-result">
+    z-index: 9999;
 
-                <h3>${recipe.recipe_name}</h3>
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(255, 152, 0, 0.45);
 
-                <p>Category: ${recipe.category}</p>
+    transition: 0.3s;
 
-                <p>
-                    Cooking Time:
-                    ${recipe.cooking_time} minutes
-                </p>
+    animation: cookerFloat 3s ease-in-out infinite;
+}
 
-                <p>
-                    Difficulty:
-                    ${recipe.difficulty}
-                </p>
+.custom-food-button:hover {
+    transform: scale(1.08);
 
-                <p>
-                    Servings:
-                    ${recipe.servings}
-                </p>
+    animation: none;
+}
 
-                <button
-                    type="button"
-                    onclick="openRecipe(${recipe.recipe_id})">
-                    View Recipe
-                </button>
+.cooker-image {
+    width: 95px;
+    height: 95px;
 
-            </div>
-        `).join("");
+    display: flex;
 
-    } catch (error) {
+    align-items: center;
+    justify-content: center;
+}
 
-        console.error("Search error:", error);
+.cooker-image img {
+    width: 100%;
+    height: 100%;
 
-        results.innerHTML = `
-            <p>Unable to connect to the recipe server.</p>
-        `;
+    object-fit: contain;
+}
+
+.cook-label {
+    position: absolute;
+
+    right: 0;
+    bottom: -48px;
+
+    width: 140px;
+
+    padding: 8px 10px;
+
+    background: #111;
+
+    color: white;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(5px);
+
+    transition: 0.3s;
+}
+
+.cook-label span {
+    display: block;
+
+    color: #ff9800;
+
+    font-size: 11px;
+}
+
+.cook-label strong {
+    display: block;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.custom-food-button:hover .cook-label {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+@keyframes cookerFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }
 
 
-function openRecipe(recipeId) {
+/* =========================================================
+   DARK MODE
+========================================================= */
 
-    window.location.href =
-        "recipe.html?id=" + recipeId;
+body.dark-mode {
+    background: #121212;
+    color: white;
 }
-</script> 
-<script src="../script/dashboard.js"></script>
+
+body.dark-mode .sidebar,
+body.dark-mode .dashboard-navbar,
+body.dark-mode .dashboard-footer,
+body.dark-mode .footer-bottom {
+    background: #000;
+}
+
+body.dark-mode .dashboard-card,
+body.dark-mode .stat-card,
+body.dark-mode .category,
+body.dark-mode .search-result {
+    background: #1f1f1f;
+
+    color: white;
+}
+
+body.dark-mode .welcome-section p,
+body.dark-mode .dashboard-card-content p,
+body.dark-mode .stat-card p,
+body.dark-mode .search-result p {
+    color: #ddd;
+}
+
+body.dark-mode .welcome-section h1 {
+    color: #ff9800;
+}
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         DASHBOARD CONTAINER
+    ====================================================== -->
+
+    <div class="dashboard-container">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="sidebar">
+
+            <!-- Logo -->
+
+            <div class="sidebar-logo">
+
+                <img src="../images/logo.png"
+                     alt="Cook With Me Logo">
+
+                <span>Cook With Me</span>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <ul class="sidebar-menu">
+
+                <li>
+                    <a href="dashboard.html"
+                       class="active">
+                        🏠 Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="recipes.html">
+                        🍽️ Recipes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="favorites.html">
+                        ❤️ Favorites
+                    </a>
+                </li>
+
+                <li>
+                    <a href="history.html">
+                        📜 History
+                    </a>
+                </li>
+
+                <li>
+                    <a href="settings.html">
+                        ⚙️ Settings
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        🚪 Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- Top Navbar -->
+
+            <nav class="dashboard-navbar">
+
+                <div class="dashboard-title">
+                    🍳 Cook With Me
+                </div>
+
+                <div class="dashboard-user">
+                    Hello Rahul
+                </div>
+
+            </nav>
+
+
+            <!-- Welcome -->
+
+            <section class="welcome-section">
+
+                <h1>Welcome Rahul</h1>
+
+                <p>
+                    Find delicious recipes using your ingredients.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 SEARCH
+            ================================================== -->
+
+            <section class="search-section">
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        autocomplete="off"
+                        placeholder="Enter recipe name..."
+                        onkeydown="if(event.key === 'Enter') searchRecipe()">
+
+                    <button
+                        id="searchBtn"
+                        type="button"
+                        onclick="searchRecipe()">
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Search Results -->
+
+            <section id="searchResults"
+                     class="search-results">
+            </section>
+
+            <p id="noResults"
+               class="no-results">
+                ❌ No recipe found
+            </p>
+
+
+            <!-- =================================================
+                 CATEGORIES
+            ================================================== -->
+
+            <section class="categories-section">
+
+                <button
+                    class="category"
+                    onclick="location.href='breakfast.html'">
+
+                    🍳 Breakfast
+
+                </button>
+
+
+                <button
+                    class="category"
+                    onclick="location.href='lunch.html'">
+
+                    🍛 Lunch
+
+                </button>
+
+
+                <button
+                    class="category"
+                    onclick="location.href='dinner.html'">
+
+                    🍽️ Dinner
+
+                </button>
+
+
+                <button
+                    class="category"
+                    onclick="location.href='snacks.html'">
+
+                    🍟 Snacks
+
+                </button>
+
+
+                <button
+                    class="category"
+                    onclick="location.href='desserts.html'">
+
+                    🍰 Desserts
+
+                </button>
+
+            </section>
+
+
+            <!-- =================================================
+                 RECIPE CARDS
+            ================================================== -->
+
+            <section class="dashboard-cards">
+
+
+                <!-- Chicken Biryani -->
+
+                <article class="dashboard-card">
+
+                    <img
+                        src="../images/chicken-biriyani.png"
+                        alt="Chicken Biryani">
+
+                    <div class="dashboard-card-content">
+
+                        <h2>Chicken Biryani</h2>
+
+                        <p>⭐⭐⭐⭐⭐ 4.8</p>
+
+                        <p>⏱ 45 Minutes</p>
+
+                        <button
+                            type="button"
+                            onclick="location.href='recipes/chicken-biryani.html'">
+
+                            View Recipe
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Masala Dosa -->
+
+                <article class="dashboard-card">
+
+                    <img
+                        src="../images/masala-dosa.png"
+                        alt="Masala Dosa">
+
+                    <div class="dashboard-card-content">
+
+                        <h2>Masala Dosa</h2>
+
+                        <p>⭐⭐⭐⭐⭐ 5.0</p>
+
+                        <p>⏱ 20 Minutes</p>
+
+                        <button
+                            type="button"
+                            onclick="location.href='recipes/masala-dosa.html'">
+
+                            View Recipe
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Paneer Butter Masala -->
+
+                <article class="dashboard-card">
+
+                    <img
+                        src="../images/paneer-butter-masala.png"
+                        alt="Paneer Butter Masala">
+
+                    <div class="dashboard-card-content">
+
+                        <h2>Paneer Butter Masala</h2>
+
+                        <p>⭐⭐⭐⭐☆ 4.5</p>
+
+                        <p>⏱ 35 Minutes</p>
+
+                        <button
+                            type="button"
+                            onclick="location.href='recipes/paneer-butter-masala.html'">
+
+                            View Recipe
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Pani Puri -->
+
+                <article class="dashboard-card">
+
+                    <img
+                        src="../images/pani-puri.png"
+                        alt="Pani Puri">
+
+                    <div class="dashboard-card-content">
+
+                        <h2>Pani Puri</h2>
+
+                        <p>⭐⭐⭐⭐☆ 4.5</p>
+
+                        <p>⏱ 30 Minutes</p>
+
+                        <button
+                            type="button"
+                            onclick="location.href='recipes/pani-poori.html'">
+
+                            View Recipe
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Pancake -->
+
+                <article class="dashboard-card">
+
+                    <img
+                        src="../images/pan-cake.png"
+                        alt="Pancake">
+
+                    <div class="dashboard-card-content">
+
+                        <h2>Pancake</h2>
+
+                        <p>⭐⭐⭐⭐☆ 4.5</p>
+
+                        <p>⏱ 40 Minutes</p>
+
+                        <button
+                            type="button"
+                            onclick="location.href='recipes/pan-cake.html'">
+
+                            View Recipe
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Egg Gravy -->
+
+                <article class="dashboard-card">
+
+                    <img
+                        src="../images/egg-gravy.png"
+                        alt="Egg Gravy">
+
+                    <div class="dashboard-card-content">
+
+                        <h2>Egg Gravy</h2>
+
+                        <p>⭐⭐⭐⭐☆ 4.5</p>
+
+                        <p>⏱ 50 Minutes</p>
+
+                        <button
+                            type="button"
+                            onclick="location.href='recipes/egg-gravy.html'">
+
+                            View Recipe
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section class="dashboard-stats">
+
+
+                <div class="stat-card">
+
+                    <h2>250+</h2>
+
+                    <p>Recipes</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h2>50+</h2>
+
+                    <p>Categories</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h2>1000+</h2>
+
+                    <p>Users</p>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="dashboard-footer">
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Cook With Me | Designed by Rahul
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         CUSTOM FOOD FLOATING BUTTON
+    ====================================================== -->
+
+    <a href="custom-food.html"
+       class="custom-food-button"
+       aria-label="Cook with what you have">
+
+        <div class="cooker-image">
+
+            <img
+                src="../images/custom-food.png"
+                alt="Customized Food Cooker">
+
+        </div>
+
+        <div class="cook-label">
+
+            <span>Cook With</span>
+
+            <strong>What You Have</strong>
+
+        </div>
+
+    </a>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="../script/theme.js"></script>
+
+    <script src="../script/dashboard.js"></script>
+
+
+    <!-- Search -->
+    <script>
+
+        async function searchRecipe() {
+
+            const input =
+                document.getElementById("searchInput");
+
+            const results =
+                document.getElementById("searchResults");
+
+            const noResults =
+                document.getElementById("noResults");
+
+            const query =
+                input.value.trim();
+
+
+            /* Empty search */
+
+            if (query === "") {
+
+                results.innerHTML = "";
+
+                noResults.style.display = "none";
+
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://127.0.0.1:5000/search?q=" +
+                        encodeURIComponent(query)
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error("Server error");
+
+                }
+
+
+                const recipes =
+                    await response.json();
+
+
+                /* No recipe */
+
+                if (recipes.length === 0) {
+
+                    results.innerHTML = "";
+
+                    noResults.style.display = "block";
+
+                    return;
+
+                }
+
+
+                noResults.style.display = "none";
+
+
+                results.innerHTML =
+                    recipes.map(recipe => `
+
+                        <article class="search-result">
+
+                            <h3>
+                                ${recipe.recipe_name}
+                            </h3>
+
+                            <p>
+                                Category:
+                                ${recipe.category}
+                            </p>
+
+                            <p>
+                                Cooking Time:
+                                ${recipe.cooking_time} minutes
+                            </p>
+
+                            <p>
+                                Difficulty:
+                                ${recipe.difficulty}
+                            </p>
+
+                            <p>
+                                Servings:
+                                ${recipe.servings}
+                            </p>
+
+                            <button
+                                type="button"
+                                onclick="openRecipe(${recipe.recipe_id})">
+
+                                View Recipe
+
+                            </button>
+
+                        </article>
+
+                    `).join("");
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Search error:",
+                    error
+                );
+
+
+                noResults.style.display = "none";
+
+
+                results.innerHTML = `
+
+                    <p class="server-error">
+                        Unable to connect to the recipe server.
+                    </p>
+
+                `;
+
+            }
+
+        }
+
+
+        function openRecipe(recipeId) {
+
+            window.location.href =
+                "recipe.html?id=" +
+                recipeId;
+
+        }
+
+    </script>
 
 </body>
+
 </html>
