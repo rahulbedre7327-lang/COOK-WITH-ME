@@ -1,11 +1,9 @@
 SELECT
     r.recipe_id,
     r.recipe_name,
-    i.name AS ingredient,
-    ri.quantity
-FROM recipes r
-JOIN recipe_ingredients ri
-    ON r.recipe_id = ri.recipe_id
-JOIN ingredients i
-    ON ri.ingredient_id = i.id
-WHERE r.recipe_id = 1;
+    r.recipe_file,
+    r.category,
+    r.cooking_time,
+    r.difficulty,
+    r.servings,
+    COUNT(DISTINCT ri.ingredient_id) AS matched_ingredients

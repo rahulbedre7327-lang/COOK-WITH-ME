@@ -535,17 +535,12 @@
                         <div class="recipe-card-footer">
 
                             <button
-                                type="button"
-                                class="view-recipe-btn"
-                                onclick="viewRecipe(
-                                    ${Number(
-                                        recipe.recipe_id || 0
-                                    )}
-                                )"
-                            >
-                                View Recipe
-                            </button>
-
+    type="button"
+    class="view-recipe-btn"
+    onclick="viewRecipe('${escapeHTML(recipe.recipe_file || "")}')"
+>
+    View Recipe
+</button>
                         </div>
 
                     `;
@@ -631,31 +626,20 @@
            VIEW RECIPE
            ===================================================== */
 
-        function viewRecipe(recipeId) {
+        function viewRecipe(recipeFile) {
 
-            if (!recipeId) {
+    if (!recipeFile) {
 
-                alert(
-                    "Recipe details are not available."
-                );
+        alert(
+            "Recipe page is not available."
+        );
 
-                return;
+        return;
+    }
 
-            }
-
-
-            /*
-             * Change this path if your recipe pages
-             * use a different URL structure.
-             */
-
-            window.location.href =
-                "../recipe.html?id=" +
-                encodeURIComponent(
-                    recipeId
-                );
-
-        }
+    window.location.href =
+        "../recipes/" + recipeFile;
+}
 
 
 
