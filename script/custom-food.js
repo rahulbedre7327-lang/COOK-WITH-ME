@@ -7,40 +7,80 @@ const createDish = document.getElementById("createDish");
 let ingredients = [];
 
 
-// ===============================
+// ==========================================
 // ADD INGREDIENT
-// ===============================
+// ==========================================
 
-addIngredient.addEventListener("click", function () {
+addIngredient.addEventListener("click", addNewIngredient);
+
+
+// Allow Enter key to add ingredient
+ingredientName.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        addNewIngredient();
+    }
+});
+
+ingredientQuantity.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        addNewIngredient();
+    }
+});
+
+
+function addNewIngredient() {
 
     const name = ingredientName.value.trim();
     const quantity = ingredientQuantity.value.trim();
 
     if (name === "") {
         alert("Please enter an ingredient.");
+        ingredientName.focus();
         return;
     }
 
     if (quantity === "") {
         alert("Please enter the quantity.");
+        ingredientQuantity.focus();
         return;
     }
+
+
+    // Normalize ingredient name
+    const normalizedName = name.toLowerCase();
+
+
+    // Check duplicate ingredient
+    const alreadyExists = ingredients.some(
+        ingredient =>
+            ingredient.name.toLowerCase() === normalizedName
+    );
+
+
+    if (alreadyExists) {
+        alert("This ingredient is already added.");
+        return;
+    }
+
 
     ingredients.push({
         name: name,
         quantity: quantity
     });
 
+
     ingredientName.value = "";
     ingredientQuantity.value = "";
 
     displayIngredients();
-});
+
+    ingredientName.focus();
+}
 
 
-// ===============================
+// ==========================================
 // DISPLAY INGREDIENTS
-// ===============================
+// ==========================================
 
 function displayIngredients() {
 
@@ -55,32 +95,34 @@ function displayIngredients() {
         return;
     }
 
-    ingredientList.innerHTML = ingredients.map((ingredient, index) => {
 
-        return `
-            <div class="ingredient-item">
+    ingredientList.innerHTML = ingredients.map(
+        (ingredient, index) => {
 
-                <div>
-                    <strong>${ingredient.name}</strong>
-                    <span>${ingredient.quantity}</span>
+            return `
+                <div class="ingredient-item">
+
+                    <div>
+                        <strong>${escapeHTML(ingredient.name)}</strong>
+                        <span>${escapeHTML(ingredient.quantity)}</span>
+                    </div>
+
+                    <button
+                        type="button"
+                        onclick="removeIngredient(${index})">
+                        ✕
+                    </button>
+
                 </div>
-
-                <button
-                    type="button"
-                    onclick="removeIngredient(${index})">
-                    ✕
-                </button>
-
-            </div>
-        `;
-
-    }).join("");
+            `;
+        }
+    ).join("");
 }
 
 
-// ===============================
+// ==========================================
 // REMOVE INGREDIENT
-// ===============================
+// ==========================================
 
 function removeIngredient(index) {
 
@@ -90,11 +132,14 @@ function removeIngredient(index) {
 }
 
 
-// ===============================
+// ==========================================
 // CREATE DISH
-// ===============================
+// ==========================================
 
-createDish.addEventListener("click", async function () {
+createDish.addEventListener("click", findDish);
+
+
+async function findDish() {
 
     if (ingredients.length === 0) {
 
@@ -102,6 +147,7 @@ createDish.addEventListener("click", async function () {
 
         return;
     }
+
 
     const spiceLevel =
         document.getElementById("spiceLevel").value;
@@ -113,11 +159,12 @@ createDish.addEventListener("click", async function () {
         document.getElementById("cookingTime").value;
 
 
+    // Disable button while searching
+    createDish.disabled = true;
+    createDish.textContent = "🍳 Finding your dish...";
+
+
     try {
-
-        createDish.disabled = true;
-        createDish.textContent = "🍳 Finding your dish...";
-
 
         const response = await fetch(
             "http://127.0.0.1:5000/custom-food",
@@ -130,7 +177,12 @@ createDish.addEventListener("click", async function () {
 
                 body: JSON.stringify({
 
-                    ingredients: ingredients,
+                    ingredients: ingredients.map(
+                        ingredient => ({
+                            name: ingredient.name.trim().toLowerCase(),
+                            quantity: ingredient.quantity
+                        })
+                    ),
 
                     spiceLevel: spiceLevel,
 
@@ -146,18 +198,28 @@ createDish.addEventListener("click", async function () {
         if (!response.ok) {
 
             throw new Error(
-                "Server error: " + response.status
+                `Server returned ${response.status}`
             );
-
         }
 
 
         const result = await response.json();
 
-        console.log("Custom food result:", result);
+        console.log(
+            "Custom food result:",
+            result
+        );
 
 
-        if (result.length === 0) {
+        // ======================================
+        // NO RECIPE FOUND
+        // ======================================
+
+        if (!Array.isArray(result) || result.length === 0) {
+
+            localStorage.removeItem(
+                "customFoodResult"
+            );
 
             alert(
                 "Sorry! No matching recipe was found with your ingredients."
@@ -167,7 +229,9 @@ createDish.addEventListener("click", async function () {
         }
 
 
-        // Save result for the next page
+        // ======================================
+        // SAVE RESULT
+        // ======================================
 
         localStorage.setItem(
             "customFoodResult",
@@ -175,7 +239,16 @@ createDish.addEventListener("click", async function () {
         );
 
 
-        // Open result page
+        // Also save user's ingredients
+        localStorage.setItem(
+            "customFoodIngredients",
+            JSON.stringify(ingredients)
+        );
+
+
+        // ======================================
+        // OPEN RESULT PAGE
+        // ======================================
 
         window.location.href =
             "custom-food-result.html";
@@ -188,9 +261,11 @@ createDish.addEventListener("click", async function () {
             error
         );
 
+
         alert(
-            "Unable to connect to the recipe server."
+            "Unable to connect to the recipe server. Please make sure Flask is running."
         );
+
 
     } finally {
 
@@ -198,7 +273,20 @@ createDish.addEventListener("click", async function () {
 
         createDish.textContent =
             "🍳 Create My Dish";
-
     }
+}
 
-});
+
+// ==========================================
+// HTML ESCAPE
+// ==========================================
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
