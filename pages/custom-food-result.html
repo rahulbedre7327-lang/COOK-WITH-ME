@@ -10,21 +10,18 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Your Recommended Dishes | Cook With Me</title>
+    <title>Your Dish | Cook With Me</title>
 
-    <!-- Main CSS -->
     <link
         rel="stylesheet"
         href="../css/style.css"
     >
 
-    <!-- Responsive CSS -->
     <link
         rel="stylesheet"
         href="../css/responsive.css"
     >
 
-    <!-- Custom Result Page CSS -->
     <link
         rel="stylesheet"
         href="../css/custom-food-result.css"
@@ -36,27 +33,160 @@
 <body>
 
 
-    <!-- =====================================================
-         NAVIGATION BAR
-         ===================================================== -->
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
 
-    <header class="navbar">
+<header class="navbar">
 
-        <div class="logo">
+    <div class="logo">
 
-            <img
-                src="../images/logo.png"
-                alt="Cook With Me Logo"
+        <img
+            src="../images/logo.png"
+            alt="Cook With Me Logo"
+        >
+
+        <span>
+            Cook With Me
+        </span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="../dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="../recipes.html">
+            Recipes
+        </a>
+
+        <a href="../favorites.html">
+            Favorites
+        </a>
+
+        <a href="../history.html">
+            History
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main>
+
+    <section class="result-section">
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="result-heading">
+
+            <span
+                id="resultBadge"
+                class="result-badge"
             >
-
-            <span>
-                Cook With Me
+                SMART COOKING
             </span>
+
+
+            <h1 id="pageTitle">
+                Your Dish
+            </h1>
+
+
+            <p id="pageDescription">
+                Preparing your recipe...
+            </p>
 
         </div>
 
 
-        <nav>
+
+        <!-- USER INGREDIENTS -->
+
+        <div
+            id="selectedIngredients"
+            class="selected-ingredients"
+        >
+        </div>
+
+
+
+        <!-- RECIPE -->
+
+        <div id="results">
+
+            <div class="loading-message">
+
+                <div class="loading-spinner"></div>
+
+                <p>
+                    Preparing your recipe...
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <img
+                    src="../images/logo.png"
+                    alt="Cook With Me"
+                >
+
+                <span>
+                    Cook With Me
+                </span>
+
+            </div>
+
+
+            <p>
+                Cook delicious meals with the ingredients
+                you already have at home.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <h3>
+                Quick Links
+            </h3>
 
             <a href="../index.html">
                 Home
@@ -74,139 +204,33 @@
                 Favorites
             </a>
 
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <h3>
+                Explore
+            </h3>
+
             <a href="../history.html">
                 History
             </a>
 
-        </nav>
+            <a href="../about.html">
+                About Us
+            </a>
 
-    </header>
-
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-         ===================================================== -->
-
-    <main>
-
-        <section class="result-section">
-
-
-            <!-- PAGE INTRO -->
-
-            <div class="result-heading">
-
-                <span class="result-badge">
-                    SMART COOKING
-                </span>
-
-                <h1>
-                    Your Recommended Dishes
-                </h1>
-
-                <p>
-                    We found these dishes based on
-                    the ingredients you have.
-                </p>
-
-            </div>
-
-
-
-            <!-- USER INGREDIENTS -->
-
-            <div
-                id="selectedIngredients"
-                class="selected-ingredients"
-            >
-            </div>
-
-
-
-            <!-- RECIPE RESULTS -->
-
-            <div id="results">
-
-                <div class="loading-message">
-
-                    <div class="loading-spinner"></div>
-
-                    <p>
-                        Finding your best dishes...
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-    </main>
-    <!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer class="site-footer">
-
-    <div class="footer-content">
-
-        <!-- Brand -->
-        <div class="footer-brand">
-
-            <div class="footer-logo">
-
-                <img
-                    src="../images/logo.png"
-                    alt="Cook With Me"
-                >
-
-                <span>Cook With Me</span>
-
-            </div>
-
-            <p>
-                Cook delicious meals with the ingredients
-                you already have at home.
-            </p>
-
-        </div>
-
-
-        <!-- Quick Links -->
-        <div class="footer-links">
-
-            <h3>Quick Links</h3>
-
-            <a href="../index.html">Home</a>
-
-            <a href="../dashboard.html">Dashboard</a>
-
-            <a href="../recipes.html">Recipes</a>
-
-            <a href="../favorites.html">Favorites</a>
-
-        </div>
-
-
-        <!-- Support -->
-        <div class="footer-links">
-
-            <h3>Explore</h3>
-
-            <a href="../history.html">History</a>
-
-            <a href="../about.html">About Us</a>
-
-            <a href="../settings.html">Settings</a>
+            <a href="../settings.html">
+                Settings
+            </a>
 
         </div>
 
     </div>
 
 
-    <!-- Bottom Footer -->
 
     <div class="footer-bottom">
 
@@ -223,108 +247,97 @@
 </footer>
 
 
-    <script>document.addEventListener("DOMContentLoaded", function () {
 
-    const resultsContainer =
-        document.getElementById("results");
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
 
-    const selectedIngredients =
-        document.getElementById("selectedIngredients");
+<script>
 
-
-    // =====================================================
-    // GET SAVED RESULTS
-    // =====================================================
-
-    const savedResults =
-        localStorage.getItem("customFoodResult");
-
-    const savedIngredients =
-        localStorage.getItem("customFoodIngredients");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-    // =====================================================
-    // DISPLAY USER INGREDIENTS
-    // =====================================================
+        const resultsContainer =
+            document.getElementById("results");
 
-    if (savedIngredients) {
 
-        try {
-
-            const ingredients =
-                JSON.parse(savedIngredients);
-
-            if (
-                Array.isArray(ingredients) &&
-                ingredients.length > 0
-            ) {
-
-                selectedIngredients.innerHTML = `
-
-                    <div class="ingredients-title">
-                        Ingredients you provided
-                    </div>
-
-                    <div class="ingredient-tags">
-
-                        ${ingredients.map(ingredient => `
-
-                            <span class="ingredient-tag">
-
-                                ${escapeHTML(ingredient.name)}
-
-                                <small>
-                                    ${escapeHTML(
-                                        ingredient.quantity
-                                    )}
-                                </small>
-
-                            </span>
-
-                        `).join("")}
-
-                    </div>
-
-                `;
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Ingredient error:",
-                error
+        const selectedIngredients =
+            document.getElementById(
+                "selectedIngredients"
             );
 
+
+        const resultBadge =
+            document.getElementById(
+                "resultBadge"
+            );
+
+
+        const pageTitle =
+            document.getElementById(
+                "pageTitle"
+            );
+
+
+        const pageDescription =
+            document.getElementById(
+                "pageDescription"
+            );
+
+
+
+        // =================================================
+        // GET DATA FROM LOCAL STORAGE
+        // =================================================
+
+        const savedResult =
+            localStorage.getItem(
+                "customFoodResult"
+            );
+
+
+        const savedIngredients =
+            localStorage.getItem(
+                "customFoodIngredients"
+            );
+
+
+
+        // =================================================
+        // CHECK RESULT
+        // =================================================
+
+        if (!savedResult) {
+
+            showNoResults();
+
+            return;
         }
-    }
 
 
-    // =====================================================
-    // LOAD RECIPE RESULTS
-    // =====================================================
 
-    if (!savedResults) {
+        // =================================================
+        // DISPLAY USER INGREDIENTS
+        // =================================================
 
-        showNoResults();
+        displayUserIngredients(
+            savedIngredients
+        );
 
-    } else {
+
+
+        // =================================================
+        // PARSE FLASK RESULT
+        // =================================================
+
+        let result;
 
         try {
 
-            const recipes =
-                JSON.parse(savedResults);
-
-            if (
-                !Array.isArray(recipes) ||
-                recipes.length === 0
-            ) {
-
-                showNoResults();
-
-            } else {
-
-                displayRecipes(recipes);
-            }
+            result =
+                JSON.parse(savedResult);
 
         } catch (error) {
 
@@ -334,311 +347,777 @@
             );
 
             showNoResults();
+
+            return;
         }
-    }
 
 
-    // =====================================================
-    // DISPLAY RECIPES
-    // =====================================================
 
-    function displayRecipes(recipes) {
+        // =================================================
+        // VALIDATE RESULT
+        // =================================================
 
-        resultsContainer.innerHTML = "";
+        if (
+            !result ||
+            result.success !== true ||
+            !result.recipe
+        ) {
 
-        recipes.forEach(function (recipe, index) {
+            showNoResults();
 
-            const card =
-                document.createElement("article");
+            return;
+        }
 
-            card.className = "recipe-card";
 
 
-            // First result = Best Match
-            const bestMatch =
-                index === 0;
+        // =================================================
+        // CHECK RECIPE TYPE
+        // =================================================
 
+        if (result.type === "custom") {
 
-            card.innerHTML = `
-
-                ${bestMatch ? `
-                    <div class="best-match">
-                        BEST MATCH
-                    </div>
-                ` : ""}
-
-
-                <div class="recipe-card-content">
-
-                    <h2>
-                        ${escapeHTML(
-                            recipe.recipe_name ||
-                            "Unnamed Recipe"
-                        )}
-                    </h2>
-
-
-                    <div class="recipe-details">
-
-                        <div class="detail-item">
-
-                            <span class="detail-label">
-                                Category
-                            </span>
-
-                            <span class="detail-value">
-                                ${escapeHTML(
-                                    recipe.category ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-item">
-
-                            <span class="detail-label">
-                                Cooking Time
-                            </span>
-
-                            <span class="detail-value">
-                                ${escapeHTML(
-                                    recipe.cooking_time ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-item">
-
-                            <span class="detail-label">
-                                Difficulty
-                            </span>
-
-                            <span class="detail-value">
-                                ${escapeHTML(
-                                    recipe.difficulty ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="detail-item">
-
-                            <span class="detail-label">
-                                Servings
-                            </span>
-
-                            <span class="detail-value">
-                                ${escapeHTML(
-                                    recipe.servings ||
-                                    "Not specified"
-                                )}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="match-section">
-
-                        <div class="match-info">
-
-                            <span>
-                                Ingredient Match
-                            </span>
-
-                            <strong>
-                                ${Number(
-                                    recipe.match_percentage || 0
-                                )}%
-                            </strong>
-
-                        </div>
-
-
-                        <div class="match-bar">
-
-                            <div
-                                class="match-progress"
-                                style="width: ${
-                                    Math.min(
-                                        Number(
-                                            recipe.match_percentage || 0
-                                        ),
-                                        100
-                                    )
-                                }%;"
-                            ></div>
-
-                        </div>
-
-
-                        <p class="matched-count">
-
-                            ${Number(
-                                recipe.matched_ingredients || 0
-                            )}
-
-                            ingredient(s) matched
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="recipe-card-footer">
-
-                    <button
-                        type="button"
-                        class="view-recipe-btn"
-                        data-recipe-file="${escapeHTML(
-                            recipe.recipe_file || ""
-                        )}"
-                    >
-                        View Recipe
-                    </button>
-
-                </div>
-
-            `;
-
-
-            resultsContainer.appendChild(card);
-
-
-            // =================================================
-            // VIEW RECIPE BUTTON
-            // =================================================
-
-            const viewButton =
-                card.querySelector(".view-recipe-btn");
-
-
-            viewButton.addEventListener(
-                "click",
-                function () {
-
-                    const recipeFile =
-                        this.getAttribute(
-                            "data-recipe-file"
-                        );
-
-
-                    if (!recipeFile) {
-
-                        alert(
-                            "Recipe page is not available."
-                        );
-
-                        return;
-                    }
-
-
-                    /*
-                     * custom-food-result.html
-                     * is assumed to be inside "pages"
-                     *
-                     * pages/
-                     *    custom-food-result.html
-                     *
-                     * recipes/
-                     *    tomato-rice.html
-                     */
-
-                    window.location.href =
-                        "../recipes/" +
-                        recipeFile;
-                }
+            displayCustomRecipe(
+                result.recipe
             );
 
-        });
+        }
+
+        else if (result.type === "existing") {
+
+            displayExistingRecipe(
+                result.recipe
+            );
+
+        }
+
+        else {
+
+            displayCustomRecipe(
+                result.recipe
+            );
+
+        }
 
 
-        // =====================================================
-        // TRY AGAIN BUTTON
-        // =====================================================
 
-        const tryAgain =
-            document.createElement("a");
+        // =================================================
+        // DISPLAY USER INGREDIENTS
+        // =================================================
 
-        tryAgain.href =
-            "custom-food.html";
+        function displayUserIngredients(
+            savedIngredients
+        ) {
 
-        tryAgain.className =
-            "try-again-btn";
-
-        tryAgain.textContent =
-            "← Try Different Ingredients";
-
-        resultsContainer.appendChild(
-            tryAgain
-        );
-    }
+            if (!savedIngredients) {
+                return;
+            }
 
 
-    // =====================================================
-    // NO RESULTS
-    // =====================================================
+            try {
 
-    function showNoResults() {
+                const ingredients =
+                    JSON.parse(
+                        savedIngredients
+                    );
 
-        resultsContainer.innerHTML = `
 
-            <div class="no-results">
+                if (
+                    !Array.isArray(ingredients) ||
+                    ingredients.length === 0
+                ) {
 
-                <div class="no-results-icon">
-                    🍳
-                </div>
+                    return;
+                }
 
-                <h2>
-                    No Matching Dish Found
-                </h2>
 
-                <p>
-                    We couldn't find a recipe that
-                    matches your ingredients.
-                    Try adding a few more ingredients.
-                </p>
+                selectedIngredients.innerHTML = `
+
+                    <div class="ingredients-title">
+
+                        Ingredients You Provided
+
+                    </div>
+
+
+                    <div class="ingredient-tags">
+
+                        ${ingredients.map(
+                            function (ingredient) {
+
+                                return `
+
+                                    <span
+                                        class="ingredient-tag"
+                                    >
+
+                                        ${escapeHTML(
+                                            ingredient.name
+                                        )}
+
+                                        <small>
+
+                                            ${escapeHTML(
+                                                ingredient.quantity
+                                            )}
+
+                                        </small>
+
+                                    </span>
+
+                                `;
+
+                            }
+                        ).join("")}
+
+                    </div>
+
+                `;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Ingredient parsing error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+
+        // =================================================
+        // EXISTING RECIPE
+        // =================================================
+
+        function displayExistingRecipe(
+            recipe
+        ) {
+
+            resultBadge.textContent =
+                "FROM COOK WITH ME";
+
+
+            pageTitle.textContent =
+                recipe.name ||
+                "Recommended Recipe";
+
+
+            pageDescription.textContent =
+                recipe.description ||
+                "We found a recipe that matches your ingredients.";
+
+
+            const ingredients =
+                Array.isArray(recipe.ingredients)
+                    ? recipe.ingredients
+                    : [];
+
+
+            resultsContainer.innerHTML = `
+
+                <article class="recipe-card existing-recipe">
+
+                    <div class="best-match">
+
+                        ✓ EXISTING RECIPE
+
+                    </div>
+
+
+                    <div class="recipe-card-content">
+
+
+                        <h2>
+
+                            ${escapeHTML(
+                                recipe.name ||
+                                "Unnamed Recipe"
+                            )}
+
+                        </h2>
+
+
+
+                        <div class="recipe-details">
+
+
+                            <div class="detail-item">
+
+                                <span class="detail-label">
+                                    Ingredient Match
+                                </span>
+
+                                <span class="detail-value">
+                                    ${Number(
+                                        recipe.match_percentage || 0
+                                    )}%
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-item">
+
+                                <span class="detail-label">
+                                    Matched Ingredients
+                                </span>
+
+                                <span class="detail-value">
+
+                                    ${Number(
+                                        recipe.matched_count || 0
+                                    )}
+
+                                    /
+
+                                    ${Number(
+                                        recipe.total_ingredients || 0
+                                    )}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        ${displayIngredientList(
+                            ingredients
+                        )}
+
+
+                    </div>
+
+
+
+                    <div class="recipe-card-footer">
+
+                        <button
+                            type="button"
+                            class="view-recipe-btn"
+                            id="viewExistingRecipe"
+                        >
+                            🍳 View Full Recipe
+                        </button>
+
+                    </div>
+
+                </article>
+
 
                 <a
                     href="custom-food.html"
                     class="try-again-btn"
                 >
-                    ← Try Again
+                    ← Try Different Ingredients
                 </a>
 
-            </div>
+            `;
 
-        `;
+
+
+            // =============================================
+            // VIEW STORED RECIPE
+            // =============================================
+
+            const viewButton =
+                document.getElementById(
+                    "viewExistingRecipe"
+                );
+
+
+            if (viewButton) {
+
+                viewButton.addEventListener(
+                    "click",
+                    function () {
+
+                        const recipeFile =
+                            recipe.recipe_file;
+
+
+                        if (!recipeFile) {
+
+                            alert(
+                                "Recipe page is not available."
+                            );
+
+                            return;
+                        }
+
+
+                        window.location.href =
+                            "../recipes/" +
+                            recipeFile;
+
+                    }
+                );
+
+            }
+
+        }
+
+
+
+        // =================================================
+        // CUSTOM RECIPE
+        // =================================================
+
+        function displayCustomRecipe(
+            recipe
+        ) {
+
+            resultBadge.textContent =
+                "✨ CREATED FOR YOU";
+
+
+            pageTitle.textContent =
+                recipe.name ||
+                "Your Custom Dish";
+
+
+            pageDescription.textContent =
+                recipe.description ||
+                "A new recipe created using the ingredients you provided.";
+
+
+            const ingredients =
+                Array.isArray(recipe.ingredients)
+                    ? recipe.ingredients
+                    : [];
+
+
+            const steps =
+                Array.isArray(recipe.steps)
+                    ? recipe.steps
+                    : [];
+
+
+            resultsContainer.innerHTML = `
+
+                <article class="recipe-card custom-recipe">
+
+                    <div class="best-match custom-badge">
+
+                        ✨ CUSTOM RECIPE
+
+                    </div>
+
+
+                    <div class="recipe-card-content">
+
+
+                        <h2>
+
+                            ${escapeHTML(
+                                recipe.name ||
+                                "Your Custom Dish"
+                            )}
+
+                        </h2>
+
+
+
+                        <p class="custom-message">
+
+                            ${escapeHTML(
+                                recipe.message ||
+                                "This recipe was created from your ingredients."
+                            )}
+
+                        </p>
+
+
+
+                        <!-- RECIPE DETAILS -->
+
+                        <div class="recipe-details">
+
+
+                            <div class="detail-item">
+
+                                <span class="detail-label">
+                                    ⏱ Cooking Time
+                                </span>
+
+                                <span class="detail-value">
+
+                                    ${escapeHTML(
+                                        String(
+                                            recipe.cooking_time ||
+                                            "15"
+                                        )
+                                    )} minutes
+
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="detail-item">
+
+                                <span class="detail-label">
+                                    👨‍🍳 Difficulty
+                                </span>
+
+                                <span class="detail-value">
+
+                                    ${escapeHTML(
+                                        recipe.difficulty ||
+                                        "Easy"
+                                    )}
+
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="detail-item">
+
+                                <span class="detail-label">
+                                    👥 Servings
+                                </span>
+
+                                <span class="detail-value">
+
+                                    ${escapeHTML(
+                                        String(
+                                            recipe.servings ||
+                                            2
+                                        )
+                                    )}
+
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- INGREDIENTS -->
+
+                        <div class="recipe-content-section">
+
+                            <h3>
+                                🥕 Ingredients
+                            </h3>
+
+
+                            ${displayIngredientList(
+                                ingredients
+                            )}
+
+                        </div>
+
+
+
+                        <!-- PREPARATION -->
+
+                        <div class="recipe-content-section">
+
+                            <h3>
+                                👨‍🍳 Preparation
+                            </h3>
+
+
+                            <ol class="preparation-steps">
+
+                                ${steps.length > 0
+
+                                    ? steps.map(
+                                        function (
+                                            step
+                                        ) {
+
+                                            return `
+
+                                                <li>
+
+                                                    ${escapeHTML(
+                                                        step
+                                                    )}
+
+                                                </li>
+
+                                            `;
+
+                                        }
+                                    ).join("")
+
+                                    : `
+
+                                        <li>
+                                            Prepare the ingredients.
+                                        </li>
+
+                                    `
+                                }
+
+                            </ol>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="recipe-card-footer">
+
+                        <button
+                            type="button"
+                            class="view-recipe-btn"
+                            id="startCookingButton"
+                        >
+
+                            🍳 Start Cooking
+
+                        </button>
+
+                    </div>
+
+
+                </article>
+
+
+                <a
+                    href="custom-food.html"
+                    class="try-again-btn"
+                >
+                    ← Create Another Dish
+                </a>
+
+            `;
+
+
+
+            // =============================================
+            // START COOKING
+            // =============================================
+
+            const startButton =
+                document.getElementById(
+                    "startCookingButton"
+                );
+
+
+            if (startButton) {
+
+                startButton.addEventListener(
+                    "click",
+                    function () {
+
+                        startCooking(
+                            recipe
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+
+
+
+        // =================================================
+        // INGREDIENT LIST
+        // =================================================
+
+        function displayIngredientList(
+            ingredients
+        ) {
+
+            if (
+                !Array.isArray(ingredients) ||
+                ingredients.length === 0
+            ) {
+
+                return `
+                    <p>
+                        No ingredient details available.
+                    </p>
+                `;
+
+            }
+
+
+            return `
+
+                <ul class="recipe-ingredients">
+
+                    ${ingredients.map(
+                        function (ingredient) {
+
+                            return `
+
+                                <li>
+
+                                    <span>
+
+                                        ${escapeHTML(
+                                            ingredient.name ||
+                                            "Ingredient"
+                                        )}
+
+                                    </span>
+
+
+                                    <strong>
+
+                                        ${escapeHTML(
+                                            String(
+                                                ingredient.quantity ||
+                                                "as needed"
+                                            )
+                                        )}
+
+                                    </strong>
+
+                                </li>
+
+                            `;
+
+                        }
+                    ).join("")}
+
+                </ul>
+
+            `;
+
+        }
+
+
+
+        // =================================================
+        // START COOKING
+        // =================================================
+
+        function startCooking(
+            recipe
+        ) {
+
+            localStorage.setItem(
+                "activeCookingRecipe",
+                JSON.stringify(recipe)
+            );
+
+
+            alert(
+                "🍳 Your cooking session is ready! Follow the preparation steps below."
+            );
+
+        }
+
+
+
+        // =================================================
+        // NO RESULTS
+        // =================================================
+
+        function showNoResults() {
+
+            resultBadge.textContent =
+                "SMART COOKING";
+
+
+            pageTitle.textContent =
+                "No Dish Found";
+
+
+            pageDescription.textContent =
+                "We couldn't prepare a recipe from your ingredients.";
+
+
+            resultsContainer.innerHTML = `
+
+                <div class="no-results">
+
+                    <div class="no-results-icon">
+                        🍳
+                    </div>
+
+
+                    <h2>
+                        No Dish Found
+                    </h2>
+
+
+                    <p>
+
+                        Please try adding a few more
+                        ingredients.
+
+                    </p>
+
+
+                    <a
+                        href="custom-food.html"
+                        class="try-again-btn"
+                    >
+
+                        ← Try Again
+
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        // =================================================
+        // HTML ESCAPE
+        // =================================================
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
     }
 
+);
 
-    // =====================================================
-    // HTML ESCAPE
-    // =====================================================
-
-    function escapeHTML(value) {
-
-        return String(value)
-
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-});
-    </script>
+</script>
 
 
 </body>

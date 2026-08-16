@@ -1,3 +1,7 @@
+// ============================================================
+// COOK WITH ME - CUSTOM FOOD
+// ============================================================
+
 const ingredientName = document.getElementById("ingredientName");
 const ingredientQuantity = document.getElementById("ingredientQuantity");
 const addIngredient = document.getElementById("addIngredient");
@@ -7,82 +11,176 @@ const createDish = document.getElementById("createDish");
 let ingredients = [];
 
 
-// ==========================================
-// ADD INGREDIENT
-// ==========================================
+// ============================================================
+// INITIAL DISPLAY
+// ============================================================
 
-addIngredient.addEventListener("click", addNewIngredient);
+displayIngredients();
 
 
-// Allow Enter key to add ingredient
-ingredientName.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        addNewIngredient();
-    }
-});
+// ============================================================
+// ADD INGREDIENT BUTTON
+// ============================================================
 
-ingredientQuantity.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        addNewIngredient();
-    }
-});
+if (addIngredient) {
+    addIngredient.addEventListener("click", addNewIngredient);
+}
 
+
+// ============================================================
+// ENTER KEY - INGREDIENT NAME
+// ============================================================
+
+if (ingredientName) {
+    ingredientName.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+            addNewIngredient();
+        }
+
+    });
+}
+
+
+// ============================================================
+// ENTER KEY - QUANTITY
+// ============================================================
+
+if (ingredientQuantity) {
+    ingredientQuantity.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+            addNewIngredient();
+        }
+
+    });
+}
+
+
+// ============================================================
+// ADD NEW INGREDIENT
+// ============================================================
 
 function addNewIngredient() {
+
+    if (!ingredientName || !ingredientQuantity) {
+        return;
+    }
 
     const name = ingredientName.value.trim();
     const quantity = ingredientQuantity.value.trim();
 
+
+    // --------------------------------------------------------
+    // CHECK NAME
+    // --------------------------------------------------------
+
     if (name === "") {
+
         alert("Please enter an ingredient.");
+
         ingredientName.focus();
+
         return;
     }
+
+
+    // --------------------------------------------------------
+    // CHECK QUANTITY
+    // --------------------------------------------------------
 
     if (quantity === "") {
+
         alert("Please enter the quantity.");
+
         ingredientQuantity.focus();
+
         return;
     }
 
 
-    // Normalize ingredient name
-    const normalizedName = name.toLowerCase();
+    // --------------------------------------------------------
+    // NORMALIZE NAME
+    // --------------------------------------------------------
+
+    const normalizedName = name
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
 
 
-    // Check duplicate ingredient
-    const alreadyExists = ingredients.some(
-        ingredient =>
-            ingredient.name.toLowerCase() === normalizedName
-    );
+    // --------------------------------------------------------
+    // CHECK DUPLICATE
+    // --------------------------------------------------------
+
+    const alreadyExists = ingredients.some(function (ingredient) {
+
+        return ingredient.name
+            .toLowerCase()
+            .replace(/\s+/g, " ")
+            .trim() === normalizedName;
+
+    });
 
 
     if (alreadyExists) {
+
         alert("This ingredient is already added.");
+
+        ingredientName.focus();
+
         return;
     }
 
 
+    // --------------------------------------------------------
+    // ADD INGREDIENT
+    // --------------------------------------------------------
+
     ingredients.push({
+
         name: name,
+
         quantity: quantity
+
     });
 
+
+    // --------------------------------------------------------
+    // CLEAR INPUTS
+    // --------------------------------------------------------
 
     ingredientName.value = "";
     ingredientQuantity.value = "";
 
+
+    // --------------------------------------------------------
+    // UPDATE LIST
+    // --------------------------------------------------------
+
     displayIngredients();
+
 
     ingredientName.focus();
 }
 
 
-// ==========================================
+// ============================================================
 // DISPLAY INGREDIENTS
-// ==========================================
+// ============================================================
 
 function displayIngredients() {
+
+    if (!ingredientList) {
+        return;
+    }
+
+
+    // --------------------------------------------------------
+    // EMPTY LIST
+    // --------------------------------------------------------
 
     if (ingredients.length === 0) {
 
@@ -96,35 +194,59 @@ function displayIngredients() {
     }
 
 
+    // --------------------------------------------------------
+    // INGREDIENT LIST
+    // --------------------------------------------------------
+
     ingredientList.innerHTML = ingredients.map(
-        (ingredient, index) => {
+        function (ingredient, index) {
 
             return `
                 <div class="ingredient-item">
 
-                    <div>
-                        <strong>${escapeHTML(ingredient.name)}</strong>
-                        <span>${escapeHTML(ingredient.quantity)}</span>
+                    <div class="ingredient-info">
+
+                        <strong>
+                            ${escapeHTML(ingredient.name)}
+                        </strong>
+
+                        <span>
+                            ${escapeHTML(ingredient.quantity)}
+                        </span>
+
                     </div>
 
                     <button
                         type="button"
-                        onclick="removeIngredient(${index})">
+                        class="remove-ingredient"
+                        onclick="removeIngredient(${index})"
+                        aria-label="Remove ingredient">
+
                         ✕
+
                     </button>
 
                 </div>
             `;
+
         }
     ).join("");
 }
 
 
-// ==========================================
+// ============================================================
 // REMOVE INGREDIENT
-// ==========================================
+// ============================================================
 
 function removeIngredient(index) {
+
+    if (
+        index < 0 ||
+        index >= ingredients.length
+    ) {
+        return;
+    }
+
 
     ingredients.splice(index, 1);
 
@@ -132,43 +254,96 @@ function removeIngredient(index) {
 }
 
 
-// ==========================================
-// CREATE DISH
-// ==========================================
+// ============================================================
+// CREATE DISH BUTTON
+// ============================================================
 
-createDish.addEventListener("click", findDish);
+if (createDish) {
 
+    createDish.addEventListener(
+        "click",
+        findDish
+    );
+
+}
+
+
+// ============================================================
+// FIND / CREATE DISH
+// ============================================================
 
 async function findDish() {
 
+    // --------------------------------------------------------
+    // CHECK INGREDIENTS
+    // --------------------------------------------------------
+
     if (ingredients.length === 0) {
 
-        alert("Please add at least one ingredient.");
+        alert(
+            "Please add at least one ingredient."
+        );
 
         return;
     }
 
 
+    // --------------------------------------------------------
+    // GET OPTIONAL SETTINGS
+    // --------------------------------------------------------
+
+    const spiceElement =
+        document.getElementById("spiceLevel");
+
+    const servingsElement =
+        document.getElementById("servings");
+
+    const cookingTimeElement =
+        document.getElementById("cookingTime");
+
+
     const spiceLevel =
-        document.getElementById("spiceLevel").value;
+        spiceElement
+            ? spiceElement.value
+            : "medium";
+
 
     const servings =
-        document.getElementById("servings").value;
+        servingsElement
+            ? servingsElement.value
+            : "2";
+
 
     const cookingTime =
-        document.getElementById("cookingTime").value;
+        cookingTimeElement
+            ? cookingTimeElement.value
+            : "15";
 
 
-    // Disable button while searching
-    createDish.disabled = true;
-    createDish.textContent = "🍳 Finding your dish...";
+    // --------------------------------------------------------
+    // DISABLE BUTTON
+    // --------------------------------------------------------
+
+    if (createDish) {
+
+        createDish.disabled = true;
+
+        createDish.textContent =
+            "🍳 Creating your dish...";
+
+    }
 
 
     try {
 
+        // ====================================================
+        // SEND DATA TO FLASK
+        // ====================================================
+
         const response = await fetch(
             "http://127.0.0.1:5000/custom-food",
             {
+
                 method: "POST",
 
                 headers: {
@@ -178,10 +353,21 @@ async function findDish() {
                 body: JSON.stringify({
 
                     ingredients: ingredients.map(
-                        ingredient => ({
-                            name: ingredient.name.trim().toLowerCase(),
-                            quantity: ingredient.quantity
-                        })
+                        function (ingredient) {
+
+                            return {
+
+                                name: ingredient.name
+                                    .trim()
+                                    .toLowerCase(),
+
+                                quantity:
+                                    ingredient.quantity
+                                    .trim()
+
+                            };
+
+                        }
                     ),
 
                     spiceLevel: spiceLevel,
@@ -191,19 +377,50 @@ async function findDish() {
                     cookingTime: cookingTime
 
                 })
+
             }
         );
 
 
+        // ====================================================
+        // HTTP ERROR
+        // ====================================================
+
         if (!response.ok) {
 
-            throw new Error(
-                `Server returned ${response.status}`
-            );
+            let errorMessage =
+                `Server returned ${response.status}`;
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+                if (errorData.message) {
+                    errorMessage =
+                        errorData.message;
+                }
+
+            } catch (jsonError) {
+
+                console.warn(
+                    "Could not read server error.",
+                    jsonError
+                );
+
+            }
+
+            throw new Error(errorMessage);
         }
 
 
-        const result = await response.json();
+        // ====================================================
+        // READ JSON
+        // ====================================================
+
+        const result =
+            await response.json();
+
 
         console.log(
             "Custom food result:",
@@ -211,27 +428,39 @@ async function findDish() {
         );
 
 
-        // ======================================
-        // NO RECIPE FOUND
-        // ======================================
+        // ====================================================
+        // CHECK SUCCESS
+        // ====================================================
 
-        if (!Array.isArray(result) || result.length === 0) {
-
-            localStorage.removeItem(
-                "customFoodResult"
-            );
+        if (!result || result.success !== true) {
 
             alert(
-                "Sorry! No matching recipe was found with your ingredients."
+                result && result.message
+                    ? result.message
+                    : "Unable to create the dish."
             );
 
             return;
         }
 
 
-        // ======================================
-        // SAVE RESULT
-        // ======================================
+        // ====================================================
+        // CHECK RECIPE
+        // ====================================================
+
+        if (!result.recipe) {
+
+            alert(
+                "The server did not return a recipe."
+            );
+
+            return;
+        }
+
+
+        // ====================================================
+        // SAVE COMPLETE RESULT
+        // ====================================================
 
         localStorage.setItem(
             "customFoodResult",
@@ -239,22 +468,41 @@ async function findDish() {
         );
 
 
-        // Also save user's ingredients
+        // ====================================================
+        // SAVE USER INGREDIENTS
+        // ====================================================
+
         localStorage.setItem(
             "customFoodIngredients",
             JSON.stringify(ingredients)
         );
 
 
-        // ======================================
+        // ====================================================
+        // SAVE RECIPE TYPE
+        // ====================================================
+
+        localStorage.setItem(
+            "customFoodType",
+            result.type || "custom"
+        );
+
+
+        // ====================================================
         // OPEN RESULT PAGE
-        // ======================================
+        // ====================================================
 
         window.location.href =
             "custom-food-result.html";
 
+    }
 
-    } catch (error) {
+
+    // ========================================================
+    // ERROR
+    // ========================================================
+
+    catch (error) {
 
         console.error(
             "Custom food error:",
@@ -263,30 +511,69 @@ async function findDish() {
 
 
         alert(
-            "Unable to connect to the recipe server. Please make sure Flask is running."
+            "Unable to connect to the recipe server.\n\n" +
+            "Please make sure Flask is running on port 5000."
         );
 
+    }
 
-    } finally {
 
-        createDish.disabled = false;
+    // ========================================================
+    // ENABLE BUTTON AGAIN
+    // ========================================================
 
-        createDish.textContent =
-            "🍳 Create My Dish";
+    finally {
+
+        if (createDish) {
+
+            createDish.disabled = false;
+
+            createDish.textContent =
+                "🍳 Create My Dish";
+
+        }
+
     }
 }
 
 
-// ==========================================
+// ============================================================
 // HTML ESCAPE
-// ==========================================
+// ============================================================
 
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
+
+
+// ============================================================
+// MAKE REMOVE FUNCTION AVAILABLE TO HTML
+// ============================================================
+
+window.removeIngredient = removeIngredient;
