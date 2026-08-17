@@ -879,15 +879,46 @@ def custom_food():
 # TEST ROUTE
 # ============================================================
 
-@app.route("/", methods=["GET"])
-def home():
+@app.route("/search", methods=["GET"])
+def search():
+    query = request.args.get("q", "").strip()
 
-    return jsonify({
-        "success": True,
-        "message": "Cook With Me Flask server is running."
-    })
+    if not query:
+        return jsonify([])
 
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
 
+    try:
+        sql = """
+            SELECT
+                recipe_id,
+                recipe_name,
+                category,
+                cooking_time,
+                difficulty,
+                servings,
+                instructions,
+                recipe_file
+            FROM recipes
+            WHERE LOWER(recipe_name) LIKE LOWER(%s)
+            ORDER BY recipe_name
+        """
+
+        cursor.execute(sql, (f"%{query}%",))
+        results = cursor.fetchall()
+
+        return jsonify(results)
+
+    except mysql.connector.Error as e:
+        print("Search MySQL error:", e)
+        return jsonify({
+            "error": "Database error"
+        }), 500
+
+    finally:
+        cursor.close()
+        conn.close()
 # ============================================================
 # RUN SERVER
 # ============================================================

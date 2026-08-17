@@ -72,34 +72,25 @@ function addNewIngredient() {
     const name = ingredientName.value.trim();
     const quantity = ingredientQuantity.value.trim();
 
-
     // --------------------------------------------------------
     // CHECK NAME
     // --------------------------------------------------------
 
     if (name === "") {
-
         alert("Please enter an ingredient.");
-
         ingredientName.focus();
-
         return;
     }
-
 
     // --------------------------------------------------------
     // CHECK QUANTITY
     // --------------------------------------------------------
 
     if (quantity === "") {
-
         alert("Please enter the quantity.");
-
         ingredientQuantity.focus();
-
         return;
     }
-
 
     // --------------------------------------------------------
     // NORMALIZE NAME
@@ -109,7 +100,6 @@ function addNewIngredient() {
         .toLowerCase()
         .replace(/\s+/g, " ")
         .trim();
-
 
     // --------------------------------------------------------
     // CHECK DUPLICATE
@@ -124,29 +114,22 @@ function addNewIngredient() {
 
     });
 
-
     if (alreadyExists) {
 
         alert("This ingredient is already added.");
-
         ingredientName.focus();
 
         return;
     }
-
 
     // --------------------------------------------------------
     // ADD INGREDIENT
     // --------------------------------------------------------
 
     ingredients.push({
-
         name: name,
-
         quantity: quantity
-
     });
-
 
     // --------------------------------------------------------
     // CLEAR INPUTS
@@ -155,13 +138,11 @@ function addNewIngredient() {
     ingredientName.value = "";
     ingredientQuantity.value = "";
 
-
     // --------------------------------------------------------
     // UPDATE LIST
     // --------------------------------------------------------
 
     displayIngredients();
-
 
     ingredientName.focus();
 }
@@ -177,7 +158,6 @@ function displayIngredients() {
         return;
     }
 
-
     // --------------------------------------------------------
     // EMPTY LIST
     // --------------------------------------------------------
@@ -192,7 +172,6 @@ function displayIngredients() {
 
         return;
     }
-
 
     // --------------------------------------------------------
     // INGREDIENT LIST
@@ -247,7 +226,6 @@ function removeIngredient(index) {
         return;
     }
 
-
     ingredients.splice(index, 1);
 
     displayIngredients();
@@ -280,13 +258,10 @@ async function findDish() {
 
     if (ingredients.length === 0) {
 
-        alert(
-            "Please add at least one ingredient."
-        );
+        alert("Please add at least one ingredient.");
 
         return;
     }
-
 
     // --------------------------------------------------------
     // GET OPTIONAL SETTINGS
@@ -343,7 +318,6 @@ async function findDish() {
         const response = await fetch(
             "http://127.0.0.1:5000/custom-food",
             {
-
                 method: "POST",
 
                 headers: {
@@ -356,7 +330,6 @@ async function findDish() {
                         function (ingredient) {
 
                             return {
-
                                 name: ingredient.name
                                     .trim()
                                     .toLowerCase(),
@@ -364,7 +337,6 @@ async function findDish() {
                                 quantity:
                                     ingredient.quantity
                                     .trim()
-
                             };
 
                         }
@@ -377,7 +349,6 @@ async function findDish() {
                     cookingTime: cookingTime
 
                 })
-
             }
         );
 
@@ -397,8 +368,10 @@ async function findDish() {
                     await response.json();
 
                 if (errorData.message) {
+
                     errorMessage =
                         errorData.message;
+
                 }
 
             } catch (jsonError) {
@@ -545,30 +518,15 @@ function escapeHTML(value) {
 
     return String(value)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g, "&amp;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g, "&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        .replace(/>/g, "&gt;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g, "&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/'/g, "&#039;");
 }
 
 
