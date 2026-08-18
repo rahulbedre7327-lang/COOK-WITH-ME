@@ -1,1 +1,1 @@
-SHOW COLUMNS FROM recipe_ingredients;
+SELECT COUNT(*) FROM recipe_ingredients;
