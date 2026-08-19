@@ -1,4 +1,3 @@
-USE CookWithMe;
 
 SELECT 
     r.recipe_id,
