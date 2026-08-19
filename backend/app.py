@@ -20,8 +20,7 @@ DB_CONFIG = {
 
 
 # ============================================================
-# DATABASE CONNECTION
-# ============================================================
+# DATABASE CONNECTION# ============================================================
 
 def get_db_connection():
     try:
@@ -182,10 +181,10 @@ def find_ingredient_id(cursor, ingredient_name):
 def search_existing_recipes(cursor, user_ingredients):
 
     """
-    Finds recipes that contain the user's ingredients.
+    Finds recipes that contain every ingredient supplied by the user.
 
-    Instead of requiring 100% exact matching, this function
-    calculates how many user ingredients occur in each recipe.
+    A stored recipe may include additional pantry ingredients, but if even
+    one user ingredient is not in it, the caller creates a custom dish.
     """
 
     if not user_ingredients:
@@ -204,9 +203,8 @@ def search_existing_recipes(cursor, user_ingredients):
 
     query = f"""
         SELECT
-            r.id,
-            r.name,
-            r.description,
+            r.recipe_id,
+            r.recipe_name,
             r.recipe_file,
 
             COUNT(DISTINCT LOWER(TRIM(i.name))) AS matched_count,
@@ -214,13 +212,13 @@ def search_existing_recipes(cursor, user_ingredients):
             (
                 SELECT COUNT(DISTINCT ri2.ingredient_id)
                 FROM recipe_ingredients ri2
-                WHERE ri2.recipe_id = r.id
+                WHERE ri2.recipe_id = r.recipe_id
             ) AS total_ingredients
 
         FROM recipes r
 
         JOIN recipe_ingredients ri
-            ON r.id = ri.recipe_id
+            ON r.recipe_id = ri.recipe_id
 
         JOIN ingredients i
             ON ri.ingredient_id = i.id
@@ -228,9 +226,8 @@ def search_existing_recipes(cursor, user_ingredients):
         WHERE LOWER(TRIM(i.name)) IN ({placeholders})
 
         GROUP BY
-            r.id,
-            r.name,
-            r.description,
+            r.recipe_id,
+            r.recipe_name,
             r.recipe_file
 
         ORDER BY
@@ -248,10 +245,9 @@ def search_existing_recipes(cursor, user_ingredients):
 
         recipe_id = row[0]
         recipe_name = row[1]
-        description = row[2]
-        recipe_file = row[3]
-        matched_count = row[4]
-        total_ingredients = row[5]
+        recipe_file = row[2]
+        matched_count = row[3]
+        total_ingredients = row[4]
 
         # ----------------------------------------------------
         # Match percentage
@@ -269,7 +265,7 @@ def search_existing_recipes(cursor, user_ingredients):
         recipes.append({
             "id": recipe_id,
             "name": recipe_name,
-            "description": description or "",
+            "description": "A recipe from Cook With Me.",
             "recipe_file": recipe_file,
             "matched_count": matched_count,
             "total_ingredients": total_ingredients,
@@ -742,7 +738,10 @@ def custom_food():
         # We can consider that a useful match.
         #
 
-        MATCH_THRESHOLD = 60
+        # Return a stored recipe only when every ingredient submitted by the
+        # user occurs in it. Any unmatched ingredient means we generate a
+        # new custom dish instead.
+        MATCH_THRESHOLD = 100
 
         if (
             best_recipe
