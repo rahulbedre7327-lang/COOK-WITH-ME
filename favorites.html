@@ -423,8 +423,8 @@
 
     <header>
         <div class="logo">
-            <img src="images/logo.png" alt="Cook With Me Logo">
-            <span>Cook With Me</span>
+            <img src="images/logo.png" alt="Tasty Meal Logo">
+            <span>Tasty Meal</span>
         </div>
         <p>Your saved recipes will appear here.</p>
     </header>
@@ -468,84 +468,84 @@
 
     </a>
     <a href="dashboard.html" class="back-btn">
-    ⬅ Back to Dashboard
-</a>
+        ⬅ Back to Dashboard
+    </a>
 
-<script src="../script/theme.js"></script>
+    <script src="../script/theme.js"></script>
 
-<a href="../pages/custom-food.html" class="custom-food-button">
-    <div class="cooker-image">
-        <img src="../images/custom-food.png" alt="Customized Food Cooker">
-    </div>
+    <a href="../pages/custom-food.html" class="custom-food-button">
+        <div class="cooker-image">
+            <img src="../images/custom-food.png" alt="Customized Food Cooker">
+        </div>
 
-    <div class="cook-label">
-        <span>Cook With</span>
-        <strong>What You Have</strong>
-    </div>
-</a>
+        <div class="cook-label">
+            <span>Cook With</span>
+            <strong>What You Have</strong>
+        </div>
+    </a>
 
-<script>
-    const removeButtons = document.querySelectorAll(".remove-btn");
+    <script>
+        const removeButtons = document.querySelectorAll(".remove-btn");
 
-    removeButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const card = this.closest(".favorite-card");
+        removeButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const card = this.closest(".favorite-card");
 
-            if (confirm("Remove this recipe from favorites?")) {
-                card.remove();
+                if (confirm("Remove this recipe from favorites?")) {
+                    card.remove();
 
-                const container = document.querySelector(".favorites-container");
+                    const container = document.querySelector(".favorites-container");
 
-                if (!container.querySelector(".favorite-card")) {
-                    container.innerHTML = `
+                    if (!container.querySelector(".favorite-card")) {
+                        container.innerHTML = `
                         <div class="empty-message">
                             ❤️ No favorite recipes yet.
                         </div>
                     `;
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
-<script src="../script/favorites.js"></script>
+    </script>
+    <script src="../script/favorites.js"></script>
 
-<script>
+    <script>
 
-const chickenBiryani = {
-    name: "Chicken Biryani",
-    rating: "⭐⭐⭐⭐⭐",
-    time: "45 Minutes"
-};
+        const chickenBiryani = {
+            name: "Chicken Biryani",
+            rating: "⭐⭐⭐⭐⭐",
+            time: "45 Minutes"
+        };
 
-document.getElementById("favoriteBtn").addEventListener("click", function () {
+        document.getElementById("favoriteBtn").addEventListener("click", function () {
 
-    addToFavorites(chickenBiryani);
+            addToFavorites(chickenBiryani);
 
-});
+        });
 
-</script>
-<button id="favoriteBtn" class="favorite-btn">
-    ❤️ Add to Favorites
-</button>
+    </script>
+    <button id="favoriteBtn" class="favorite-btn">
+        ❤️ Add to Favorites
+    </button>
 
-<script src="../script/favorites.js"></script>
+    <script src="../script/favorites.js"></script>
 
-<script>
+    <script>
 
-const paneerButterMasala = {
-    name: "Paneer Butter Masala",
-    rating: "⭐⭐⭐⭐",
-    time: "35 Minutes"
-};
+        const paneerButterMasala = {
+            name: "Paneer Butter Masala",
+            rating: "⭐⭐⭐⭐",
+            time: "35 Minutes"
+        };
 
-document.getElementById("favoriteBtn").addEventListener("click", function () {
+        document.getElementById("favoriteBtn").addEventListener("click", function () {
 
-    addToFavorites(paneerButterMasala);
+            addToFavorites(paneerButterMasala);
 
-});
+        });
 
-</script>
-<script src="../script/favorites.js"></script>
+    </script>
+    <script src="../script/favorites.js"></script>
 </body>
 
 </html>

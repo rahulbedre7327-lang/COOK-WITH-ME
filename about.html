@@ -1,639 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Cook With Me</title>
 
     <style>
-        *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-body{
-background:#f5f5f5;
-color:#333;
-}
+        body {
+            background: #f5f5f5;
+            color: #333;
+        }
 
-/* Hero */
+        /* Hero */
 
-.hero{
-background:linear-gradient(135deg,#ff9800,#ff5722);
-color:white;
-text-align:center;
-padding:80px 20px;
-animation:fadeDown 1s;
-}
+        .hero {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            animation: fadeDown 1s;
+        }
 
-.hero h1{
-font-size:50px;
-margin-bottom:20px;
-}
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
 
-.hero p{
-font-size:22px;
-}
+        .hero p {
+            font-size: 22px;
+        }
 
-/* About */
+        /* About */
 
-.about{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:50px;
-padding:70px;
-flex-wrap:wrap;
-}
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 70px;
+            flex-wrap: wrap;
+        }
 
-.about-text{
-flex:1;
-min-width:300px;
-animation:slideLeft 1s;
-}
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            animation: slideLeft 1s;
+        }
 
-.about-text h2{
-color:orange;
-margin-bottom:20px;
-font-size:36px;
-}
+        .about-text h2 {
+            color: orange;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
 
-.about-text p{
-font-size:18px;
-line-height:1.8;
-}
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
 
-.about-image img{
-width:420px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-animation:slideRight 1s;
-}
+        .about-image img {
+            width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+            animation: slideRight 1s;
+        }
 
-/* Mission */
+        /* Mission */
 
-.mission{
-text-align:center;
-padding:60px;
-background:white;
-}
+        .mission {
+            text-align: center;
+            padding: 60px;
+            background: white;
+        }
 
-.mission h2{
-color:orange;
-margin-bottom:20px;
-font-size:38px;
-}
+        .mission h2 {
+            color: orange;
+            margin-bottom: 20px;
+            font-size: 38px;
+        }
 
-/* Features */
+        /* Features */
 
-.features{
-padding:70px;
-}
+        .features {
+            padding: 70px;
+        }
 
-.features h2{
-text-align:center;
-font-size:40px;
-margin-bottom:40px;
-color:orange;
-}
+        .features h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: orange;
+        }
 
-.feature-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
 
-.feature-card{
-background:white;
-padding:30px;
-border-radius:15px;
-text-align:center;
-transition:.4s;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: .4s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+        }
 
-.feature-card:hover{
-transform:translateY(-10px);
-}
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
 
-.feature-card i{
-font-size:50px;
-color:orange;
-margin-bottom:20px;
-}
+        .feature-card i {
+            font-size: 50px;
+            color: orange;
+            margin-bottom: 20px;
+        }
 
-/* Team */
+        /* Team */
 
-.team{
-padding:70px;
-background:#fff;
-}
+        .team {
+            padding: 70px;
+            background: #fff;
+        }
 
-.team h2{
-text-align:center;
-font-size:40px;
-color:orange;
-margin-bottom:40px;
-}
+        .team h2 {
+            text-align: center;
+            font-size: 40px;
+            color: orange;
+            margin-bottom: 40px;
+        }
 
-.team-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-}
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
 
-.member{
-background:#f8f8f8;
-padding:30px;
-text-align:center;
-border-radius:15px;
-transition:.4s;
-}
+        .member {
+            background: #f8f8f8;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            transition: .4s;
+        }
 
-.member:hover{
-transform:scale(1.05);
-}
+        .member:hover {
+            transform: scale(1.05);
+        }
 
-.member img{
-width:120px;
-height:120px;
-border-radius:50%;
-margin-bottom:15px;
-}
+        .member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
 
-/* Stats */
+        /* Stats */
 
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-background:#222;
-color:white;
-padding:50px;
-text-align:center;
-}
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #222;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
 
-.stat h2{
-color:orange;
-font-size:45px;
-}
+        .stat h2 {
+            color: orange;
+            font-size: 45px;
+        }
 
-.center{
-text-align:center;
-padding:50px;
-}
+        .center {
+            text-align: center;
+            padding: 50px;
+        }
 
-.btn{
-background:orange;
-color:white;
-padding:15px 35px;
-text-decoration:none;
-border-radius:10px;
-font-size:18px;
-transition:.3s;
-}
+        .btn {
+            background: orange;
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: .3s;
+        }
 
-.btn:hover{
-background:#ff5722;
-}
+        .btn:hover {
+            background: #ff5722;
+        }
 
-/* Animations */
+        /* Animations */
 
-@keyframes fadeDown{
-from{
-opacity:0;
-transform:translateY(-50px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
 
-@keyframes slideLeft{
-from{
-opacity:0;
-transform:translateX(-80px);
-}
-to{
-opacity:1;
-transform:translateX(0);
-}
-}
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-@keyframes slideRight{
-from{
-opacity:0;
-transform:translateX(80px);
-}
-to{
-opacity:1;
-transform:translateX(0);
-}
-}
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
 
-/* Responsive */
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-@media(max-width:768px){
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
 
-.hero h1{
-font-size:35px;
-}
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
-.stats{
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-}
+        /* Responsive */
 
-.about{
-padding:30px;
-}
+        @media(max-width:768px) {
 
-.about-image img{
-width:100%;
-}
+            .hero h1 {
+                font-size: 35px;
+            }
 
-}
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
 
-/* Dark Mode */
+            .about {
+                padding: 30px;
+            }
 
-body.dark-mode{
-background:#121212;
-color:white;
-}
+            .about-image img {
+                width: 100%;
+            }
 
-body.dark-mode .mission,
-body.dark-mode .feature-card,
-body.dark-mode .member{
-background:#1f1f1f;
-color:white;
-}
-/* =========================================
+        }
+
+        /* Dark Mode */
+
+        body.dark-mode {
+            background: #121212;
+            color: white;
+        }
+
+        body.dark-mode .mission,
+        body.dark-mode .feature-card,
+        body.dark-mode .member {
+            background: #1f1f1f;
+            color: white;
+        }
+
+        /* =========================================
    CUSTOMIZED FOOD FLOATING COOKER
 ========================================= */
 
-.custom-food-button {
-    position: fixed;
+        .custom-food-button {
+            position: fixed;
 
-    right: 25px;
-    bottom: 25px;
+            right: 25px;
+            bottom: 25px;
 
-    width: 105px;
-    height: 105px;
+            width: 105px;
+            height: 105px;
 
-    border-radius: 50%;
+            border-radius: 50%;
 
-    background: #ff9800;
+            background: #ff9800;
 
-    border: 3px solid white;
+            border: 3px solid white;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    text-decoration: none;
+            text-decoration: none;
 
-    z-index: 9999;
+            z-index: 9999;
 
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.35),
-        0 0 20px rgba(255, 152, 0, 0.5);
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.35),
+                0 0 20px rgba(255, 152, 0, 0.5);
 
-    transition: all 0.3s ease;
+            transition: all 0.3s ease;
 
-    animation: cookerFloat 3s ease-in-out infinite;
-}
-
-
-/* Cooker image */
-
-.custom-food-button .cooker-image {
-    width: 90px;
-    height: 90px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-.custom-food-button .cooker-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    display: block;
-}
+            animation: cookerFloat 3s ease-in-out infinite;
+        }
 
 
-/* Hover */
+        /* Cooker image */
 
-.custom-food-button:hover {
-    transform: scale(1.1);
+        .custom-food-button .cooker-image {
+            width: 90px;
+            height: 90px;
 
-    animation: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(255, 152, 0, 0.7);
-}
+            overflow: hidden;
+        }
 
+        .custom-food-button .cooker-image img {
+            width: 100%;
+            height: 100%;
 
-/* Label */
+            object-fit: contain;
 
-.custom-food-button .cook-label {
-    position: absolute;
-
-    right: 0;
-    bottom: -48px;
-
-    width: 145px;
-
-    padding: 8px 10px;
-
-    background: #222;
-
-    color: white;
-
-    border-radius: 20px;
-
-    text-align: center;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(5px);
-
-    transition: all 0.3s ease;
-}
-
-.custom-food-button .cook-label span {
-    display: block;
-
-    color: #ff9800;
-
-    font-size: 11px;
-}
-
-.custom-food-button .cook-label strong {
-    display: block;
-
-    color: white;
-
-    font-size: 12px;
-}
-
-.custom-food-button:hover .cook-label {
-    opacity: 1;
-    visibility: visible;
-
-    transform: translateY(0);
-}
+            display: block;
+        }
 
 
-/* Floating animation */
+        /* Hover */
 
-@keyframes cookerFloat {
+        .custom-food-button:hover {
+            transform: scale(1.1);
 
-    0% {
-        transform: translateY(0);
-    }
+            animation: none;
 
-    50% {
-        transform: translateY(-8px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 152, 0, 0.7);
+        }
 
 
-/* Mobile */
+        /* Label */
 
-@media (max-width: 768px) {
+        .custom-food-button .cook-label {
+            position: absolute;
 
-    .custom-food-button {
-        width: 85px;
-        height: 85px;
+            right: 0;
+            bottom: -48px;
 
-        right: 15px;
-        bottom: 15px;
-    }
+            width: 145px;
 
-    .custom-food-button .cooker-image {
-        width: 72px;
-        height: 72px;
-    }
-}
+            padding: 8px 10px;
+
+            background: #222;
+
+            color: white;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(5px);
+
+            transition: all 0.3s ease;
+        }
+
+        .custom-food-button .cook-label span {
+            display: block;
+
+            color: #ff9800;
+
+            font-size: 11px;
+        }
+
+        .custom-food-button .cook-label strong {
+            display: block;
+
+            color: white;
+
+            font-size: 12px;
+        }
+
+        .custom-food-button:hover .cook-label {
+            opacity: 1;
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+
+        /* Floating animation */
+
+        @keyframes cookerFloat {
+
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 768px) {
+
+            .custom-food-button {
+                width: 85px;
+                height: 85px;
+
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .custom-food-button .cooker-image {
+                width: 72px;
+                height: 72px;
+            }
+        }
     </style>
-    <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
 
-<header class="hero">
+    <header class="hero">
 
-    <h1>🍳 About Cook With Me</h1>
-
-    <p>
-        Discover recipes using ingredients you already have and reduce food waste.
-    </p>
-
-</header>
-
-<section class="about">
-
-    <div class="about-text">
-
-        <h2>Who We Are</h2>
+        <h1>🍳 About Tasty Meal</h1>
 
         <p>
-            Cook With Me is a smart recipe recommendation platform that helps users
-            cook delicious meals from ingredients available at home.
-            Instead of buying extra groceries, users simply choose their ingredients
-            and instantly receive matching recipes.
+            Discover recipes using ingredients you already have and reduce food waste.
         </p>
 
+    </header>
+
+    <section class="about">
+
+        <div class="about-text">
+
+            <h2>Who We Are</h2>
+
+            <p>
+                Tasty Meal is a smart recipe recommendation platform that helps users
+                cook delicious meals from ingredients available at home.
+                Instead of buying extra groceries, users simply choose their ingredients
+                and instantly receive matching recipes.
+            </p>
+
+        </div>
+
+        <div class="about-image">
+
+            <img src="images/Recipes.png" alt="Tasty Meal">
+
+        </div>
+
+    </section>
+
+    <section class="mission">
+
+        <h2>🎯 Our Mission</h2>
+
+        <p>
+
+            To reduce food waste and make cooking easier by providing
+            quick, healthy and delicious recipes using available ingredients.
+
+        </p>
+
+    </section>
+
+    <section class="features">
+
+        <h2>✨ Features</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <i class="fas fa-search"></i>
+
+                <h3>Smart Search</h3>
+
+                <p>Find recipes instantly using available ingredients.</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fas fa-heart"></i>
+
+                <h3>Favorites</h3>
+
+                <p>Save your favourite recipes for quick access.</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fas fa-history"></i>
+
+                <h3>History</h3>
+
+                <p>View your recently searched recipes anytime.</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fas fa-cog"></i>
+
+                <h3>Settings</h3>
+
+                <p>Customize notifications and dark mode.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+    <div class="center">
+
+        <a href="dashboard.html" class="btn">
+
+            ⬅ Back to Dashboard
+
+        </a>
+
     </div>
+    <section class="team">
 
-    <div class="about-image">
+        <h2>👨‍💻 Our Team</h2>
 
-        <img src="images/Recipes.png" alt="Cook With Me">
+        <div class="team-grid">
 
-    </div>
+            <div class="member">
 
-</section>
+                <img src="images/rahul.png" alt="Rahul">
 
-<section class="mission">
+                <h3>Rahul</h3>
 
-    <h2>🎯 Our Mission</h2>
+                <p>Frontend Developer</p>
 
-    <p>
+            </div>
 
-        To reduce food waste and make cooking easier by providing
-        quick, healthy and delicious recipes using available ingredients.
+            <div class="member">
 
-    </p>
+                <img src="images/rahul.png" alt="Member">
 
-</section>
+                <h3>Team Member</h3>
 
-<section class="features">
+                <p>Backend Developer</p>
 
-<h2>✨ Features</h2>
+            </div>
 
-<div class="feature-grid">
+            <div class="member">
 
-<div class="feature-card">
+                <img src="images/rahul.png" alt="Member">
 
-<i class="fas fa-search"></i>
+                <h3>Team Member</h3>
 
-<h3>Smart Search</h3>
+                <p>Database Designer</p>
 
-<p>Find recipes instantly using available ingredients.</p>
+            </div>
 
-</div>
+        </div>
 
-<div class="feature-card">
+    </section>
 
-<i class="fas fa-heart"></i>
+    <section class="stats">
 
-<h3>Favorites</h3>
+        <div class="stat">
 
-<p>Save your favourite recipes for quick access.</p>
+            <h2>500+</h2>
 
-</div>
+            <p>Recipes</p>
 
-<div class="feature-card">
+        </div>
 
-<i class="fas fa-history"></i>
+        <div class="stat">
 
-<h3>History</h3>
+            <h2>100+</h2>
 
-<p>View your recently searched recipes anytime.</p>
+            <p>Ingredients</p>
 
-</div>
+        </div>
 
-<div class="feature-card">
+        <div class="stat">
 
-<i class="fas fa-cog"></i>
+            <h2>1000+</h2>
 
-<h3>Settings</h3>
+            <p>Users</p>
 
-<p>Customize notifications and dark mode.</p>
+        </div>
 
-</div>
+        <div class="stat">
 
-</div>
+            <h2>24/7</h2>
 
-</section>
-<div class="center">
+            <p>Support</p>
 
-<a href="dashboard.html" class="btn">
+        </div>
 
-⬅ Back to Dashboard
+    </section>
 
-</a>
 
-</div>
-<section class="team">
 
-<h2>👨‍💻 Our Team</h2>
+    <script src="../script/theme.js"></script>
+    <!-- Customized Food Floating Button -->
+    <!-- Customized Food Floating Button -->
+    <a href="../pages/custom-food.html" class="custom-food-button" aria-label="Cook With What You Have">
 
-<div class="team-grid">
+        <div class="cooker-image">
+            <img src="images/custom-food.png" alt="Customized Food Cooker">
+        </div>
 
-<div class="member">
+        <div class="cook-label">
+            <span>Cook With</span>
+            <strong>What You Have</strong>
+        </div>
 
-<img src="images/rahul.png" alt="Rahul">
-
-<h3>Rahul</h3>
-
-<p>Frontend Developer</p>
-
-</div>
-
-<div class="member">
-
-<img src="images/rahul.png" alt="Member">
-
-<h3>Team Member</h3>
-
-<p>Backend Developer</p>
-
-</div>
-
-<div class="member">
-
-<img src="images/rahul.png" alt="Member">
-
-<h3>Team Member</h3>
-
-<p>Database Designer</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="stats">
-
-<div class="stat">
-
-<h2>500+</h2>
-
-<p>Recipes</p>
-
-</div>
-
-<div class="stat">
-
-<h2>100+</h2>
-
-<p>Ingredients</p>
-
-</div>
-
-<div class="stat">
-
-<h2>1000+</h2>
-
-<p>Users</p>
-
-</div>
-
-<div class="stat">
-
-<h2>24/7</h2>
-
-<p>Support</p>
-
-</div>
-
-</section>
-
-
-
-<script src="../script/theme.js"></script>
-<!-- Customized Food Floating Button -->
-<!-- Customized Food Floating Button -->
-<a href="../pages/custom-food.html"
-   class="custom-food-button"
-   aria-label="Cook With What You Have">
-
-    <div class="cooker-image">
-        <img src="images/custom-food.png"
-             alt="Customized Food Cooker">
-    </div>
-
-    <div class="cook-label">
-        <span>Cook With</span>
-        <strong>What You Have</strong>
-    </div>
-
-</a>
+    </a>
 </body>
+
 </html>

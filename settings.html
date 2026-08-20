@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,357 +12,362 @@
    Global Styles
 ========================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f5f5f5;
-    color:#333;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
 
-/* ==========================
+        /* ==========================
    Header
 ========================== */
 
-header{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:30px;
-}
+        header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
 
-header h1{
-    color:orange;
-    font-size:38px;
-    margin-bottom:10px;
-}
+        header h1 {
+            color: orange;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
 
-header p{
-    color:#ddd;
-    font-size:18px;
-}
+        header p {
+            color: #ddd;
+            font-size: 18px;
+        }
 
-/* ==========================
+        /* ==========================
    Settings Box
 ========================== */
 
-.settings-container{
-    width:90%;
-    max-width:500px;
-    margin:50px auto;
-}
+        .settings-container {
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+        }
 
-.settings-card{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-}
+        .settings-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .15);
+        }
 
-.settings-card h2{
-    margin-bottom:25px;
-    color:#222;
-}
+        .settings-card h2 {
+            margin-bottom: 25px;
+            color: #222;
+        }
 
-/* ==========================
+        /* ==========================
    Setting Items
 ========================== */
 
-.setting-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 0;
-    border-bottom:1px solid #ddd;
-}
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
 
-.setting-item:last-child{
-    border-bottom:none;
-}
+        .setting-item:last-child {
+            border-bottom: none;
+        }
 
-.setting-item label{
-    font-size:18px;
-    font-weight:bold;
-}
+        .setting-item label {
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-/* Checkbox */
+        /* Checkbox */
 
-.setting-item input[type="checkbox"]{
-    width:22px;
-    height:22px;
-    accent-color:orange;
-    cursor:pointer;
-}
+        .setting-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: orange;
+            cursor: pointer;
+        }
 
-/* ==========================
+        /* ==========================
    Save Button
 ========================== */
 
-.save-btn{
-    width:100%;
-    margin-top:30px;
-    padding:12px;
-    background:orange;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
-}
+        .save-btn {
+            width: 100%;
+            margin-top: 30px;
+            padding: 12px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+        }
 
-.save-btn:hover{
-    background:darkorange;
-}
+        .save-btn:hover {
+            background: darkorange;
+        }
 
-/* ==========================
+        /* ==========================
    Back Button
 ========================== */
 
-.back-btn{
-    display:block;
-    width:220px;
-    margin:40px auto;
-    text-align:center;
-    text-decoration:none;
-    background:#222;
-    color:white;
-    padding:12px;
-    border-radius:8px;
-    transition:.3s;
-}
+        .back-btn {
+            display: block;
+            width: 220px;
+            margin: 40px auto;
+            text-align: center;
+            text-decoration: none;
+            background: #222;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            transition: .3s;
+        }
 
-.back-btn:hover{
-    background:orange;
-}
+        .back-btn:hover {
+            background: orange;
+        }
 
-/* ==========================
+        /* ==========================
    Responsive
 ========================== */
 
-@media(max-width:768px){
+        @media(max-width:768px) {
 
-header h1{
-    font-size:30px;
-}
+            header h1 {
+                font-size: 30px;
+            }
 
-.settings-card{
-    padding:20px;
-}
+            .settings-card {
+                padding: 20px;
+            }
 
-.setting-item{
-    font-size:16px;
-}
-
-}
-/* Dark Mode */
-
-body.dark-mode{
-    background:#121212;
-    color:white;
-}
-
-body.dark-mode header{
-    background:#000;
-}
-
-body.dark-mode .settings-card{
-    background:#1f1f1f;
-    color:white;
-}
-
-body.dark-mode .setting-item{
-    border-bottom:1px solid #444;
-}
-
-body.dark-mode .back-btn{
-    background:orange;
-}
-
-body.dark-mode .save-btn{
-    background:#ff9800;
-}
-/* =====================
-   Dark Mode
-===================== */
-
-body.dark-mode{
-    background:#121212;
-    color:white;
-}
-
-body.dark-mode .navbar{
-    background:#000;
-}
-
-body.dark-mode .hero,
-body.dark-mode .card,
-body.dark-mode .recipe-card,
-body.dark-mode .favorite-card,
-body.dark-mode .history-card,
-body.dark-mode .settings-card{
-    background:#1f1f1f;
-    color:white;
-}
-
-body.dark-mode p{
-    color:#ddd;
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3{
-    color:#ff9800;
-}
-
-body.dark-mode .footer{
-    background:#000;
-}
-/* ==========================================
-   Global Dark Mode
-========================================== */
-
-body.dark-mode {
-    background: #121212;
-    color: #ffffff;
-}
-
-body.dark-mode .main-content {
-    background: #121212;
-}
-
-body.dark-mode .search input {
-    background: #1f1f1f;
-    color: white;
-    border-color: #555;
-}
-
-body.dark-mode .search input::placeholder {
-    color: #aaa;
-}
-
-body.dark-mode .category,
-body.dark-mode .card,
-body.dark-mode .stat {
-    background: #1f1f1f;
-    color: white;
-}
-
-body.dark-mode .card-content p,
-body.dark-mode .stat p,
-body.dark-mode .main-content > p {
-    color: #ccc;
-}
-
-body.dark-mode .sidebar {
-    background: #000000;
-}
-
-body.dark-mode .navbar {
-    background: #000000;
-}
-
-body.dark-mode footer {
-    background: #000000;
-}
-
-body.dark-mode .footer-bottom {
-    background: #000000;
-    border-color: #444;
-}
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>⚙️ Settings</h1>
-    <p>Customize your Cook With Me experience.</p>
-</header>
-
-<div class="settings-container">
-
-    <div class="settings-card">
-
-        <h2>Preferences</h2>
-
-        <div class="setting-item">
-            <label for="darkMode">🌙 Dark Mode</label>
-            <input type="checkbox" id="darkMode" title="Toggle dark mode">
-        </div>
-
-        <div class="setting-item">
-            <label for="notifications">🔔 Notifications</label>
-            <input type="checkbox" id="notifications" title="Toggle notifications">
-        </div>
-
-        <button class="save-btn" id="saveSettingsBtn" type="button">Save Settings</button>
-
-    </div>
-
-</div>
-
-<a href="dashboard.html" class="back-btn">
-    ⬅ Back to Dashboard
-</a>
-    <script>
-const darkMode = document.getElementById("darkMode");
-
-// Load saved preference
-if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    darkMode.checked = true;
-}
-
-// Toggle dark mode
-darkMode.addEventListener("change", function () {
-
-    if (this.checked) {
-        document.body.classList.add("dark-mode");
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        document.body.classList.remove("dark-mode");
-        localStorage.setItem("darkMode", "disabled");
-    }
-
-});
-
-const notification = document.getElementById("notifications");
-
-notification.addEventListener("change", async function () {
-
-    if (this.checked) {
-
-        const permission = await Notification.requestPermission();
-
-        if (permission === "granted") {
-
-            new Notification("Cook With Me", {
-                body: "Notifications have been enabled! 🍳"
-            });
-
-            localStorage.setItem("notifications", "enabled");
-
-        } else {
-
-            alert("Notification permission denied.");
-            notification.checked = false;
+            .setting-item {
+                font-size: 16px;
+            }
 
         }
 
-    } else {
+        /* Dark Mode */
 
-        localStorage.setItem("notifications", "disabled");
-        alert("Notifications Disabled");
+        body.dark-mode {
+            background: #121212;
+            color: white;
+        }
 
-    }
+        body.dark-mode header {
+            background: #000;
+        }
 
-});
+        body.dark-mode .settings-card {
+            background: #1f1f1f;
+            color: white;
+        }
+
+        body.dark-mode .setting-item {
+            border-bottom: 1px solid #444;
+        }
+
+        body.dark-mode .back-btn {
+            background: orange;
+        }
+
+        body.dark-mode .save-btn {
+            background: #ff9800;
+        }
+
+        /* =====================
+   Dark Mode
+===================== */
+
+        body.dark-mode {
+            background: #121212;
+            color: white;
+        }
+
+        body.dark-mode .navbar {
+            background: #000;
+        }
+
+        body.dark-mode .hero,
+        body.dark-mode .card,
+        body.dark-mode .recipe-card,
+        body.dark-mode .favorite-card,
+        body.dark-mode .history-card,
+        body.dark-mode .settings-card {
+            background: #1f1f1f;
+            color: white;
+        }
+
+        body.dark-mode p {
+            color: #ddd;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #ff9800;
+        }
+
+        body.dark-mode .footer {
+            background: #000;
+        }
+
+        /* ==========================================
+   Global Dark Mode
+========================================== */
+
+        body.dark-mode {
+            background: #121212;
+            color: #ffffff;
+        }
+
+        body.dark-mode .main-content {
+            background: #121212;
+        }
+
+        body.dark-mode .search input {
+            background: #1f1f1f;
+            color: white;
+            border-color: #555;
+        }
+
+        body.dark-mode .search input::placeholder {
+            color: #aaa;
+        }
+
+        body.dark-mode .category,
+        body.dark-mode .card,
+        body.dark-mode .stat {
+            background: #1f1f1f;
+            color: white;
+        }
+
+        body.dark-mode .card-content p,
+        body.dark-mode .stat p,
+        body.dark-mode .main-content>p {
+            color: #ccc;
+        }
+
+        body.dark-mode .sidebar {
+            background: #000000;
+        }
+
+        body.dark-mode .navbar {
+            background: #000000;
+        }
+
+        body.dark-mode footer {
+            background: #000000;
+        }
+
+        body.dark-mode .footer-bottom {
+            background: #000000;
+            border-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>⚙️ Settings</h1>
+        <p>Customize your Cook With Me experience.</p>
+    </header>
+
+    <div class="settings-container">
+
+        <div class="settings-card">
+
+            <h2>Preferences</h2>
+
+            <div class="setting-item">
+                <label for="darkMode">🌙 Dark Mode</label>
+                <input type="checkbox" id="darkMode" title="Toggle dark mode">
+            </div>
+
+            <div class="setting-item">
+                <label for="notifications">🔔 Notifications</label>
+                <input type="checkbox" id="notifications" title="Toggle notifications">
+            </div>
+
+            <button class="save-btn" id="saveSettingsBtn" type="button">Save Settings</button>
+
+        </div>
+
+    </div>
+
+    <a href="dashboard.html" class="back-btn">
+        ⬅ Back to Dashboard
+    </a>
+    <script>
+        const darkMode = document.getElementById("darkMode");
+
+        // Load saved preference
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.body.classList.add("dark-mode");
+            darkMode.checked = true;
+        }
+
+        // Toggle dark mode
+        darkMode.addEventListener("change", function () {
+
+            if (this.checked) {
+                document.body.classList.add("dark-mode");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                document.body.classList.remove("dark-mode");
+                localStorage.setItem("darkMode", "disabled");
+            }
+
+        });
+
+        const notification = document.getElementById("notifications");
+
+        notification.addEventListener("change", async function () {
+
+            if (this.checked) {
+
+                const permission = await Notification.requestPermission();
+
+                if (permission === "granted") {
+
+                    new Notification("Cook With Me", {
+                        body: "Notifications have been enabled! 🍳"
+                    });
+
+                    localStorage.setItem("notifications", "enabled");
+
+                } else {
+
+                    alert("Notification permission denied.");
+                    notification.checked = false;
+
+                }
+
+            } else {
+
+                localStorage.setItem("notifications", "disabled");
+                alert("Notifications Disabled");
+
+            }
+
+        });
     </script>
-   <script src="../script/theme.js"></script>
-   <!-- Customized Food Floating Button -->
+    <script src="../script/theme.js"></script>
+    <!-- Customized Food Floating Button -->
 </body>
+
 </html>
