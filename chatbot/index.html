@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TastyMe Chatbot</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Chat Launcher -->
+    <button class="chat-launcher" id="chatLauncher" aria-label="Open CookWithMe assistant">
+        🍳
+    </button>
+
+
+    <!-- Chatbot -->
+    <section class="chatbot" id="chatbot" aria-label="CookWithMe cooking assistant">
+
+        <!-- Header -->
+        <header class="chat-header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🍳
+                </div>
+
+                <div class="brand-info">
+
+                    <h2>TastyMe</h2>
+
+                    <div class="online">
+                        <span class="online-dot"></span>
+                        Online • Cooking Assistant
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button class="icon-button" id="clearChat" title="Clear chat">
+                    ↻
+                </button>
+
+                <button class="icon-button" id="closeChat" title="Close">
+                    ✕
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Messages -->
+        <main class="chat-body" id="chatBody" aria-live="polite"></main>
+
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+
+            <button class="quick-button" data-action="find">
+                🥘 Find Recipe
+            </button>
+
+            <button class="quick-button" data-action="ingredients">
+                🧂 My Ingredients
+            </button>
+
+            <button class="quick-button" data-action="help">
+                📖 Cooking Help
+            </button>
+
+        </div>
+
+
+        <!-- Input -->
+        <footer class="input-area">
+
+            <div class="input-wrapper">
+
+                <button class="input-button" id="voiceButton" title="Voice input">
+                    🍳 </button>
+
+                <input id="messageInput" type="text" autocomplete="off" placeholder="Type your ingredients...">
+
+                <button class="input-button send-button" id="sendButton">
+                    ➤
+                </button>
+
+            </div>
+
+            <div class="input-hint">
+                Try: "I have rice, tomato, onion and egg"
+            </div>
+
+        </footer>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
