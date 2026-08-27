@@ -11,23 +11,28 @@
 </head>
 
 <body>
-
     <!-- Chat Launcher -->
-    <button class="chat-launcher" id="chatLauncher" aria-label="Open CookWithMe assistant">
-        🍳
-    </button>
+<button
+    class="chat-launcher"
+    id="chatLauncher"
+    type="button"
+    aria-label="Open TastyMe chatbot">
 
+    🤖
 
-    <!-- Chatbot -->
+</button>
     <section class="chatbot" id="chatbot" aria-label="CookWithMe cooking assistant">
 
-        <!-- Header -->
+        <!-- =========================
+             HEADER
+        ========================== -->
+
         <header class="chat-header">
 
             <div class="brand">
 
                 <div class="brand-icon">
-                    🍳
+                    <img src="../images/custom-food.png" alt="CookWithMe">
                 </div>
 
                 <div class="brand-info">
@@ -46,12 +51,16 @@
 
             <div class="header-actions">
 
-                <button class="icon-button" id="clearChat" title="Clear chat">
+                <button class="icon-button" id="clearChat" type="button" title="Clear chat" aria-label="Clear chat">
+
                     ↻
+
                 </button>
 
-                <button class="icon-button" id="closeChat" title="Close">
+                <button class="icon-button" id="closeChat" type="button" title="Close" aria-label="Close chatbot">
+
                     ✕
+
                 </button>
 
             </div>
@@ -59,50 +68,91 @@
         </header>
 
 
-        <!-- Messages -->
-        <main class="chat-body" id="chatBody" aria-live="polite"></main>
+        <!-- =========================
+             MESSAGES
+        ========================== -->
+
+        <main class="chat-body" id="chatBody" aria-live="polite">
+
+        </main>
 
 
-        <!-- Quick Actions -->
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
         <div class="quick-actions">
 
-            <button class="quick-button" data-action="find">
+            <button class="quick-button" data-action="find" type="button">
+
                 🥘 Find Recipe
+
             </button>
 
-            <button class="quick-button" data-action="ingredients">
+
+            <button class="quick-button" data-action="ingredients" type="button">
+
                 🧂 My Ingredients
+
             </button>
 
-            <button class="quick-button" data-action="help">
+
+            <button class="quick-button" data-action="help" type="button">
+
                 📖 Cooking Help
+
             </button>
 
         </div>
 
 
-        <!-- Input -->
+        <!-- =========================
+             INPUT
+        ========================== -->
+
         <footer class="input-area">
 
             <div class="input-wrapper">
 
-                <button class="input-button" id="voiceButton" title="Voice input">
-                    🍳 </button>
+
+                <!-- MICROPHONE IMAGE -->
+
+                <button class="input-button voice-button" id="voiceButton" type="button" title="Voice input"
+                    aria-label="Voice input">
+
+                    <img src="../images/microphone.png" alt="Microphone">
+
+                </button>
+
+
+                <!-- MESSAGE INPUT -->
 
                 <input id="messageInput" type="text" autocomplete="off" placeholder="Type your ingredients...">
 
-                <button class="input-button send-button" id="sendButton">
+
+                <!-- SEND -->
+
+                <button class="input-button send-button" id="sendButton" type="button" aria-label="Send message">
+
                     ➤
+
                 </button>
 
             </div>
 
+
             <div class="input-hint">
+
                 Try: "I have rice, tomato, onion and egg"
+
             </div>
 
         </footer>
+
     </section>
+
+
+
     <script src="script.js"></script>
 </body>
 

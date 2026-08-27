@@ -656,10 +656,43 @@ body {
   .message {
     max-width: 88%;
   }
+  .voice-button.listening {
+  background: rgba(255, 0, 0, 0.15);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
   .input-area {
     padding-bottom:
       calc(12px + env(safe-area-inset-bottom));
   }
 
+}
+.brand-icon img {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+}
+
+.voice-button img {
+  width: 19px;
+  height: 19px;
+
+  object-fit: contain;
+
+  display: block;
 }
