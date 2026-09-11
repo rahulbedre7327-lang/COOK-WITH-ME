@@ -434,6 +434,247 @@
                 height: 72px;
             }
         }
+        .cwm-fab {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 62px;
+        height: 62px;
+        background: linear-gradient(135deg, #e63946, #d62828);
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        box-shadow: 0 8px 24px rgba(214, 40, 40, 0.4);
+        cursor: pointer;
+        z-index: 99999;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid #ffffff;
+    }
+
+    .cwm-fab:hover {
+        transform: scale(1.08) rotate(5deg);
+        box-shadow: 0 12px 28px rgba(214, 40, 40, 0.5);
+    }
+
+    .cwm-badge {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 14px;
+        height: 14px;
+        background-color: #2ec4b6;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+    }
+
+    /* Chatbot Panel (25% Screen Share) */
+    .cwm-panel {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 25%;
+        min-width: 320px;
+        height: 100vh;
+        background-color: #ffffff;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+        z-index: 100000;
+        display: flex;
+        flex-direction: column;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .cwm-panel.active {
+        right: 0;
+    }
+
+    /* Header */
+    .cwm-header {
+        background: linear-gradient(135deg, #1d3557, #457b9d);
+        color: #ffffff;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .cwm-header-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cwm-header-title h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .cwm-status {
+        font-size: 0.75rem;
+        color: #a8dadc;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .cwm-status-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #2ec4b6;
+        border-radius: 50%;
+    }
+
+    .cwm-close-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: #ffffff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+    }
+
+    .cwm-close-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Body */
+    .cwm-body {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background-color: #f8f9fa;
+    }
+
+    .cwm-msg {
+        max-width: 85%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        line-height: 1.45;
+        word-wrap: break-word;
+    }
+
+    .cwm-msg.bot {
+        align-self: flex-start;
+        background-color: #ffffff;
+        color: #2b2d42;
+        border: 1px solid #e9ecef;
+        border-top-left-radius: 2px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .cwm-msg.user {
+        align-self: flex-end;
+        background-color: #e63946;
+        color: #ffffff;
+        border-top-right-radius: 2px;
+    }
+
+    .cwm-msg p {
+        margin: 0 0 6px 0;
+    }
+
+    .cwm-msg p:last-child {
+        margin-bottom: 0;
+    }
+
+    .cwm-msg ul {
+        margin: 6px 0;
+        padding-left: 18px;
+    }
+
+    .cwm-msg li {
+        margin-bottom: 4px;
+    }
+
+    /* Input Footer */
+    .cwm-footer {
+        padding: 12px;
+        background-color: #ffffff;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .cwm-input-form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #f1f3f5;
+        padding: 6px 12px;
+        border-radius: 24px;
+        border: 1px solid #dee2e6;
+    }
+
+    .cwm-input-form:focus-within {
+        border-color: #e63946;
+        background-color: #ffffff;
+    }
+
+    .cwm-input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 0.88rem;
+        padding: 6px 0;
+        color: #212529;
+    }
+
+    .cwm-btn-icon {
+        background: none;
+        border: none;
+        color: #6c757d;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 4px;
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cwm-btn-icon:hover {
+        color: #e63946;
+    }
+
+    .cwm-btn-submit {
+        color: #e63946;
+    }
+
+    /* Overlay */
+    .cwm-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.3);
+        z-index: 99998;
+        display: none;
+    }
+
+    .cwm-overlay.active {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .cwm-panel {
+            width: 85%;
+        }
+    }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -623,20 +864,141 @@
 
 
     <script src="../script/theme.js"></script>
-    <!-- Customized Food Floating Button -->
-    <!-- Customized Food Floating Button -->
-    <a href="../pages/custom-food.html" class="custom-food-button" aria-label="Cook With What You Have">
+   <!-- ==========================================
+     COOKWITHME FLOATING CHATBOT WIDGET HTML & JS
+=========================================== -->
 
-        <div class="cooker-image">
-            <img src="images/custom-food.png" alt="Customized Food Cooker">
+<!-- Backdrop Overlay -->
+<div class="cwm-overlay" id="cwmOverlay" onclick="toggleCookChat()"></div>
+
+<!-- Floating Action Button (Right-Bottom Corner) -->
+<button class="cwm-fab" id="cwmFab" onclick="toggleCookChat()" aria-label="Open Cooking Assistant">
+    <i class="fa-solid fa-utensils"></i>
+    <span class="cwm-badge"></span>
+</button>
+
+<!-- Chatbot Drawer (25% Width) -->
+<aside class="cwm-panel" id="cwmPanel">
+    <!-- Header -->
+    <div class="cwm-header">
+        <div class="cwm-header-title">
+            <i class="fa-solid fa-utensils" style="color: #f1faee; font-size: 1.2rem;"></i>
+            <div>
+                <h3>CookWithMe</h3>
+                <div class="cwm-status">
+                    <span class="cwm-status-dot"></span> Online • Assistant
+                </div>
+            </div>
         </div>
+        <button class="cwm-close-btn" onclick="toggleCookChat()" aria-label="Close Chat">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
 
-        <div class="cook-label">
-            <span>Cook With</span>
-            <strong>What You Have</strong>
+    <!-- Chat Body -->
+    <div class="cwm-body" id="cwmBody">
+        <div class="cwm-msg bot">
+            <p>Hi Rahul! 👋</p>
+            <p>What ingredients do you have today?</p>
         </div>
+    </div>
 
-    </a>
+    <!-- Input Footer -->
+    <div class="cwm-footer">
+        <form class="cwm-input-form" onsubmit="handleCwmSubmit(event)">
+            <input type="text" id="cwmInput" class="cwm-input" placeholder="Type your ingredients..." autocomplete="off">
+            <button type="button" class="cwm-btn-icon" onclick="startVoiceInput()" title="Voice Input">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+            <button type="submit" class="cwm-btn-icon cwm-btn-submit" title="Send">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+
+<script>
+    function toggleCookChat() {
+        const panel = document.getElementById('cwmPanel');
+        const overlay = document.getElementById('cwmOverlay');
+        panel.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    function handleCwmSubmit(e) {
+        e.preventDefault();
+        const input = document.getElementById('cwmInput');
+        const query = input.value.trim();
+        if (!query) return;
+
+        addMsg(query, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            const lower = query.toLowerCase();
+            let response = "";
+
+            if (lower.includes("rice") && lower.includes("tomato")) {
+                response = `<p>Great! 😋 I can make:</p>
+                            <ul>
+                                <li>🍅 <strong>Tomato Rice</strong></li>
+                                <li>🍚 <strong>Onion Rice</strong></li>
+                            </ul>
+                            <p><strong>Quick Tomato Rice Steps:</strong></p>
+                            <ol style="padding-left: 18px; margin: 4px 0;">
+                                <li>Sauté onions & mustard seeds in oil.</li>
+                                <li>Add chopped tomatoes, chili powder & salt until soft.</li>
+                                <li>Mix cooked rice thoroughly & serve hot!</li>
+                            </ol>`;
+            } else if (lower.includes("chicken")) {
+                response = `<p>🍗 Delicious! You can prepare:</p>
+                            <ul>
+                                <li><strong>Chicken Biryani</strong> (45 mins)</li>
+                                <li><strong>Butter Chicken</strong> (55 mins)</li>
+                            </ul>`;
+            } else if (lower.includes("egg")) {
+                response = `<p>🍳 Quick idea: You can make <strong>Egg Rice</strong> in 25 mins!</p>
+                            <p>Scramble eggs with fried onions, add cooked rice, soy sauce, and black pepper.</p>`;
+            } else {
+                response = `<p>Yum! With <strong>${query}</strong>, I recommend searching our recipe collection!</p>`;
+            }
+
+            addMsg(response, 'bot');
+        }, 600);
+    }
+
+    function addMsg(htmlContent, sender) {
+        const body = document.getElementById('cwmBody');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `cwm-msg ${sender}`;
+        msgDiv.innerHTML = htmlContent;
+        body.appendChild(msgDiv);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function startVoiceInput() {
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            const input = document.getElementById('cwmInput');
+            input.placeholder = "Listening...";
+
+            recognition.onresult = (event) => {
+                input.value = event.results[0][0].transcript;
+                input.placeholder = "Type your ingredients...";
+            };
+
+            recognition.onerror = () => {
+                input.placeholder = "Type your ingredients...";
+            };
+        } else {
+            alert("Voice speech recognition is not supported in this browser.");
+        }
+    }
+</script>
 </body>
 
 </html>

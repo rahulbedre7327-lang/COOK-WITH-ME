@@ -7,6 +7,32 @@ app = Flask(__name__)
 CORS(app)
 
 
+def normalize_ingredient_names(raw_ingredients):
+    """Accept ingredient payloads from both plain strings and objects like
+    {"name":"Tomato","quantity":"2"}, returning a deduplicated lowercase
+    list the query layer already expects.
+    """
+    if not raw_ingredients:
+        return []
+
+    cleaned = []
+    for item in raw_ingredients:
+        if isinstance(item, dict):
+            name = item.get("name") or item.get("ingredient")
+            if not name:
+                continue
+            ingredient = str(name).strip().lower()
+        elif isinstance(item, str):
+            ingredient = item.strip().lower()
+        else:
+            ingredient = str(item).strip().lower()
+
+        if ingredient:
+            cleaned.append(ingredient)
+
+    return list(dict.fromkeys(cleaned))
+
+
 # ============================================================
 # MYSQL CONFIGURATION
 # ============================================================
@@ -28,25 +54,20 @@ def custom_food():
 
     try:
 
-        data = request.get_json()
+        data = request.get_json(silent=True) or {}
 
-        user_ingredients = data.get("ingredients", [])
+        user_ingredients = normalize_ingredient_names(
+            data.get("ingredients", [])
+        )
 
         if not user_ingredients:
 
             return jsonify({
                 "success": False,
                 "message": "No ingredients received.",
-                "recipes": []
+                "recipes": [],
+                "recipe": None
             })
-
-
-        # Clean and remove duplicates
-        user_ingredients = list(set(
-            ingredient.lower().strip()
-            for ingredient in user_ingredients
-            if ingredient.strip()
-        ))
 
 
         connection = get_db_connection()
@@ -160,7 +181,11 @@ def custom_food():
 
             "ingredients": user_ingredients,
 
-            "recipes": recipes
+            "recipes": recipes,
+
+            "recipe": recipes[0] if recipes else None,
+
+            "type": "custom"
 
         })
 
