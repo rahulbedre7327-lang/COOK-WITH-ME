@@ -268,7 +268,141 @@
         <p>© 2026 Tasty Meal | Designed by Rahul</p>
 
     </footer>
-    
+    <!-- ==========================================
+     COOKWITHME FLOATING CHATBOT WIDGET HTML & JS
+=========================================== -->
+
+<!-- Backdrop Overlay -->
+<div class="cwm-overlay" id="cwmOverlay" onclick="toggleCookChat()"></div>
+
+<!-- Floating Action Button (Right-Bottom Corner) -->
+<button class="cwm-fab" id="cwmFab" onclick="toggleCookChat()" aria-label="Open Cooking Assistant">
+    <i class="fa-solid fa-utensils"></i>
+    <span class="cwm-badge"></span>
+</button>
+
+<!-- Chatbot Drawer (25% Width) -->
+<aside class="cwm-panel" id="cwmPanel">
+    <!-- Header -->
+    <div class="cwm-header">
+        <div class="cwm-header-title">
+            <i class="fa-solid fa-utensils" style="color: #f1faee; font-size: 1.2rem;"></i>
+            <div>
+                <h3>CookWithMe</h3>
+                <div class="cwm-status">
+                    <span class="cwm-status-dot"></span> Online • Assistant
+                </div>
+            </div>
+        </div>
+        <button class="cwm-close-btn" onclick="toggleCookChat()" aria-label="Close Chat">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Chat Body -->
+    <div class="cwm-body" id="cwmBody">
+        <div class="cwm-msg bot">
+            <p>Hi Rahul! 👋</p>
+            <p>What ingredients do you have today?</p>
+        </div>
+    </div>
+
+    <!-- Input Footer -->
+    <div class="cwm-footer">
+        <form class="cwm-input-form" onsubmit="handleCwmSubmit(event)">
+            <input type="text" id="cwmInput" class="cwm-input" placeholder="Type your ingredients..." autocomplete="off">
+            <button type="button" class="cwm-btn-icon" onclick="startVoiceInput()" title="Voice Input">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+            <button type="submit" class="cwm-btn-icon cwm-btn-submit" title="Send">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+
+<script>
+    function toggleCookChat() {
+        const panel = document.getElementById('cwmPanel');
+        const overlay = document.getElementById('cwmOverlay');
+        panel.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    function handleCwmSubmit(e) {
+        e.preventDefault();
+        const input = document.getElementById('cwmInput');
+        const query = input.value.trim();
+        if (!query) return;
+
+        addMsg(query, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            const lower = query.toLowerCase();
+            let response = "";
+
+            if (lower.includes("rice") && lower.includes("tomato")) {
+                response = `<p>Great! 😋 I can make:</p>
+                            <ul>
+                                <li>🍅 <strong>Tomato Rice</strong></li>
+                                <li>🍚 <strong>Onion Rice</strong></li>
+                            </ul>
+                            <p><strong>Quick Tomato Rice Steps:</strong></p>
+                            <ol style="padding-left: 18px; margin: 4px 0;">
+                                <li>Sauté onions & mustard seeds in oil.</li>
+                                <li>Add chopped tomatoes, chili powder & salt until soft.</li>
+                                <li>Mix cooked rice thoroughly & serve hot!</li>
+                            </ol>`;
+            } else if (lower.includes("chicken")) {
+                response = `<p>🍗 Delicious! You can prepare:</p>
+                            <ul>
+                                <li><strong>Chicken Biryani</strong> (45 mins)</li>
+                                <li><strong>Butter Chicken</strong> (55 mins)</li>
+                            </ul>`;
+            } else if (lower.includes("egg")) {
+                response = `<p>🍳 Quick idea: You can make <strong>Egg Rice</strong> in 25 mins!</p>
+                            <p>Scramble eggs with fried onions, add cooked rice, soy sauce, and black pepper.</p>`;
+            } else {
+                response = `<p>Yum! With <strong>${query}</strong>, I recommend searching our recipe collection!</p>`;
+            }
+
+            addMsg(response, 'bot');
+        }, 600);
+    }
+
+    function addMsg(htmlContent, sender) {
+        const body = document.getElementById('cwmBody');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `cwm-msg ${sender}`;
+        msgDiv.innerHTML = htmlContent;
+        body.appendChild(msgDiv);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function startVoiceInput() {
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            const input = document.getElementById('cwmInput');
+            input.placeholder = "Listening...";
+
+            recognition.onresult = (event) => {
+                input.value = event.results[0][0].transcript;
+                input.placeholder = "Type your ingredients...";
+            };
+
+            recognition.onerror = () => {
+                input.placeholder = "Type your ingredients...";
+            };
+        } else {
+            alert("Voice speech recognition is not supported in this browser.");
+        }
+    }
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="../script/theme.js"></script>
     <script src="../script/recipe.js"></script>
